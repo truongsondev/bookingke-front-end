@@ -1,0 +1,55 @@
+.login-background {
+    height          : 100vh;
+    background-image: linear-gradient(135deg, rgba(34, 193, 195, 1) 0%, rgba(253, 187, 85, 1) 100%);
+
+    .login-container {
+        width           : 400px;
+        height          : 100%;
+        border          : 1px solid #ccc;
+        margin          : 0 auto;
+        border-radius   : 10px;
+        background-color: #fff;
+
+
+        .login-content.row {
+            padding: 16px;
+
+
+            .text-login {
+                border-radius: 999999999px;
+            }
+
+            .forgot-password {
+                font-size: 12px;
+            }
+
+            .text-other-login {
+                font-size: 18px;
+            }
+
+            .social-login {
+                display        : flex;
+                justify-content: center;
+                margin-top     : 0.5rem;
+
+                svg {
+                    border-radius: 50%;
+                    font-size    : 30px;
+                    cursor       : pointer;
+                }
+
+                .google {
+
+                    margin-right: 4px;
+                    color       : rgb(255, 187, 0);
+                }
+
+                .facebook {
+                    margin-left: 4px;
+                    color      : rgb(51, 0, 255);
+                }
+
+            }
+        }
+    }
+}
