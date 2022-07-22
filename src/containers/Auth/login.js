@@ -7,7 +7,7 @@ import * as actions from '../../store/actions';
 import './login.scss';
 import { FormattedMessage } from 'react-intl';
 
-import adminService from '../../services/adminService';
+import { adminService, userService } from '../../services';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFacebook, faGoogle } from '@fortawesome/free-brands-svg-icons';
 import { faEye, faEyeSlash } from '@fortawesome/free-regular-svg-icons';
@@ -20,6 +20,7 @@ class Login extends Component {
             username: '',
             password: '',
             isShowPassword: false,
+            errMessage: '',
         };
     }
 
@@ -35,11 +36,36 @@ class Login extends Component {
         });
     };
 
-    handleLogin = () => {
-        const { username, password } = this.state;
+    handleLogin = async () => {
+        const { username, password } = this.state; // ES6
 
-        console.log('username: ', username);
-        console.log('password: ', password);
+        this.setState({
+            errMessage: '',
+        });
+
+        try {
+            const data = await userService.handleLogin(username, password);
+
+            if (data && data.errCode !== 0) {
+                this.setState({
+                    errMessage: data.message,
+                });
+            }
+
+            if (data && data.errCode === 0) {
+                console.log('da lot vao');
+
+                this.props.userLoginSuccess(data.user);
+            }
+        } catch (error) {
+            if (error.response) {
+                if (error.response.data) {
+                    this.setState({
+                        errMessage: error.response.data.message,
+                    });
+                }
+            }
+        }
     };
 
     handleHideShowPassword = () => {
@@ -66,7 +92,7 @@ class Login extends Component {
                                 placeholder="Enter your username"
                             />
                         </div>
-                        <div className="col-12 form-group mb-4">
+                        <div className="col-12 form-group">
                             <label>Password</label>
                             <div className="custom-input-password">
                                 <input
@@ -85,12 +111,15 @@ class Login extends Component {
                                 </span>
                             </div>
                         </div>
-                        <div className="col-12 text-center mb-2">
+                        <span className="col-12 mt-2 mb-4" style={{ fontSize: 12, color: 'red' }}>
+                            {this.state.errMessage}
+                        </span>
+                        <div className="col-12 d-block text-center mb-2">
                             <button onClick={() => this.handleLogin()} className="col-9 btn btn-primary text-login">
                                 Login
                             </button>
                         </div>
-                        <div className="col-12">
+                        <div className="col-12 text-right">
                             <span className="forgot-password">For got your password</span>
                         </div>
                         <div className="col-12 text-center mt-3">
@@ -116,8 +145,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         navigate: (path) => dispatch(push(path)),
-        adminLoginSuccess: (adminInfo) => dispatch(actions.adminLoginSuccess(adminInfo)),
-        adminLoginFail: () => dispatch(actions.adminLoginFail()),
+        userLoginFail: () => dispatch(actions.userLoginFail()),
+        userLoginSuccess: (userInfo) => dispatch(actions.userLoginSuccess(userInfo)),
     };
 };
 
