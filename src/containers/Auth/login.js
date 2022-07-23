@@ -7,7 +7,7 @@ import * as actions from '../../store/actions';
 import './login.scss';
 import { FormattedMessage } from 'react-intl';
 
-import { adminService, userService } from '../../services';
+import { userService } from '../../services';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFacebook, faGoogle } from '@fortawesome/free-brands-svg-icons';
 import { faEye, faEyeSlash } from '@fortawesome/free-regular-svg-icons';
@@ -53,8 +53,6 @@ class Login extends Component {
             }
 
             if (data && data.errCode === 0) {
-                console.log('da lot vao');
-
                 this.props.userLoginSuccess(data.user);
             }
         } catch (error) {

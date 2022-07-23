@@ -1,0 +1,22 @@
+.action-users {
+    button {
+        width : 30px;
+        height: 30px;
+
+        &:nth-child(1) {
+            color: rgb(255, 157, 0);
+        }
+
+        &:nth-child(2) {
+            color: rgb(71, 78, 76);
+        }
+
+        &:nth-child(3) {
+            color: rgb(71, 78, 76);
+        }
+
+        &:hover {
+            background-color: rgba(0, 0, 0, 0.03);
+        }
+    }
+}
