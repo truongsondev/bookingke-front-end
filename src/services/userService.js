@@ -12,3 +12,11 @@ export const getAllUsers = (id) => {
 export const createNewuserData = (state) => {
     return axios.post(`/api/v1/create-new-user`, state);
 };
+
+export const deleteUser = (id) => {
+    return axios.delete(`/api/v1/delete-user`, {
+        data: {
+            id,
+        },
+    });
+};

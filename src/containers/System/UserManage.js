@@ -2,8 +2,9 @@ import { faPen, faPlus, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { Component } from 'react';
 import { FormattedMessage } from 'react-intl';
-import { getAllUsers, createNewuserData } from '../../services/userService';
+import { getAllUsers, createNewuserData, deleteUser } from '../../services/userService';
 import { connect } from 'react-redux';
+import { emitter } from '../../utils';
 
 import './User.scss';
 import ModalUser from './ModalUser';
@@ -58,8 +59,23 @@ class UserManage extends Component {
                     isHidenModal: false,
                 });
                 await this.getAllUsersFromReact();
+                emitter.emit('EVENT_CLEAR_MODAL_DATA');
             } else {
                 alert(check.errMessage);
+            }
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
+    handleDelete = async (id) => {
+        try {
+            const checkErrorCode = await deleteUser(id);
+
+            if (checkErrorCode.errCode === 0) {
+                await this.getAllUsersFromReact();
+            } else {
+                alert(checkErrorCode.errMessage);
             }
         } catch (error) {
             console.log(error);
@@ -107,7 +123,11 @@ class UserManage extends Component {
                                             <button type="button" className="btn link">
                                                 <FontAwesomeIcon icon={faPen} />
                                             </button>
-                                            <button type="button" className="btn link ms-4">
+                                            <button
+                                                type="button"
+                                                className="btn link ms-4"
+                                                onClick={() => this.handleDelete(user.id)}
+                                            >
                                                 <FontAwesomeIcon icon={faTrash} />
                                             </button>
                                             <button type="button" className="btn link ms-4">

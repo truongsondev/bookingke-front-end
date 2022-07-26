@@ -15,6 +15,7 @@ import React, { Component } from 'react';
 import { FormattedMessage } from 'react-intl';
 import * as EmailValidator from 'email-validator';
 import { connect } from 'react-redux';
+import { emitter } from '../../utils';
 
 class ModalUser extends Component {
     constructor(props) {
@@ -29,6 +30,23 @@ class ModalUser extends Component {
             gender: null,
             roleId: null,
         };
+
+        this.listenEmitter();
+    }
+
+    listenEmitter() {
+        emitter.on('EVENT_CLEAR_MODAL_DATA', () => {
+            this.setState({
+                email: '',
+                password: '',
+                firstName: '',
+                lastName: '',
+                address: '',
+                phonenumber: '',
+                gender: null,
+                roleId: null,
+            });
+        });
     }
 
     componentDidMount() {}
