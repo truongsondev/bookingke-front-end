@@ -20,3 +20,15 @@ export const deleteUser = (id) => {
         },
     });
 };
+
+export const upDateUser = (data) => {
+    const { id, password, firstName, lastName, address } = data;
+
+    return axios.put('/api/v1/edit-user', {
+        id,
+        password,
+        firstName,
+        lastName,
+        address,
+    });
+};

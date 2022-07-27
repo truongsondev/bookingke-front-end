@@ -2,19 +2,23 @@ import { faPen, faPlus, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { Component } from 'react';
 import { FormattedMessage } from 'react-intl';
-import { getAllUsers, createNewuserData, deleteUser } from '../../services/userService';
+import { getAllUsers, createNewuserData, deleteUser, upDateUser } from '../../services/userService';
 import { connect } from 'react-redux';
 import { emitter } from '../../utils';
 
 import './User.scss';
 import ModalUser from './ModalUser';
 import { Alert } from 'reactstrap';
+import EditModalUser from './EditUser';
+
 class UserManage extends Component {
     constructor(props) {
         super(props);
         this.state = {
             arrUsers: [],
             isHidenModal: false,
+            isHidenEditModalUser: false,
+            editUser: {},
         };
     }
 
@@ -44,10 +48,28 @@ class UserManage extends Component {
         });
     };
 
-    handleToggle = () => {
+    handleEditUser = (user) => {
         this.setState({
-            isHidenModal: !this.state.isHidenModal,
+            isHidenEditModalUser: true,
+            editUser: user,
         });
+    };
+
+    handleToggle = (id) => {
+        // eslint-disable-next-line default-case
+        switch (id) {
+            case 'MODAL_USER': {
+                this.setState({
+                    isHidenModal: !this.state.isHidenModal,
+                });
+                break;
+            }
+            case 'EDIT_MODAL_USER': {
+                this.setState({
+                    isHidenEditModalUser: !this.state.isHidenEditModalUser,
+                });
+            }
+        }
     };
 
     createNewuser = async (state) => {
@@ -60,6 +82,23 @@ class UserManage extends Component {
                 });
                 await this.getAllUsersFromReact();
                 emitter.emit('EVENT_CLEAR_MODAL_DATA');
+            } else {
+                alert(check.errMessage);
+            }
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
+    updateUserData = async (state) => {
+        try {
+            const check = await upDateUser(state);
+
+            if (check && check.errCode === 0) {
+                await this.getAllUsersFromReact();
+                this.setState({
+                    isHidenEditModalUser: false,
+                });
             } else {
                 alert(check.errMessage);
             }
@@ -120,7 +159,11 @@ class UserManage extends Component {
                                         <td>{user.lastName}</td>
                                         <td>{user.address}</td>
                                         <td className="text-center action-users">
-                                            <button type="button" className="btn link">
+                                            <button
+                                                type="button"
+                                                className="btn link"
+                                                onClick={() => this.handleEditUser(user)}
+                                            >
                                                 <FontAwesomeIcon icon={faPen} />
                                             </button>
                                             <button
@@ -144,6 +187,14 @@ class UserManage extends Component {
                     handleToggle={this.handleToggle}
                     createNewuser={this.createNewuser}
                 />
+                {this.state.isHidenEditModalUser && (
+                    <EditModalUser
+                        isHidenEditModalUser={this.state.isHidenEditModalUser}
+                        handleToggle={this.handleToggle}
+                        currentUser={this.state.editUser}
+                        updateUserData={this.updateUserData}
+                    />
+                )}
             </div>
         );
     }
