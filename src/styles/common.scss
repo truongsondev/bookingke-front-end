@@ -15,3 +15,27 @@
 .text-red {
     color: $common-red !important;
 }
+
+
+.sub-title {
+    white-space: nowrap;
+    font-weight: lighter;
+    font-size  : 10px;
+    color      : #333;
+}
+
+.faqs {
+    color      : #969495;
+    font-size  : 16px;
+    display    : flex;
+    align-items: center;
+    font-weight: bold;
+    cursor     : pointer;
+
+    svg {
+        color       : #45c3d2;
+        width       : 14px;
+        height      : 30px;
+        margin-right: 4px;
+    }
+}
