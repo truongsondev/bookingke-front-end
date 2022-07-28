@@ -1,4 +1,36 @@
 {
+    "home-header": {
+        "speciality": "Chuyên khoa",
+        "search-doctor": " Tìm bác sĩ theo chuyên khoa",
+        "Health-facilities": "Cơ sở y tế",
+        "Choose-hospital-clinic": "Chọn bệnh viện phòng khám",
+        "doctor": "Bác sĩ",
+        "Choose-a-good-doctor": "Chọn bác sĩ giỏi",
+        "Checkup-package": " Gói khám",
+        "General-health-check": " Khám sức khỏe tổng quát"
+    },
+
+    "banner": {
+        "title-one": "NỀN TẢNG Y TẾ",
+        "title-two": "CHĂM SÓC SỨC KHỎE TOÀN DIỆN",
+        "p1-1": "Khám",
+        "p1-2": "Chuyên khoa",
+        "p2-1": "Khám",
+        "p2-2": "từ xa",
+        "p3-1": "Khám",
+        "p3-2": "tổng quát",
+        "p4-1": "Xét nghiệm",
+        "p4-2": "y học",
+        "p5-1": "Sức khỏe",
+        "p5-2": "tinh thần",
+        "p6-1": "Khám",
+        "p6-2": "nha khoa",
+        "p7-1": "Gói",
+        "p7-2": "Phẫu thuật",
+        "p8-1": "Sản phẩm",
+        "p8-2": "Y tế"
+    },
+
     "common": {
         "add": "Thêm",
         "edit": "Sửa",
@@ -17,7 +49,8 @@
         "forbiden-request": "Thông tin truyền vào không hợp lệ",
         "fail-to-load-all-code": "Không thể tải về dữ liệu allcode",
         "sum": "Tổng",
-        "date-range-invalid": "Khoảng thời gian không hợp lệ"
+        "date-range-invalid": "Khoảng thời gian không hợp lệ",
+        "support": "Hỗ trợ"
     },
     "login": {
         "login": "Đăng nhập",

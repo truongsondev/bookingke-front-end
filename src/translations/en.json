@@ -1,4 +1,36 @@
 {
+    "home-header": {
+        "speciality": "Medical Specialty",
+        "search-doctor": "Find a doctor by specialty",
+        "Health-facilities": "Health facilities",
+        "Choose-hospital-clinic": "Choose hospital clinic",
+        "doctor": "doctor",
+        "Choose-a-good-doctor": "Choose a good doctor",
+        "Checkup-package": "Checkup package",
+        "General-health-check": "General health check"
+    },
+
+    "banner": {
+        "title-one": "MEDICAL BACKGROUND",
+        "title-two": "COMPREHENSIVE HEALTH CARE",
+        "p1-1": "Examination",
+        "p1-2": "Speciality",
+        "p2-1": "Examination",
+        "p2-2": "from far away",
+        "p3-1": "Examination",
+        "p3-2": "generality",
+        "p4-1": "Test",
+        "p4-2": "medicine",
+        "p5-1": "Health",
+        "p5-2": "morale",
+        "p6-1": "Examination",
+        "p6-2": "dentistry",
+        "p7-1": "Package",
+        "p7-2": "Surgery",
+        "p8-1": "Product",
+        "p8-2": "Medical"
+    },
+
     "common": {
         "add": "Add",
         "edit": "Edit",
@@ -17,7 +49,8 @@
         "forbiden-request": "Invalid input data",
         "fail-to-load-all-code": "Fail to load data from allcode",
         "sum": "Sum",
-        "date-range-invalid": "Date range invalid"
+        "date-range-invalid": "Date range invalid",
+        "support": "Support"
     },
     "login": {
         "login": "Login",
