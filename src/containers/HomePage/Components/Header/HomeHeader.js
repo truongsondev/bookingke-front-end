@@ -16,12 +16,23 @@ import SucKhoTT from '../../../../assets/images/suckhoetinhthan.png';
 import KhamNhaKhoa from '../../../../assets/images/khamnhakhoa.png';
 import GoiPhauThuat from '../../../../assets/images/phau-thuat.jpg';
 import SPYTE from '../../../../assets/images/khamtainha.png';
+import EN from '../../../../assets/images/EN.png';
+import VN from '../../../../assets/images/VN.png';
+import { languages } from '../../../../utils/constant';
+import { ChangeLanguageApp } from '../../../../store/actions';
+
 import { FormattedMessage } from 'react-intl';
 
 import './HomeHeader.scss';
 
 class HomeHeader extends Component {
+    handleChangeLanguage(lang) {
+        this.props.ChangeLanguageAppRedux(lang);
+    }
+
     render() {
+        const language = this.props.language;
+
         return (
             <div>
                 <div className="home-header-parents">
@@ -74,8 +85,26 @@ class HomeHeader extends Component {
                                     <FontAwesomeIcon icon={faCircleQuestion} />
                                     <FormattedMessage id="common.support" />
                                 </div>
-                                <div className="language-vi">VN</div>
-                                <div className="language-en">EN</div>
+                                <div
+                                    className={
+                                        language === languages.VI
+                                            ? 'language language-vi active'
+                                            : 'language language-vi'
+                                    }
+                                    onClick={() => this.handleChangeLanguage(languages.VI)}
+                                >
+                                    <img src={VN} alt="VN" />
+                                </div>
+                                <div
+                                    className={
+                                        language === languages.EN
+                                            ? 'language language-en active'
+                                            : 'language language-en'
+                                    }
+                                    onClick={() => this.handleChangeLanguage(languages.EN)}
+                                >
+                                    <img src={EN} alt="EN" />
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -258,7 +287,9 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = (dispatch) => {
-    return {};
+    return {
+        ChangeLanguageAppRedux: (language) => dispatch(ChangeLanguageApp(language)),
+    };
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(HomeHeader);

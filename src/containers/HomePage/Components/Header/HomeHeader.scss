@@ -66,6 +66,26 @@
                     margin-right: 10px;
                 }
 
+                .language {
+
+
+                    img {
+                        width        : 30px;
+                        height       : 30px;
+                        object-fit   : cover;
+                        border-radius: 50%;
+                        opacity      : 0.4;
+                        cursor       : pointer;
+                    }
+
+                    &.active {
+                        img {
+                            opacity: 1;
+                            cursor : default;
+                        }
+                    }
+                }
+
                 .language-vi {
                     margin-right: 10px;
                 }
