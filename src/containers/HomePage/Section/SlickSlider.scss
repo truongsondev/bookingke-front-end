@@ -3,12 +3,97 @@
     width : 100%;
 
 
-    .img-customize {
-        background-size    : cover;
-        background-position: center center;
-        background-repeat  : no-repeat;
-        height             : 158px;
-        margin             : 0 6px;
+    .slider-container-data {
+        .img-customize {
+            background-size    : cover;
+            background-position: center center;
+            background-repeat  : no-repeat;
+            height             : 158px;
+            margin             : 0 5px;
+
+
+        }
+
+        &:hover {
+            span {
+                color: #45c3d2;
+            }
+        }
+    }
+
+
+    .camnnang-parents {
+
+        .slider-container-cnang {
+
+            .img-customize-cnang {
+                height             : 150px;
+                background-repeat  : no-repeat;
+                background-position: center center;
+                background-size    : cover;
+                width              : 78%;
+                max-width          : 283px;
+            }
+
+            .slider-container-cnang-text {
+                font-weight  : bold;
+                margin-bottom: 15px;
+                padding-left : 0px !important;
+
+
+                h3 {
+                    padding-top   : 6px;
+                    font-size     : 16px;
+                    text-align    : start;
+                    color         : #333;
+                    padding-left  : 6px;
+                    padding-right : 6px;
+                    padding-bottom: 6px;
+                }
+            }
+        }
+    }
+
+
+
+
+
+    .Slick-slider-container-slick-doctor {
+        border       : 1px solid #ccc;
+        margin       : 0 5px;
+        height       : 245px;
+        border-radius: 4px;
+
+        .img-customize-doctor {
+            width              : 120px;
+            height             : 120px;
+            background-size    : cover;
+            margin             : 0 auto;
+            margin-top         : 10px;
+            border-radius      : 50%;
+            background-position: center center;
+            background-repeat  : no-repeat;
+        }
+
+        &:hover {
+            h3 {
+                color: #45c3d2;
+            }
+        }
+
+        h3 {
+            color      : #111;
+            white-space: pre-wrap;
+            font-size  : 13px;
+            padding    : 4px 4px;
+            padding-top: 8px;
+        }
+
+        span {
+            color    : #555;
+            font-size: 12px;
+        }
+
     }
 
     .span-text {
@@ -16,7 +101,33 @@
         text-align  : start;
         padding-left: 10px;
         padding-top : 4px;
-        color       : #111;
-        font-size   : 13px;
+        padding     : 5px 0;
+        color       : #555;
+        font-size   : 12px;
+    }
+
+
+    .d-con-video {
+        width        : 50%;
+        border-radius: 4px;
+        overflow     : hidden;
+    }
+
+    .d-con-item {
+        width  : 50%;
+        display: flex;
+
+        .d-con-item-truyenthong {
+            margin-top  : 40px;
+            padding-left: 40px;
+            max-height  : 152px;
+        }
+
+        img {
+            height       : 50px;
+            object-fit   : contain;
+            border-radius: 4px;
+            padding      : 10px;
+        }
     }
 }

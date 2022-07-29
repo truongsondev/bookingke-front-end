@@ -1,0 +1,21 @@
+.footer-two {
+    background: #64b9e5;
+    height    : 60px;
+
+    span {
+        padding-top: 10px;
+        font-size  : 12px;
+        color      : #fff;
+
+        a {
+            margin-left    : 6px;
+            text-decoration: none;
+            color          : #333;
+
+            &:hover {
+                color          : rgb(65, 65, 247);
+                text-decoration: underline !important;
+            }
+        }
+    }
+}

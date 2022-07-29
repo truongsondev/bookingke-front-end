@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Slider from 'react-slick';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import './SlickSlider.scss';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-import { faAngleRight, faAngleLeft } from '@fortawesome/free-solid-svg-icons';
+import { NextArrow, PrevArrow } from '../Components/ArrowSlickSlider/arrow';
 
 class SlickSlider extends Component {
     render() {
@@ -20,8 +19,8 @@ class SlickSlider extends Component {
             slidesToShow: 4,
             autoplay: true,
             slidesToScroll: 4,
-            nextArrow: <FontAwesomeIcon icon={faAngleRight} />,
-            prevArrow: <FontAwesomeIcon icon={faAngleLeft} />,
+            nextArrow: <NextArrow />,
+            prevArrow: <PrevArrow />,
         };
 
         return (
@@ -29,7 +28,7 @@ class SlickSlider extends Component {
                 <Slider {...settings}>
                     {PropsData.data &&
                         PropsData.data.map((data, index) => (
-                            <div key={index}>
+                            <div key={index} className="slider-container-data">
                                 <div
                                     className="img-customize"
                                     style={{
