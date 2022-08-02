@@ -1,5 +1,11 @@
 .home-header-parents {
     background-color: #fff;
+    position        : fixed;
+    top             : 0;
+    left            : 0;
+    right           : 0;
+    z-index         : 90000000;
+    box-shadow      : 0 0px 1px 0 rgba(0, 0, 0, 0.25);
 
 
     .home-header-container {
@@ -97,7 +103,8 @@
 
 
 .parents-home-header-banner {
-    height: 619px;
+    height    : 619px;
+    margin-top: 77px;
 
 
     .home-header-banner {

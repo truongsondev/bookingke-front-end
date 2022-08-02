@@ -64,7 +64,7 @@
             "system-administrator": {
                 "header": "System Administrator",
                 "user-manage": "User manage",
-                "product-manage": "Package manage",
+                "user-redux": "Redux user management",
                 "register-package-group-or-account": "Register service package for group/account"
             },
             "system-parameter": {
@@ -149,5 +149,15 @@
             "remove-assign-fail": "Fail to unassign service package to customer",
             "sure-delete-assign": "Are you sure to unassign service package to customer?"
         }
+    },
+
+    "tableAdmin": {
+        "titleUser": "user management",
+        "titleUserRedux": "User management with redux",
+        "email": "email",
+        "firstName": "first Name",
+        "lastName": "Last Name",
+        "address": "address",
+        "actions": "actions"
     }
 }

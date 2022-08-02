@@ -124,7 +124,9 @@ class UserManage extends Component {
     render() {
         return (
             <div className="user-container">
-                <div className="title text-center">Manage users</div>
+                <div className="title text-center">
+                    <FormattedMessage id="tableAdmin.titleUser" />
+                </div>
                 <div className="px-3">
                     <div className="my-1 mx-1">
                         <button
@@ -140,12 +142,20 @@ class UserManage extends Component {
                         <thead className="table-dark">
                             <tr>
                                 <th scope="col">#</th>
-                                <th scope="col">email</th>
-                                <th scope="col">first Name</th>
-                                <th scope="col">last Name</th>
-                                <th scope="col">address</th>
+                                <th scope="col">
+                                    <FormattedMessage id="tableAdmin.email" />
+                                </th>
+                                <th scope="col">
+                                    <FormattedMessage id="tableAdmin.firstName" />
+                                </th>
+                                <th scope="col">
+                                    <FormattedMessage id="tableAdmin.lastName" />
+                                </th>
+                                <th scope="col">
+                                    <FormattedMessage id="tableAdmin.address" />
+                                </th>
                                 <th scope="col" className="text-center">
-                                    actions
+                                    <FormattedMessage id="tableAdmin.actions" />
                                 </th>
                             </tr>
                         </thead>

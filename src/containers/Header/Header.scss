@@ -1,13 +1,42 @@
 @import "../../styles/common.scss";
 
 .header-container {
-    z-index         : 99;
-    display         : flex;
-    justify-content : space-between;
-    background-color: $colormain;
-    color           : $common-text-color;
-    height          : 40px;
-    position        : relative;
+    z-index            : 99;
+    display            : flex;
+    justify-content    : space-between;
+    background-color   : $colormain;
+    color              : $common-text-color;
+    height             : 40px;
+    position           : relative;
+    // display         : none;
+
+
+    .language {
+        margin-right: 30px;
+
+
+        img {
+            width        : 20px;
+            height       : 20px;
+            object-fit   : cover;
+            border-radius: 50%;
+            opacity      : 0.4;
+            cursor       : pointer;
+            user-select  : none;
+        }
+
+        &.active {
+            img {
+                opacity: 1;
+                cursor : default;
+            }
+        }
+    }
+
+    .language-vi {
+        margin-right: 10px;
+    }
+
 
     .btn-logout {
         color      : $common-text-color;
