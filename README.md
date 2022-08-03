@@ -2,7 +2,8 @@
 
 #### facebook của tôi https://www.facebook.com/truongson2003dNOJPjoUEk4Rq5pQ3A1655449765299e
 
-<<<<<<< HEAD
+Và kỹ thuật sử dụng là class Component là chủ yế 
+ ngoài ra còn sử dụng hook ( kiến thức base )
 
 ## Available Scripts
 
