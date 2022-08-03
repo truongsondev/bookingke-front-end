@@ -130,10 +130,14 @@ class HomeHeader extends Component {
                                 </div>
                                 <div className="banner-download-app">
                                     <div>
-                                        <img src={GoogleApp} alt="" />
+                                        <a href="https://play.google.com/store/apps/details?id=vn.bookingcare.bookingcare">
+                                            <img src={GoogleApp} alt="" />
+                                        </a>
                                     </div>
                                     <div>
-                                        <img src={AppStore} alt="" />
+                                        <a href="https://apps.apple.com/vn/app/bookingcare/id1347700144">
+                                            <img src={AppStore} alt="" />
+                                        </a>
                                     </div>
                                 </div>
                             </div>

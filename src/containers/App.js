@@ -39,7 +39,7 @@ class App extends Component {
 
     render() {
         return (
-            <Fragment>
+            <>
                 <Router history={history}>
                     <div className="main-container">
                         {/* {this.props.isLoggedIn && <Header />} */}
@@ -68,7 +68,7 @@ class App extends Component {
                         />
                     </div>
                 </Router>
-            </Fragment>
+            </>
         );
     }
 }

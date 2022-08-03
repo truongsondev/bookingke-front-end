@@ -8,6 +8,7 @@ import EN from '../../assets/images/EN.png';
 import VN from '../../assets/images/VN.png';
 import { languages } from '../../utils/constant';
 import './Header.scss';
+import { FormattedMessage } from 'react-intl';
 import { ChangeLanguageApp } from '../../store/actions';
 
 class Header extends Component {
@@ -16,7 +17,7 @@ class Header extends Component {
     }
 
     render() {
-        const { processLogout, language } = this.props;
+        const { processLogout, language, user } = this.props;
 
         return (
             <div className="header-container">
@@ -25,8 +26,14 @@ class Header extends Component {
                     <Navigator menus={adminMenu} />
                 </div>
 
-                <div className="d-flex">
-                    <div className="d-flex align-items-center">
+                <div className="d-flex align-items-center">
+                    <div className="me-3">
+                        <span>
+                            <FormattedMessage id="home-header.welcome" />{' '}
+                            {user && user.firstName && user.lastName ? `${user.firstName} ${user.lastName}` : ''}
+                        </span>
+                    </div>
+                    <div className="d-flex">
                         <div
                             className={
                                 language === languages.VI ? 'language language-vi active' : 'language language-vi'
@@ -57,6 +64,7 @@ class Header extends Component {
 const mapStateToProps = (state) => {
     return {
         isLoggedIn: state.user.isLoggedIn,
+        user: state.user.userInfo,
         language: state.app.language,
     };
 };

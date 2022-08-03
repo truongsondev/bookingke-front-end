@@ -3,7 +3,10 @@ import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
 import { Button } from 'reactstrap';
 class UserRedux extends Component {
-    state = {};
+    constructor() {
+        super();
+        this.state = {};
+    }
 
     componentDidMount() {}
 

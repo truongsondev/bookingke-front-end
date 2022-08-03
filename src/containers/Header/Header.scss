@@ -1,14 +1,21 @@
 @import "../../styles/common.scss";
 
 .header-container {
-    z-index            : 99;
-    display            : flex;
-    justify-content    : space-between;
-    background-color   : $colormain;
-    color              : $common-text-color;
-    height             : 40px;
-    position           : relative;
-    // display         : none;
+    z-index                  : 99;
+    display                  : flex;
+    justify-content          : space-between;
+    background-color         : $colormain;
+    color                    : $common-text-color;
+    height                   : 40px;
+    position                 : relative;
+    background               : repeating-linear-gradient(to right, red 0, #00f 50%, red 100%);
+    width                    : 100%;
+    background-size          : 200% auto;
+    background-position      : 0 100%;
+    animation                : gradient 4s infinite;
+    animation-fill-mode      : forwards;
+    animation-timing-function: linear;
+    padding                  : 0 10px;
 
 
     .language {

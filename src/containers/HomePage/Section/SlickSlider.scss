@@ -3,6 +3,52 @@
     width : 100%;
 
 
+    .slider-container-data-banner {
+
+        // display        : flex;
+        // flex-direction : column;
+        // justify-content: center;
+        padding      : 14px;
+        margin       : 0 6px;
+        border       : 1px solid rgba(0, 0, 0, 0.1);
+        border-radius: 4px;
+
+
+
+        .img-customize {
+            background-repeat  : no-repeat;
+            background-position: center center;
+            background-size    : cover;
+            width              : 247px;
+            min-height         : 140px;
+            border-radius      : 4px;
+            margin             : 0 auto;
+
+        }
+
+        .body {
+
+
+            .span-text-banner {
+                text-align  : start;
+                padding     : 10px 6px;
+                padding-left: 20px;
+                display     : block;
+                font-size   : 14px !important;
+                font-weight : 700;
+            }
+
+            ul {
+                li {
+                    font-size : 12px;
+                    padding   : 4px 6px;
+                    text-align: start;
+                }
+            }
+        }
+    }
+
+
     .slider-container-data {
         .img-customize {
             background-size    : cover;

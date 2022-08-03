@@ -50,6 +50,11 @@
 
         }
 
+        &.banner {
+            border-top      : 0.5px solid #ccc;
+            background-color: #fff;
+            min-height      : 403px;
+        }
 
         &.csyte {
             height    : 370px;
