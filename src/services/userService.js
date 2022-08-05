@@ -24,3 +24,7 @@ export const deleteUser = (id) => {
 export const upDateUser = (data) => {
     return axios.put('/api/v1/edit-user', data);
 };
+
+export const getAllCodeServices = (type) => {
+    return axios.get(`/api/v1/all/code?type=${type}`);
+};

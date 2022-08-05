@@ -80,5 +80,21 @@
         "lastName": "họ",
         "address": "địa chỉ",
         "actions": "hành động"
+    },
+
+    "manage-user-redux": {
+        "add": "Thêm mới người dùng",
+        "email": "Email",
+        "password": "Mật khẩu",
+        "firstName": "Họ",
+        "lastName": "Tên",
+        "phonenumber": "Số điện thoại",
+        "address": "Địa chỉ",
+        "gennder": "Giới tính",
+        "position": "Vị trí",
+        "role": "Vai trò",
+        "avatar": "Ảnh đại diện",
+        "btnSave": "Create user",
+        "placehoderPassword": "Nhập mật khẩu của bạn"
     }
 }

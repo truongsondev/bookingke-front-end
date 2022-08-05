@@ -42,7 +42,7 @@ class HomeHeader extends Component {
                                 <div className="button-content">
                                     <FontAwesomeIcon icon={faBars} />
                                 </div>
-                                <Link to="/">
+                                <Link to="/home">
                                     <div className="header-logo" style={{ backgroundImage: `url(${Logo})` }}></div>
                                 </Link>
                             </div>

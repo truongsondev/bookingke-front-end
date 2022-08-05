@@ -2,18 +2,20 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Redirect, Route, Switch } from 'react-router-dom';
 import UserManage from '../containers/System/UserManage';
-import UserRedux from '../containers/System/UserRedux';
+import UserRedux from '../containers/System/components/Admin/UserRedux';
 
 import Header from '../containers/Header/Header';
-import { lang } from 'moment';
-import { languages } from '../utils';
+import Footer from '.././containers/HomePage/Components/Footer/FooterTwo';
+import './system.scss';
+// import { lang } from 'moment';
+// import { languages } from '../utils';
 
 class System extends Component {
     render() {
         const { systemMenuPath } = this.props;
 
         return (
-            <div>
+            <div style={{ height: '100vh' }}>
                 {this.props.isLoggedIn && <Header />}
                 <div className="system-container">
                     <div className="system-list">
@@ -28,6 +30,9 @@ class System extends Component {
                             />
                         </Switch>
                     </div>
+                </div>
+                <div style={{ marginTop: 'auto' }}>
+                    <Footer />
                 </div>
             </div>
         );

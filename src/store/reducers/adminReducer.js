@@ -1,37 +1,98 @@
 import actionTypes from '../actions/actionTypes';
 
 const initialState = {
-    isLoggedIn: false,
-    adminInfo: null
-}
+    isLoading: false,
+    genders: [],
+    roles: [],
+    positions: [],
+};
 
-const appReducer = (state = initialState, action) => {
+const adminReducer = (state = initialState, action) => {
     switch (action.type) {
-        case actionTypes.ADMIN_LOGIN_SUCCESS:
+        case actionTypes.FETCH_GENDER_START: {
+            const copyStateStart = { ...state };
+            copyStateStart.isLoading = true;
+
             return {
-                ...state,
-                isLoggedIn: true,
-                adminInfo: action.adminInfo
-            }
-        case actionTypes.ADMIN_LOGIN_FAIL:
+                ...copyStateStart,
+            };
+        }
+
+        case actionTypes.FETCH_GENDER_SUCCESS: {
+            const copyState = { ...state };
+            copyState.isLoading = false;
+            copyState.genders = action.data;
+
             return {
-                ...state,
-                isLoggedIn: false,
-                adminInfo: null
-            }
-        case actionTypes.PROCESS_LOGOUT:
+                ...copyState,
+            };
+        }
+
+        case actionTypes.FETCH_GENDER_FAILURE: {
+            const copyStateFailure = { ...state };
+            copyStateFailure.isLoading = false;
+            copyStateFailure.genders = [];
             return {
-                ...state,
-                isLoggedIn: false,
-                adminInfo: null
+                ...copyStateFailure,
+            };
+        }
+
+        case actionTypes.FETCH_POSITION_SUCCESS: {
+            const cloneState = { ...state };
+            if (action.data && action.data.length === 0) {
+                cloneState.isLoading = true;
+            } else {
+                cloneState.positions = action.data;
+
+                cloneState.isLoading = false;
             }
-        case actionTypes.USER_LOGIN_SUCCESS: 
-            return{
-                
+
+            return {
+                ...cloneState,
+            };
+        }
+
+        case actionTypes.FETCH_POSITION_FAILURE: {
+            const cloneState = { ...state };
+
+            cloneState.positions = [];
+            cloneState.isLoading = false;
+
+            return {
+                ...cloneState,
+            };
+        }
+
+        case actionTypes.FETCH_ROLE_SUCCESS: {
+            const cloneStateRole = { ...state };
+
+            if (action.data && action.data.length === 0) {
+                cloneStateRole.isLoading = true;
+            } else {
+                cloneStateRole.roles = action.data;
+
+                cloneStateRole.isLoading = false;
             }
+
+            return {
+                ...cloneStateRole,
+            };
+        }
+
+        case actionTypes.FETCH_ROLE_FAILURE: {
+            const cloneStateRole = { ...state };
+
+            cloneStateRole.roles = [];
+            cloneStateRole.isLoading = false;
+
+            return {
+                ...cloneStateRole,
+            };
+        }
+
         default:
             return state;
     }
-}
+};
 
-export default appReducer;
+export default adminReducer;

@@ -1,0 +1,20 @@
+.system-container {
+    height       : calc(100vh - 40px - 45px);
+    margin-top   : -15px;
+    padding      : 10px 0;
+    // overflow  : scroll;
+
+
+}
+
+@media (max-width: 500px) {
+    .system-container {
+        overflow-y: scroll;
+
+
+        &:--wekit-scrollbar {
+            display: none;
+        }
+
+    }
+}

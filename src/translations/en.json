@@ -80,5 +80,21 @@
         "lastName": "Last Name",
         "address": "address",
         "actions": "actions"
+    },
+
+    "manage-user-redux": {
+        "add": "Add new user",
+        "email": "Email",
+        "password": "Password",
+        "firstName": "FirstName",
+        "lastName": "LastName",
+        "phonenumber": "Phonenumber",
+        "address": "address",
+        "gennder": "Gennder",
+        "position": "Position",
+        "role": "Role ID",
+        "avatar": "Avatar",
+        "btnSave": "Tạo người dùng",
+        "placehoderPassword": "Enter your password"
     }
 }
