@@ -90,6 +90,18 @@ const adminReducer = (state = initialState, action) => {
             };
         }
 
+        case actionTypes.CREATE_USER_SUCCESS_REDUX: {
+            alert(action.res.errMessage);
+
+            return { ...state };
+        }
+
+        case actionTypes.CREATE_USER_FAILURE_REDUX: {
+            alert(action.res.errMessage);
+
+            return { ...state };
+        }
+
         default:
             return state;
     }

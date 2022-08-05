@@ -1,5 +1,6 @@
 import actionTypes from './actionTypes';
 import { getAllCodeServices } from '../../services/userService';
+import { createNewUserRedux } from '../../services/adminService';
 
 export const fetChGenderStart = () => {
     return async (dispatch, getState) => {
@@ -85,4 +86,28 @@ export const fetRoleSuccess = (data) => {
 
 export const fetRoleFailure = () => {
     return { type: actionTypes.FETCH_ROLE_FAILURE };
+};
+
+export const createUserRedux = (data) => {
+    return async (dispatch, getState) => {
+        try {
+            const res = await createNewUserRedux(data);
+
+            if (res && res.errCode === 0) {
+                dispatch(createUserSuccessRedux(res));
+            } else {
+                dispatch(createUserFailureRedux(res));
+            }
+        } catch (error) {
+            dispatch(createUserFailureRedux());
+        }
+    };
+};
+
+export const createUserSuccessRedux = (res) => {
+    return { type: actionTypes.CREATE_USER_SUCCESS_REDUX, res };
+};
+
+export const createUserFailureRedux = (res) => {
+    return { type: actionTypes.CREATE_USER_FAILURE_REDUX, res };
 };
