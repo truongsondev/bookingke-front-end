@@ -2,6 +2,7 @@ import actionTypes from '../actions/actionTypes';
 
 const initialState = {
     isLoading: false,
+    users: [],
     genders: [],
     roles: [],
     positions: [],
@@ -91,15 +92,41 @@ const adminReducer = (state = initialState, action) => {
         }
 
         case actionTypes.CREATE_USER_SUCCESS_REDUX: {
-            alert(action.res.errMessage);
-
-            return { ...state };
+            return state;
         }
 
         case actionTypes.CREATE_USER_FAILURE_REDUX: {
-            alert(action.res.errMessage);
+            alert('Missing created user');
 
-            return { ...state };
+            return state;
+        }
+
+        case actionTypes.FETCH_ALL_USER_SUCCESS_REDUX: {
+            const cloneStateGetAllUserRedux = { ...state };
+
+            cloneStateGetAllUserRedux.users = action.user;
+
+            return {
+                ...cloneStateGetAllUserRedux,
+            };
+        }
+
+        case actionTypes.FETCH_ALL_USER_FAILURE_REDUX: {
+            const cloneStateGetAllUserRedux = { ...state };
+
+            cloneStateGetAllUserRedux.users = [];
+
+            return {
+                ...cloneStateGetAllUserRedux,
+            };
+        }
+
+        case actionTypes.DELETE_USER_SUCCESS_REDUX: {
+            return state;
+        }
+
+        case actionTypes.DELETE_USER_FAILURE_REDUX: {
+            return state;
         }
 
         default:

@@ -5,10 +5,14 @@ import { languages } from '../../../../utils/constant';
 import * as actions from '../../../../store/actions';
 import Loading from '../Loading';
 
+import { ToastContainer } from 'react-toastify';
+
 import * as EmailValidator from 'email-validator';
 
 import Lightbox from 'react-image-lightbox';
 import 'react-image-lightbox/style.css';
+
+import TableUserRedux from './Table/tableUserRedux';
 
 import './User-redux.scss';
 
@@ -43,20 +47,50 @@ class UserRedux extends Component {
 
     componentDidUpdate(prevProps, prevState, snapshot) {
         if (prevProps.genders !== this.props.genders) {
-            this.setState({
-                genderArr: this.props.genders,
-            });
+            const data = this.props.genders;
+
+            if (data && data.length > 0) {
+                this.setState({
+                    genderArr: data,
+                    gender: data[0].key,
+                });
+            }
         }
 
         if (prevProps.positions !== this.props.positions) {
-            this.setState({
-                positionsArr: this.props.positions,
-            });
+            const data = this.props.positions;
+
+            if (data && data.length > 0) {
+                this.setState({
+                    positionsArr: data,
+                    position: data[0].key,
+                });
+            }
         }
 
         if (prevProps.roles !== this.props.roles) {
+            const data = this.props.roles;
+
+            if (data && data.length > 0) {
+                this.setState({
+                    rolesArr: data,
+                    roleId: data[0].key,
+                });
+            }
+        }
+
+        if (prevProps.users !== this.props.users) {
             this.setState({
-                rolesArr: this.props.roles,
+                email: '',
+                password: '',
+                firstName: '',
+                lastName: '',
+                phonenumber: '',
+                address: '',
+                gender: '',
+                position: '',
+                roleId: '',
+                avatar: '',
             });
         }
     }
@@ -119,8 +153,6 @@ class UserRedux extends Component {
 
         const checkInvalid = this.checkValidateInput();
 
-        console.log('Check invalid :', checkInvalid);
-
         if (checkInvalid) {
             this.props.createNewUser(this.state);
         }
@@ -157,7 +189,7 @@ class UserRedux extends Component {
             gender,
             position,
             roleId,
-            avatar,
+            // avatar,
         } = this.state;
 
         const languageProps = this.props.language;
@@ -165,7 +197,7 @@ class UserRedux extends Component {
         const isLoading = this.props.isLoading;
 
         return (
-            <div className="user-redux-container container">
+            <div className="user-redux-container container py-3">
                 {isLoading && (
                     <div>
                         <Loading />
@@ -272,7 +304,6 @@ class UserRedux extends Component {
                                     value={gender}
                                     onChange={(e) => this.onChangeInput(e, 'gender')}
                                 >
-                                    <option defaultValue={null}>Choose...</option>
                                     {genderArr &&
                                         genderArr.length > 0 &&
                                         genderArr.map((data, index) => (
@@ -292,7 +323,6 @@ class UserRedux extends Component {
                                     value={position}
                                     onChange={(e) => this.onChangeInput(e, 'position')}
                                 >
-                                    <option defaultValue={null}>Choose...</option>
                                     {positionsArr &&
                                         positionsArr.length > 0 &&
                                         positionsArr.map((data, index) => (
@@ -312,7 +342,6 @@ class UserRedux extends Component {
                                     value={roleId}
                                     onChange={(e) => this.onChangeInput(e, 'roleId')}
                                 >
-                                    <option defaultValue={null}>Choose...</option>
                                     {rolesArr &&
                                         rolesArr.length > 0 &&
                                         rolesArr.map((data, index) => (
@@ -366,6 +395,8 @@ class UserRedux extends Component {
                         </form>
                     </div>
                 </div>
+                <TableUserRedux />
+                <ToastContainer />
             </div>
         );
     }
@@ -378,6 +409,7 @@ const mapStateToProps = (state) => {
         positions: state.admin.positions,
         roles: state.admin.roles,
         isLoading: state.admin.isLoading,
+        users: state.admin.users,
     };
 };
 
@@ -387,6 +419,7 @@ const mapDispatchToProps = (dispatch) => {
         getPositionStart: () => dispatch(actions.fetChPositionStart()),
         getRoleStart: () => dispatch(actions.fetChRoleStart()),
         createNewUser: (state) => dispatch(actions.createUserRedux(state)),
+        fetAllUserWithRedux: () => dispatch(actions.fetchAllUserStart()),
     };
 };
 

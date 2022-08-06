@@ -1,6 +1,7 @@
 import actionTypes from './actionTypes';
-import { getAllCodeServices } from '../../services/userService';
+import { deleteUser, getAllCodeServices, getAllUsers } from '../../services/userService';
 import { createNewUserRedux } from '../../services/adminService';
+import { toast } from 'react-toastify';
 
 export const fetChGenderStart = () => {
     return async (dispatch, getState) => {
@@ -94,7 +95,16 @@ export const createUserRedux = (data) => {
             const res = await createNewUserRedux(data);
 
             if (res && res.errCode === 0) {
-                dispatch(createUserSuccessRedux(res));
+                toast.success('🦄 Successfully created new user!', {
+                    position: 'top-right',
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                });
+                dispatch(createUserSuccessRedux(res.user));
+                dispatch(fetchAllUserStart());
             } else {
                 dispatch(createUserFailureRedux(res));
             }
@@ -110,4 +120,69 @@ export const createUserSuccessRedux = (res) => {
 
 export const createUserFailureRedux = (res) => {
     return { type: actionTypes.CREATE_USER_FAILURE_REDUX, res };
+};
+
+export const fetchAllUserStart = (data) => {
+    return async (dispatch, getState) => {
+        try {
+            const res = await getAllUsers('All');
+
+            if (res && res.errCode === 0) {
+                dispatch(fetchAllUserSuccess(res.user.reverse()));
+            } else {
+                dispatch(fetchAllUserFailure());
+            }
+        } catch (error) {
+            dispatch(fetchAllUserFailure());
+        }
+    };
+};
+
+export const fetchAllUserSuccess = (user) => {
+    return { type: actionTypes.FETCH_ALL_USER_SUCCESS_REDUX, user };
+};
+
+export const fetchAllUserFailure = (user) => {
+    return { type: actionTypes.FETCH_ALL_USER_FAILURE_REDUX, user };
+};
+
+export const deleteUserRedux = (data) => {
+    return async (dispatch, getState) => {
+        try {
+            const res = await deleteUser(data);
+
+            if (res && res.errCode === 0) {
+                toast.success('🦄 Successfully Deleted user!', {
+                    position: 'top-right',
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                });
+                dispatch(deleteUserSuccessRedux(res.user));
+                dispatch(fetchAllUserStart());
+            } else {
+                toast.error('🦄 Successfully Deleted user!', {
+                    position: 'top-right',
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                });
+                dispatch(deleteUserFailureRedux(res));
+            }
+        } catch (error) {
+            dispatch(deleteUserFailureRedux());
+        }
+    };
+};
+
+export const deleteUserSuccessRedux = (res) => {
+    return { type: actionTypes.DELETE_USER_SUCCESS_REDUX, res };
+};
+
+export const deleteUserFailureRedux = () => {
+    return { type: actionTypes.DELETE_USER_FAILURE_REDUX };
 };

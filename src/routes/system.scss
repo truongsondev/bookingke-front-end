@@ -1,9 +1,13 @@
 .system-container {
-    height       : calc(100vh - 40px - 45px);
-    margin-top   : -15px;
-    padding      : 10px 0;
-    // overflow  : scroll;
+    height    : calc(100vh - 40px - 45px);
+    margin-top: -15px;
+    padding   : 10px 0;
+    overflow-y: scroll;
 
+    &::-webkit-srollbar {
+        width : 6px;
+        height: 10px;
+    }
 
 }
 

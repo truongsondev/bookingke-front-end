@@ -1,8 +1,10 @@
 import React from 'react';
 import { toast } from 'react-toastify';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import axios from 'axios';
 
-import CustomToast from "../components/CustomToast";
+import CustomToast from '../components/CustomToast';
 
 const TYPE_SUCCESS = 'SUCCESS';
 const TYPE_INFO = 'INFO';
@@ -10,27 +12,21 @@ const TYPE_WARN = 'WARN';
 const TYPE_ERROR = 'ERROR';
 
 class ToastUtil {
-
     static success(title, message) {
         this.show(TYPE_SUCCESS, title, message);
     }
-
     static info(title, message) {
         this.show(TYPE_INFO, title, message);
     }
-
     static warn(title, message) {
         this.show(TYPE_WARN, title, message);
     }
-
     static error(title, message) {
         this.show(TYPE_ERROR, title, message);
     }
-
     static successRaw(title, message) {
         this.show(TYPE_SUCCESS, title, message, true);
     }
-
     static errorRaw(title, message, autoCloseDelay = 3000) {
         this.show(TYPE_ERROR, title, message, true, autoCloseDelay);
     }
@@ -52,24 +48,29 @@ class ToastUtil {
         } else {
             // Request fail even server was returned a success response
             if (error.errorMessage) {
-                message = error.errorMessage
+                message = error.errorMessage;
             }
         }
         toast.error(<CustomToast titleId={title} message={message} messageId={messageId} time={new Date()} />, {
             position: toast.POSITION.BOTTOM_RIGHT,
             pauseOnHover: true,
-            autoClose: autoCloseDelay
+            autoClose: autoCloseDelay,
         });
     }
-
     static show(type, title, message, rawMessage = false, autoCloseDelay = 3000) {
-        const content = <CustomToast titleId={title} messageId={rawMessage ? null : message} message={rawMessage ? message : null} time={new Date()} />;
+        const content = (
+            <CustomToast
+                titleId={title}
+                messageId={rawMessage ? null : message}
+                message={rawMessage ? message : null}
+                time={new Date()}
+            />
+        );
         const options = {
             position: toast.POSITION.BOTTOM_RIGHT,
             pauseOnHover: true,
-            autoClose: autoCloseDelay
+            autoClose: autoCloseDelay,
         };
-
         switch (type) {
             case TYPE_SUCCESS:
                 toast.success(content, options);
