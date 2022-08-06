@@ -1,5 +1,5 @@
 import actionTypes from './actionTypes';
-import { deleteUser, getAllCodeServices, getAllUsers } from '../../services/userService';
+import { deleteUser, getAllCodeServices, getAllUsers, upDateUser } from '../../services/userService';
 import { createNewUserRedux } from '../../services/adminService';
 import { toast } from 'react-toastify';
 
@@ -163,7 +163,7 @@ export const deleteUserRedux = (data) => {
                 dispatch(deleteUserSuccessRedux(res.user));
                 dispatch(fetchAllUserStart());
             } else {
-                toast.error('🦄 Successfully Deleted user!', {
+                toast.error('🦄 Error Deleted user!', {
                     position: 'top-right',
                     autoClose: 5000,
                     hideProgressBar: false,
@@ -174,6 +174,14 @@ export const deleteUserRedux = (data) => {
                 dispatch(deleteUserFailureRedux(res));
             }
         } catch (error) {
+            toast.error('🦄 Error Deleted user!', {
+                position: 'top-right',
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+            });
             dispatch(deleteUserFailureRedux());
         }
     };
@@ -185,4 +193,43 @@ export const deleteUserSuccessRedux = (res) => {
 
 export const deleteUserFailureRedux = () => {
     return { type: actionTypes.DELETE_USER_FAILURE_REDUX };
+};
+
+export const editUserRedux = (data) => {
+    return async (dispatch, getState) => {
+        try {
+            const res = await upDateUser(data);
+
+            if (res && res.errCode === 0) {
+                toast.success('🦄 Successfully Update user!', {
+                    position: 'top-right',
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                });
+                dispatch(deleteUserSuccessRedux(res.user));
+                dispatch(fetchAllUserStart());
+            } else {
+                toast.error('🦄 Error Update user!', {
+                    position: 'top-right',
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                });
+            }
+        } catch (error) {
+            toast.error('🦄 Error Update user!', {
+                position: 'top-right',
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+            });
+        }
+    };
 };

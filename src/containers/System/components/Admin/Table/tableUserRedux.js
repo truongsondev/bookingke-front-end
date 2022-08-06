@@ -28,16 +28,15 @@ class TableUserRedux extends Component {
         }
     }
 
-    handleEditUser() {}
+    handleEditUser(item) {
+        this.props.handleEditUserFromParents(item);
+    }
 
     handleDelete(id) {
         this.props.deleteUserRedux(id);
     }
 
     render() {
-        // console.log('Check your props :', this.props.users);
-        console.log('Check state :', this.state);
-
         return (
             <table className="table table-hover mt-4">
                 <thead className="table-dark">

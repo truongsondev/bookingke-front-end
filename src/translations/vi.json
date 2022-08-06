@@ -96,5 +96,9 @@
         "avatar": "Ảnh đại diện",
         "btnSave": "Create user",
         "placehoderPassword": "Nhập mật khẩu của bạn"
+    },
+
+    "actions": {
+        "btnEdit": "Chỉnh Sửa"
     }
 }
