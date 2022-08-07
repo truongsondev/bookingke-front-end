@@ -4,6 +4,13 @@
 
 Và kỹ thuật sử dụng là class Component là chủ yế 
  ngoài ra còn sử dụng hook ( kiến thức base )
+ 
+ # Một số thư viện được dùng : 
+   - Boostrap 5
+   - Axios 
+   - Emit 
+   - React slick
+   ..... + 45 Packet kh
 
 ## Available Scripts
 
