@@ -2,6 +2,7 @@ import actionTypes from './actionTypes';
 import { deleteUser, getAllCodeServices, getAllUsers, upDateUser } from '../../services/userService';
 import { createNewUserRedux } from '../../services/adminService';
 import { toast } from 'react-toastify';
+import { getTopDoctorHomeServices } from '../../services/index';
 
 export const fetChGenderStart = () => {
     return async (dispatch, getState) => {
@@ -19,8 +20,6 @@ export const fetChGenderStart = () => {
             }
         } catch (error) {
             dispatch(fetChGenderFailure());
-
-            console.error('Bạn đã gặp lỗi', error);
         }
     };
 };
@@ -232,4 +231,28 @@ export const editUserRedux = (data) => {
             });
         }
     };
+};
+
+export const fetTopDoctorHome = (limit) => {
+    return async (dispatch, getState) => {
+        try {
+            const res = await getTopDoctorHomeServices(limit);
+
+            if (res && res.errCode === 0) {
+                dispatch(fetTopDoctorSuccess(res.data));
+            } else {
+                dispatch(fetTopDoctorFailure());
+            }
+        } catch (error) {
+            dispatch(fetTopDoctorFailure());
+        }
+    };
+};
+
+export const fetTopDoctorSuccess = (data) => {
+    return { type: actionTypes.FETCH_TOP_DOCTOR_SUCCESS, data };
+};
+
+export const fetTopDoctorFailure = () => {
+    return { type: actionTypes.FETCH_TOP_DOCTOR_FAILURE };
 };

@@ -8,7 +8,7 @@ import { emitter } from '../../utils';
 
 import './User.scss';
 import ModalUser from './ModalUser';
-import { Alert } from 'reactstrap';
+// import { Alert } from 'reactstrap';
 import EditModalUser from './EditUser';
 
 class UserManage extends Component {

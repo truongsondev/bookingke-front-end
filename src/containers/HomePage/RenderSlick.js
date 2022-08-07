@@ -188,6 +188,7 @@ class RenderSlick extends Component {
                         <FamousDoctor />
                     </div>
                 </div>
+
                 <div className="slick-slider-speciality cnang">
                     <div className="slider-speciality">
                         <div className="slider-speciality-header">

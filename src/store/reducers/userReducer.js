@@ -25,8 +25,8 @@ const appReducer = (state = initialState, action) => {
                 isLoggedIn: false,
                 userInfo: null,
             };
-        case actionTypes.USER_LOGIN_SUCCESS:
-            return {};
+        // case actionTypes.USER_LOGIN_SUCCESS:
+        //     return state;
         default:
             return state;
     }

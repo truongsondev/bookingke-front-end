@@ -12,10 +12,10 @@ import {
     Input,
 } from 'reactstrap';
 import React, { Component } from 'react';
-import { FormattedMessage } from 'react-intl';
+// import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
 import _ from 'lodash';
-import { upDateUser } from '../../services/userService';
+// import { upDateUser } from '../../services/userService';
 
 class EditModalUser extends Component {
     constructor(props) {

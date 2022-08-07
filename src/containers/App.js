@@ -11,10 +11,8 @@ import { path } from '../utils';
 
 import Home from '../routes/Home';
 import Login from './Auth/login';
-import Header from './Header/Header';
 import System from '../routes/System';
 
-import { CustomToastCloseButton } from '../components/CustomToast';
 import HomePage from './HomePage';
 import CustomScrollbars from '../components/CustomScrollbars';
 

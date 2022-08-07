@@ -5,16 +5,44 @@ import './SlickSlider.scss';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import { NextArrow, PrevArrow } from '../Components/ArrowSlickSlider/arrow';
+import * as actions from '../../../store/actions';
+import ConvertBase64Image from '../../System/components/converBase64/convertBase64';
+import { languages } from '../../../utils';
 
 class FamousDoctor extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            doctorArr: [],
+        };
+    }
+
+    componentDidMount = async () => {
+        await this.props.loadTopDoctors(10);
+    };
+
+    componentDidUpdate(prevProps, UpdateProps, next) {
+        if (prevProps.OutstandingDoctor !== this.props.OutstandingDoctor) {
+            this.setState({
+                doctorArr: this.props.OutstandingDoctor,
+            });
+        }
+    }
+
     render() {
+        // const TopDoctor = this.props.OutstandingDoctor;
+
         const timeOut = this.props.timeOut || 500;
+        const { doctorArr } = this.state;
+        const { language } = this.props;
+
+        const sideScollShowe = doctorArr.length > 4 ? 4 : doctorArr.length;
 
         const settings = {
             dots: false,
-            infinite: true,
+            // infinite: true,
             speed: timeOut,
-            slidesToShow: 4,
+            slidesToShow: sideScollShowe || 1,
             autoplay: true,
             slidesToScroll: 4,
             nextArrow: <NextArrow />,
@@ -24,67 +52,31 @@ class FamousDoctor extends Component {
         return (
             <div className="Slick-slider-container">
                 <Slider {...settings}>
-                    <div>
-                        <div className="Slick-slider-container-slick-doctor">
-                            <div
-                                className="img-customize-doctor"
-                                style={{
-                                    backgroundImage: `url('https://cdn.bookingcare.vn/fr/w200/2019/12/31/155850-pgs-nguyen-tho-lo.jpg')`,
-                                }}
-                            ></div>
-                            <h3>Phó Giáo sư, Tiến sĩ, Bác sĩ Nguyễn Thọ Lộ</h3>
-                            <span>Nguyên Phó chủ tịch Hội Phẫu thuật Thần kinh Việt Nam</span>
-                        </div>
-                    </div>
-                    <div>
-                        <div className="Slick-slider-container-slick-doctor">
-                            <div
-                                className="img-customize-doctor"
-                                style={{
-                                    backgroundImage: `url('https://cdn.bookingcare.vn/fr/w200/2019/12/31/155850-pgs-nguyen-tho-lo.jpg')`,
-                                }}
-                            ></div>
-                            <h3>Phó Giáo sư, Tiến sĩ, Bác sĩ Nguyễn Thọ Lộ</h3>
-                            <span>Nguyên Phó chủ tịch Hội Phẫu thuật Thần kinh Việt Nam</span>
-                        </div>
-                    </div>
-                    <div>
-                        <div className="Slick-slider-container-slick-doctor">
-                            <div
-                                className="img-customize-doctor"
-                                style={{
-                                    backgroundImage: `url('https://cdn.bookingcare.vn/fr/w200/2019/12/31/155850-pgs-nguyen-tho-lo.jpg')`,
-                                }}
-                            ></div>
-                            <h3>Phó Giáo sư, Tiến sĩ, Bác sĩ Nguyễn Thọ Lộ</h3>
-                            <span>Nguyên Phó chủ tịch Hội Phẫu thuật Thần kinh Việt Nam</span>
-                        </div>
-                    </div>
-                    <div>
-                        <div className="Slick-slider-container-slick-doctor">
-                            <div
-                                className="img-customize-doctor"
-                                style={{
-                                    backgroundImage: `url('https://cdn.bookingcare.vn/fr/w200/2019/12/31/155850-pgs-nguyen-tho-lo.jpg')`,
-                                }}
-                            ></div>
-                            <h3>Phó Giáo sư, Tiến sĩ, Bác sĩ Nguyễn Thọ Lộ</h3>
-                            <span>Nguyên Phó chủ tịch Hội Phẫu thuật Thần kinh Việt Nam</span>
-                        </div>
-                    </div>
+                    {doctorArr &&
+                        doctorArr.length > 0 &&
+                        doctorArr.map((data, index) => {
+                            const linkImage = ConvertBase64Image(data.image);
 
-                    <div>
-                        <div className="Slick-slider-container-slick-doctor">
-                            <div
-                                className="img-customize-doctor"
-                                style={{
-                                    backgroundImage: `url('https://cdn.bookingcare.vn/fr/w200/2019/12/31/155850-pgs-nguyen-tho-lo.jpg')`,
-                                }}
-                            ></div>
-                            <h3>Phó Giáo sư, Tiến sĩ, Bác sĩ Nguyễn Thọ Lộ</h3>
-                            <span>Nguyên Phó chủ tịch Hội Phẫu thuật Thần kinh Việt Nam</span>
-                        </div>
-                    </div>
+                            return (
+                                <div key={index}>
+                                    <div className="Slick-slider-container-slick-doctor">
+                                        <div
+                                            className="img-customize-doctor"
+                                            style={{
+                                                backgroundImage: `url(${linkImage})`,
+                                            }}
+                                        ></div>
+                                        <h3>
+                                            {language === languages.VI
+                                                ? data.positionData.valueVI
+                                                : data.positionData.valueEN}
+                                            , {data.firstName} {data.lastName}
+                                        </h3>
+                                        <span>Nguyên Phó chủ tịch Hội Phẫu thuật Thần kinh Việt Nam</span>
+                                    </div>
+                                </div>
+                            );
+                        })}
                 </Slider>
             </div>
         );
@@ -93,12 +85,16 @@ class FamousDoctor extends Component {
 
 const mapStateToProps = (state) => {
     return {
+        language: state.app.language,
         isLoggedIn: state.user.isLoggedIn,
+        OutstandingDoctor: state.admin.OutstandingDoctor,
     };
 };
 
 const mapDispatchToProps = (dispatch) => {
-    return {};
+    return {
+        loadTopDoctors: (limit) => dispatch(actions.fetTopDoctorHome(limit)),
+    };
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(FamousDoctor);

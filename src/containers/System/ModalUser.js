@@ -12,7 +12,6 @@ import {
     Input,
 } from 'reactstrap';
 import React, { Component } from 'react';
-import { FormattedMessage } from 'react-intl';
 import * as EmailValidator from 'email-validator';
 import { connect } from 'react-redux';
 import { emitter } from '../../utils';

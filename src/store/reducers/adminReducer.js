@@ -6,6 +6,7 @@ const initialState = {
     genders: [],
     roles: [],
     positions: [],
+    OutstandingDoctor: [],
 };
 
 const adminReducer = (state = initialState, action) => {
@@ -126,6 +127,17 @@ const adminReducer = (state = initialState, action) => {
         }
 
         case actionTypes.DELETE_USER_FAILURE_REDUX: {
+            return state;
+        }
+
+        case actionTypes.FETCH_TOP_DOCTOR_SUCCESS: {
+            const cloneStateOutstandingDoctor = { ...state };
+
+            cloneStateOutstandingDoctor.OutstandingDoctor = action.data;
+            return { ...cloneStateOutstandingDoctor };
+        }
+
+        case actionTypes.FETCH_TOP_DOCTOR_FAILURE: {
             return state;
         }
 

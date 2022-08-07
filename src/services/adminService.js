@@ -1,20 +1,4 @@
 import axios from '../axios';
-import * as queryString from 'query-string';
-
-const adminService = {
-    /**
-     * Đăng nhập hệ thống
-     * {
-     *  "username": "string",
-     *  "password": "string"
-     * }
-     */
-    login(loginBody) {
-        return axios.post(`/admin/login`, loginBody);
-    },
-};
-
-export default adminService;
 
 export const createNewUserRedux = (state) => {
     const { email, password, firstName, lastName, phonenumber, address, gender, position, roleId, avatar } = state;
@@ -29,6 +13,10 @@ export const createNewUserRedux = (state) => {
         gender,
         positionId: position,
         roleId,
-        Image: avatar,
+        image: avatar,
     });
+};
+
+export const getTopDoctorHomeServices = (limit) => {
+    return axios.get(`/api/v1/top/doctor-home?limit=${limit}`);
 };
