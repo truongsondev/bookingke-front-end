@@ -100,5 +100,16 @@
 
     "actions": {
         "btnEdit": "Chỉnh Sửa"
+    },
+
+    "homePage": {
+        "TeleMediCineViaVideo": "Bác sĩ từ xa qua Video",
+        "PopularSpecialties": "Chuyên khoa phổ biến",
+        "OutstandingMedicalFacility": "Cơ sở y tế nổi bật",
+        "LastWeeksFeaturedDoctor": "Bác sĩ nổi bật tuần qua",
+        "Handbook": "Cẩm nang",
+        "MediaRalkAboutBookingCare": "Truyền thông nói về BookingCare",
+        "ForDoctorsAndMedicalFacilities": "Dành cho bác sĩ và cơ sở y tế",
+        "more": "Xem thêm"
     }
 }

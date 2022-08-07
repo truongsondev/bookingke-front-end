@@ -100,5 +100,16 @@
 
     "actions": {
         "btnEdit": "SAVE EDIT"
+    },
+
+    "homePage": {
+        "TeleMediCineViaVideo": "Telemedicine via Video",
+        "PopularSpecialties": "Popular specialties",
+        "OutstandingMedicalFacility": "Outstanding medical facility",
+        "LastWeeksFeaturedDoctor": "Last week's featured doctor",
+        "Handbook": "Handbook",
+        "MediaRalkAboutBookingCare": "Media talk about BookingCare",
+        "ForDoctorsAndMedicalFacilities": "For doctors and medical facilities",
+        "more": "see more"
     }
 }

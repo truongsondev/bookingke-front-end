@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { FormattedMessage } from 'react-intl';
 import SlickSlider from './Section/ChukSlickSlider';
 import './HomePage.scss';
 import FamousDoctor from './Section/FamousDoctor';
@@ -74,8 +75,12 @@ class RenderSlick extends Component {
                 <div className="slick-slider-speciality video">
                     <div className="slider-speciality">
                         <div className="slider-speciality-header">
-                            <h2>Bác sĩ từ xa qua Video</h2>
-                            <button>Xem Thêm</button>
+                            <h2>
+                                <FormattedMessage id="homePage.TeleMediCineViaVideo" />
+                            </h2>
+                            <button>
+                                <FormattedMessage id="homePage.more" />
+                            </button>
                         </div>
 
                         <SlickSlider
@@ -112,8 +117,12 @@ class RenderSlick extends Component {
                 <div className="slick-slider-speciality speciality">
                     <div className="slider-speciality">
                         <div className="slider-speciality-header">
-                            <h2>Chuyên khoa phổ biến</h2>
-                            <button>Xem Thêm</button>
+                            <h2>
+                                <FormattedMessage id="homePage.PopularSpecialties" />
+                            </h2>
+                            <button>
+                                <FormattedMessage id="homePage.more" />
+                            </button>
                         </div>
                         <SlickSlider
                             data={[
@@ -149,8 +158,12 @@ class RenderSlick extends Component {
                 <div className="slick-slider-speciality csyte">
                     <div className="slider-speciality">
                         <div className="slider-speciality-header">
-                            <h2>Cơ sở y tế nổi bật</h2>
-                            <button>Xem Thêm</button>
+                            <h2>
+                                <FormattedMessage id="homePage.OutstandingMedicalFacility" />
+                            </h2>
+                            <button>
+                                <FormattedMessage id="homePage.more" />
+                            </button>
                         </div>
                         <SlickSlider
                             data={[
@@ -182,8 +195,12 @@ class RenderSlick extends Component {
                 <div className="slick-slider-speciality bsnb">
                     <div className="slider-speciality">
                         <div className="slider-speciality-header">
-                            <h2>Bác sĩ nổi bật tuần qua</h2>
-                            <button>Xem Thêm</button>
+                            <h2>
+                                <FormattedMessage id="homePage.LastWeeksFeaturedDoctor" />
+                            </h2>
+                            <button>
+                                <FormattedMessage id="homePage.more" />
+                            </button>
                         </div>
                         <FamousDoctor />
                     </div>
@@ -192,8 +209,12 @@ class RenderSlick extends Component {
                 <div className="slick-slider-speciality cnang">
                     <div className="slider-speciality">
                         <div className="slider-speciality-header">
-                            <h2>Cẩm nang</h2>
-                            <button>Xem Thêm</button>
+                            <h2>
+                                <FormattedMessage id="homePage.Handbook" />
+                            </h2>
+                            <button>
+                                <FormattedMessage id="homePage.more" />
+                            </button>
                         </div>
                         <Handbook
                             RenderItem={[
@@ -220,7 +241,9 @@ class RenderSlick extends Component {
                 <div className="slick-slider-speciality truyenthong">
                     <div className="slider-speciality">
                         <div className="slider-speciality-header">
-                            <h2>Truyền thông nói về BookingCare</h2>
+                            <h2>
+                                <FormattedMessage id="homePage.MediaRalkAboutBookingCare" />
+                            </h2>
                         </div>
                         <About />
                     </div>
@@ -228,8 +251,12 @@ class RenderSlick extends Component {
                 <div className="slick-slider-speciality danhchobacsi">
                     <div className="slider-speciality">
                         <div className="slider-speciality-header">
-                            <h2>Dành cho bác sĩ và cơ sở y tế</h2>
-                            <button>Xem Thêm</button>
+                            <h2>
+                                <FormattedMessage id="homePage.ForDoctorsAndMedicalFacilities" />
+                            </h2>
+                            <button>
+                                <FormattedMessage id="homePage.more" />
+                            </button>
                         </div>
                         <Handbook
                             RenderItem={[

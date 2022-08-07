@@ -109,7 +109,25 @@
         margin       : 0 5px;
         height       : 245px;
         border-radius: 4px;
-        cursor       : pointer;
+
+        cursor  : pointer;
+        position: relative;
+
+        .span-rank {
+            position     : absolute;
+            top          : 10px;
+            left         : 10px;
+            background   : #fff04b;
+            color        : #00234b;
+            min-width    : 30px;
+            font-size    : 0.8rem;
+            display      : inline-block;
+            border-radius: 5px;
+            padding      : 2px 5px;
+            font-weight  : bold;
+
+        }
+
 
         .img-customize-doctor {
             width              : 120px;

@@ -14,6 +14,8 @@ class FamousDoctor extends Component {
         super(props);
         this.state = {
             doctorArr: [],
+            prevArrow: true,
+            nextArrow: true,
         };
     }
 
@@ -29,6 +31,20 @@ class FamousDoctor extends Component {
         }
     }
 
+    beforeChange = (prev, next) => {
+        if (prev === 0) {
+            this.setState({ prevArrow: false });
+        } else if (prev <= next) {
+            if (prev === 0) {
+                this.setState({ prevArrow: true });
+            }
+        }
+
+        if (prev === next) {
+            this.setState({ nextArrow: false, prevArrow: true });
+        }
+    };
+
     render() {
         // const TopDoctor = this.props.OutstandingDoctor;
 
@@ -40,13 +56,14 @@ class FamousDoctor extends Component {
 
         const settings = {
             dots: false,
-            // infinite: true,
             speed: timeOut,
+            infinite: false,
             slidesToShow: sideScollShowe || 1,
             autoplay: true,
-            slidesToScroll: 4,
+            slidesToScroll: 1,
             nextArrow: <NextArrow />,
             prevArrow: <PrevArrow />,
+            beforeChange: this.beforeChange,
         };
 
         return (
@@ -56,22 +73,20 @@ class FamousDoctor extends Component {
                         doctorArr.length > 0 &&
                         doctorArr.map((data, index) => {
                             const linkImage = ConvertBase64Image(data.image);
+                            const NameVI = `${data.positionData.valueVI}, ${data.firstName} ${data.lastName}`;
+                            const NameEN = `${data.positionData.valueEN}, ${data.lastName} ${data.firstName}`;
 
                             return (
                                 <div key={index}>
                                     <div className="Slick-slider-container-slick-doctor">
+                                        <div className="span-rank">{index + 1}</div>
                                         <div
                                             className="img-customize-doctor"
                                             style={{
                                                 backgroundImage: `url(${linkImage})`,
                                             }}
                                         ></div>
-                                        <h3>
-                                            {language === languages.VI
-                                                ? data.positionData.valueVI
-                                                : data.positionData.valueEN}
-                                            , {data.firstName} {data.lastName}
-                                        </h3>
+                                        <h3>{language === languages.VI ? NameVI : NameEN}</h3>
                                         <span>Nguyên Phó chủ tịch Hội Phẫu thuật Thần kinh Việt Nam</span>
                                     </div>
                                 </div>
