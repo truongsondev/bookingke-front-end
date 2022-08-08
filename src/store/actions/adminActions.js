@@ -3,7 +3,7 @@ import { deleteUser, getAllCodeServices, getAllUsers, upDateUser } from '../../s
 import { createNewUserRedux } from '../../services/adminService';
 import { toast } from 'react-toastify';
 import { getTopDoctorHomeServices } from '../../services/index';
-import { getAllDoctor, SaveDetailDoctors } from '../../services/doctorServices';
+import { getAllDoctor, GetDetailDoctor, SaveDetailDoctors } from '../../services/doctorServices';
 
 export const fetChGenderStart = () => {
     return async (dispatch, getState) => {
@@ -328,4 +328,32 @@ export const SaveDetailDoctorSuccess = () => {
 
 export const SaveDetailDoctorFailure = () => {
     return { type: actionTypes.SAVE_DETAIL_DOCTOR_FAILURE };
+};
+
+export const fetDetailDoctor = (id) => {
+    return async (dispatch, getState) => {
+        try {
+            const res = await GetDetailDoctor(id);
+
+            if (res && res.errCode === 0) {
+                dispatch(GetDetailDoctorSuccess(res.data));
+            } else {
+                dispatch(GetDetailDoctorFailure());
+            }
+        } catch (error) {
+            dispatch(GetDetailDoctorFailure());
+        }
+    };
+};
+
+export const GetDetailDoctorSuccess = (data) => {
+    return { type: actionTypes.FETCH_DETAIL_DOCTOR_SUCCESS, data };
+};
+
+export const GetDetailDoctorFailure = () => {
+    return { type: actionTypes.FETCH_DETAIL_DOCTOR_FAILURE };
+};
+
+export const SetIDDoctorDetail = (id) => {
+    return { type: actionTypes.SET_ID_DOCTOR_DETAIL, id };
 };

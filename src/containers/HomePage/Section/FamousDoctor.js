@@ -8,6 +8,7 @@ import { NextArrow, PrevArrow } from '../Components/ArrowSlickSlider/arrow';
 import * as actions from '../../../store/actions';
 import ConvertBase64Image from '../../System/components/converBase64/convertBase64';
 import { languages } from '../../../utils';
+import { withRouter } from 'react-router-dom';
 
 class FamousDoctor extends Component {
     constructor(props) {
@@ -45,6 +46,11 @@ class FamousDoctor extends Component {
         }
     };
 
+    HandleRedirect = (data) => {
+        this.props.history.push(`/doctor/${data.id}`);
+        // Có thể dùng thẻ link để redirect nhé
+    };
+
     render() {
         // const TopDoctor = this.props.OutstandingDoctor;
 
@@ -77,7 +83,8 @@ class FamousDoctor extends Component {
                             const NameEN = `${data.positionData.valueEN}, ${data.lastName} ${data.firstName}`;
 
                             return (
-                                <div key={index}>
+                                <div key={index} onClick={() => this.HandleRedirect(data)}>
+                                    {/* <Link to={`/doctor/:${data.id}`}> Có thể dùng ông thần này nhưng  mình lại muốn sử lí bằng JavaScript */}
                                     <div className="Slick-slider-container-slick-doctor">
                                         <div className="span-rank">{index + 1}</div>
                                         <div
@@ -89,6 +96,7 @@ class FamousDoctor extends Component {
                                         <h3>{language === languages.VI ? NameVI : NameEN}</h3>
                                         <span>Nguyên Phó chủ tịch Hội Phẫu thuật Thần kinh Việt Nam</span>
                                     </div>
+                                    {/* </Link> */}
                                 </div>
                             );
                         })}
@@ -112,4 +120,4 @@ const mapDispatchToProps = (dispatch) => {
     };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(FamousDoctor);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(FamousDoctor));

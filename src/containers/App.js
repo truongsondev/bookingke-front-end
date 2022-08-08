@@ -6,6 +6,7 @@ import { history } from '../redux';
 
 import { userIsAuthenticated, userIsNotAuthenticated } from '../hoc/authentication';
 import { ToastContainer } from 'react-toastify';
+import DetailDoctor from './Patient/Doctor/DetailDoctor/DetailDoctor';
 
 import { path } from '../utils';
 
@@ -48,6 +49,7 @@ class App extends Component {
                                     <Route path={path.LOGIN} component={userIsNotAuthenticated(Login)} />
                                     <Route path={path.SYSTEM} component={userIsAuthenticated(System)} />
                                     <Route path={path.HOMEPAGE} component={HomePage} />
+                                    <Route path={path.DETAIL_DOCTOR} component={DetailDoctor} />
                                     {/* userIsAuthenticated  check quyền xem có dc quyền truy cập hay không  */}
                                 </Switch>
                             </div>

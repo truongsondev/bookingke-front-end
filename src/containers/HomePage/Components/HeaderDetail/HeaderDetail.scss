@@ -1,0 +1,64 @@
+.header-detail-wrapper {
+    height          : 58px;
+    background-color: #45c3d2;
+    position        : fixed;
+    top             : 0;
+    left            : 0;
+    right           : 0;
+
+
+    .host-name-header {
+
+        align-items: center;
+
+        h2 {
+            font-weight  : normal;
+            display      : inline;
+            overflow     : hidden;
+            text-overflow: ellipsis;
+            white-space  : nowrap;
+            font-size    : 16px;
+            margin       : 0;
+            color        : #fff;
+            line-height  : 30px;
+            padding      : 0 7px;
+            max-width    : 70%;
+        }
+    }
+
+    .right-header-detail {
+
+        .content-header-detail {
+            gap        : 20px;
+            display    : inline-block;
+            margin-left: auto;
+
+            .item-support {
+                font-size : 16px;
+                color     : #fff;
+                text-align: center;
+
+                p {
+                    font-size : 12px;
+                    margin    : 0;
+                    padding   : 0;
+                    margin-top: 6px;
+                    ;
+                    line-height: 0px;
+                }
+
+            }
+
+            .item-menu {
+                font-size: 16px;
+                color    : #fff;
+
+                svg {
+                    font-size: 20px;
+                    cursor   : pointer;
+                }
+            }
+
+        }
+    }
+}
