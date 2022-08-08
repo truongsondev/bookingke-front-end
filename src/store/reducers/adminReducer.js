@@ -7,6 +7,7 @@ const initialState = {
     roles: [],
     positions: [],
     OutstandingDoctor: [],
+    AllDoctor: [],
 };
 
 const adminReducer = (state = initialState, action) => {
@@ -138,6 +139,26 @@ const adminReducer = (state = initialState, action) => {
         }
 
         case actionTypes.FETCH_TOP_DOCTOR_FAILURE: {
+            return state;
+        }
+
+        case actionTypes.FETCH_ALL_DOCTOR_SUCCESS: {
+            const cloneStateAllDoctor = { ...state };
+
+            cloneStateAllDoctor.AllDoctor = action.data;
+
+            return { ...cloneStateAllDoctor };
+        }
+
+        case actionTypes.FETCH_ALL_DOCTOR_FAILURE: {
+            return state;
+        }
+
+        case actionTypes.SAVE_DETAIL_DOCTOR_SUCCESS: {
+            return state;
+        }
+
+        case actionTypes.SAVE_DETAIL_DOCTOR_FAILURE: {
             return state;
         }
 

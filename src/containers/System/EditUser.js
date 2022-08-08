@@ -105,12 +105,10 @@ class EditModalUser extends Component {
 
     handleUpdateUser = () => {
         const validate = this.handleValidate();
+        const { password, firstName, lastName, address } = this.state;
 
         if (validate) {
-            this.props.updateUserData({
-                ...this.state,
-                id: this.props.currentUser.id,
-            });
+            this.props.updateUserData({ password, firstName, lastName, address, id: this.props.currentUser.id });
         }
     };
 

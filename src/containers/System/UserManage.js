@@ -91,6 +91,8 @@ class UserManage extends Component {
     };
 
     updateUserData = async (state) => {
+        console.log('check State :', state);
+
         try {
             const check = await upDateUser(state);
 

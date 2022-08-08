@@ -3,6 +3,7 @@ import { deleteUser, getAllCodeServices, getAllUsers, upDateUser } from '../../s
 import { createNewUserRedux } from '../../services/adminService';
 import { toast } from 'react-toastify';
 import { getTopDoctorHomeServices } from '../../services/index';
+import { getAllDoctor, SaveDetailDoctors } from '../../services/doctorServices';
 
 export const fetChGenderStart = () => {
     return async (dispatch, getState) => {
@@ -255,4 +256,76 @@ export const fetTopDoctorSuccess = (data) => {
 
 export const fetTopDoctorFailure = () => {
     return { type: actionTypes.FETCH_TOP_DOCTOR_FAILURE };
+};
+
+export const fetchAllDoctor = () => {
+    return async (dispatch, getState) => {
+        try {
+            const res = await getAllDoctor();
+
+            if (res && res.errCode === 0) {
+                dispatch(fetchAllDoctorSuccess(res.data));
+            } else {
+                dispatch(fetchAllDoctorFailure());
+            }
+        } catch (error) {
+            dispatch(fetchAllDoctorFailure());
+        }
+    };
+};
+
+export const fetchAllDoctorSuccess = (data) => {
+    return { type: actionTypes.FETCH_ALL_DOCTOR_SUCCESS, data };
+};
+
+export const fetchAllDoctorFailure = () => {
+    return { type: actionTypes.FETCH_ALL_DOCTOR_FAILURE };
+};
+
+export const SaveDetailDoctor = (data) => {
+    return async (dispatch, getState) => {
+        try {
+            const res = await SaveDetailDoctors(data);
+
+            if (res && res.errCode === 0) {
+                toast.success('🦄 Successfully Update Info Doctor!', {
+                    position: 'top-right',
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                });
+                dispatch(SaveDetailDoctorSuccess(res.data));
+            } else {
+                toast.error('🦄 Error Update Info Doctor!', {
+                    position: 'top-right',
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                });
+                dispatch(SaveDetailDoctorFailure());
+            }
+        } catch (error) {
+            toast.error('🦄 Error Update Info Doctor!', {
+                position: 'top-right',
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+            });
+            dispatch(SaveDetailDoctorFailure());
+        }
+    };
+};
+
+export const SaveDetailDoctorSuccess = () => {
+    return { type: actionTypes.SAVE_DETAIL_DOCTOR_SUCCESS };
+};
+
+export const SaveDetailDoctorFailure = () => {
+    return { type: actionTypes.SAVE_DETAIL_DOCTOR_FAILURE };
 };
