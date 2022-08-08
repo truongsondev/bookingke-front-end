@@ -3,7 +3,13 @@ import { deleteUser, getAllCodeServices, getAllUsers, upDateUser } from '../../s
 import { createNewUserRedux } from '../../services/adminService';
 import { toast } from 'react-toastify';
 import { getTopDoctorHomeServices } from '../../services/index';
-import { getAllDoctor, GetDetailDoctor, SaveDetailDoctors } from '../../services/doctorServices';
+import {
+    getAllDoctor,
+    GetDetailDoctor,
+    GetDetailDoctorMarkDown,
+    SaveDetailDoctors,
+} from '../../services/doctorServices';
+import { CRUD_ACTIONS } from '../../utils';
 
 export const fetChGenderStart = () => {
     return async (dispatch, getState) => {
@@ -288,7 +294,13 @@ export const SaveDetailDoctor = (data) => {
             const res = await SaveDetailDoctors(data);
 
             if (res && res.errCode === 0) {
-                toast.success('🦄 Successfully Update Info Doctor!', {
+                dispatch(fetDetailDoctorMArkDown(data.doctorId));
+
+                const Message =
+                    data.action === CRUD_ACTIONS.CREATE
+                        ? '🦄 Successfully Create Info Doctor!'
+                        : '🦄 Successfully Update Info Doctor!';
+                toast.success(Message, {
                     position: 'top-right',
                     autoClose: 5000,
                     hideProgressBar: false,
@@ -356,4 +368,28 @@ export const GetDetailDoctorFailure = () => {
 
 export const SetIDDoctorDetail = (id) => {
     return { type: actionTypes.SET_ID_DOCTOR_DETAIL, id };
+};
+
+export const fetDetailDoctorMArkDown = (id) => {
+    return async (dispatch, getState) => {
+        try {
+            const res = await GetDetailDoctorMarkDown(id);
+
+            if (res && res.errCode === 0) {
+                dispatch(GetDetailDoctorMArkDownSuccess(res.data));
+            } else {
+                dispatch(GetDetailDoctorMArkDownFailure());
+            }
+        } catch (error) {
+            dispatch(GetDetailDoctorMArkDownFailure());
+        }
+    };
+};
+
+export const GetDetailDoctorMArkDownSuccess = (data) => {
+    return { type: actionTypes.FETCH_DETAIL_MARK_DOWN_DOCTOR_SUCCESS, data };
+};
+
+export const GetDetailDoctorMArkDownFailure = () => {
+    return { type: actionTypes.FETCH_DETAIL_MARK_DOWN_DOCTOR_FAILURE };
 };

@@ -11,3 +11,7 @@ export const SaveDetailDoctors = (data) => {
 export const GetDetailDoctor = (id) => {
     return axios.get(`/api/v1/get-info-doctor?id=${id}`);
 };
+
+export const GetDetailDoctorMarkDown = (id) => {
+    return axios.get(`/api/v1/get-info-doctor-markdowns?id=${id}`);
+};

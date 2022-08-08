@@ -10,6 +10,7 @@ const initialState = {
     AllDoctor: [],
     DetailDoctor: {},
     IdDoctorDetail: null,
+    MarkDownDetailDoctor: {},
 };
 
 const adminReducer = (state = initialState, action) => {
@@ -182,6 +183,18 @@ const adminReducer = (state = initialState, action) => {
             cloneStateDetailDoctorID.IdDoctorDetail = action.id;
 
             return { ...cloneStateDetailDoctorID };
+        }
+
+        case actionTypes.FETCH_DETAIL_MARK_DOWN_DOCTOR_SUCCESS: {
+            const cloneStateDetailDoctorMarkdown = { ...state };
+
+            cloneStateDetailDoctorMarkdown.MarkDownDetailDoctor = action.data;
+
+            return { ...cloneStateDetailDoctorMarkdown };
+        }
+
+        case actionTypes.FETCH_DETAIL_MARK_DOWN_DOCTOR_FAILURE: {
+            return state;
         }
 
         default:

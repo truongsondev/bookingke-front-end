@@ -4,51 +4,94 @@
     .detail-doctor-container {
         margin-top: 58px;
 
-        .detail-doctor-introduce {
+        .detail-block {
+            background-color: #fff;
 
-            .detail-doctor-redirect {
-                background-color: #ccc;
-                margin-bottom   : 8px;
-            }
+            .detail-doctor-introduce {
 
-            .left-image {
-                display        : flex;
-                justify-content: center;
-                align-items    : center;
-
-                div {
-                    width : 120px;
-                    height: 120px;
-
-                    background-position: center center;
-                    background-size    : cover;
-                    background-repeat  : no-repeat;
-                    border-radius      : 50%;
+                .detail-doctor-redirect {
+                    background-color: #ccc;
+                    margin-bottom   : 8px;
                 }
-            }
 
+                .left-image {
+                    display        : flex;
+                    justify-content: center;
+                    align-items    : center;
 
-            .container-introduce {
-                padding: 10px;
+                    div {
+                        width : 120px;
+                        height: 120px;
 
-
-
-                .title-introduce {
-                    h2 {
-                        font-size    : 26px !important;
-                        margin       : 0px;
-                        padding      : 0px;
-                        margin-bottom: 5px;
-                        font-weight  : 800;
-                        color        : #333;
-                        font         : 14px/1.5 'Montserrat', sans-serif;
-                        padding      : 0 10px 0 0;
-                        outline      : none;
-                        ;
+                        background-position: center center;
+                        background-size    : cover;
+                        background-repeat  : no-repeat;
+                        border-radius      : 50%;
                     }
                 }
 
-                .description-introduce {}
+
+                .container-introduce {
+                    padding: 10px;
+
+
+
+                    .title-introduce {
+                        h2 {
+                            font-size    : 27px;
+                            line-height  : 1.2;
+                            margin       : 0px;
+                            padding      : 0px;
+                            margin-bottom: 5px;
+                            font-weight  : bold;
+                            color        : #333;
+                            margin-bottom: 10px;
+                        }
+                    }
+
+                    .description-introduce {}
+                }
+            }
+
+            .detail-doctor-schedule {
+                padding: 10px 0;
+            }
+
+        }
+
+        .detail-doctor-info {
+            border-top   : 1px solid #ccc;
+            border-bottom: 1px solid #ccc;
+            padding      : 15px 0;
+
+            h1 {
+                font-size  : 18px;
+                font-weight: 700;
+            }
+
+            h2 {
+                font-weight: 600;
+                font-size  : 16px;
+            }
+
+            h3 {
+                font-weight: 600;
+                font-size  : 14px;
+            }
+
+            ul {
+                margin: 10px 0px 10px 0px;
+
+                li {
+                    padding: 4px 0;
+                }
+            }
+
+            img {
+                width        : 100%;
+                object-fit   : cover;
+                border-radius: 4px;
+                padding      : 20px;
             }
         }
 
