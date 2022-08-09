@@ -4,6 +4,7 @@ import HeaderDetail from '../../../HomePage/Components/HeaderDetail/HeaderDetail
 import './DetailDoctor.scss';
 import * as actions from '../../../../store/actions';
 import { languages } from '../../../../utils';
+import FooterTwo from '../../../HomePage/Components/Footer/FooterTwo';
 
 class DetailDoctor extends Component {
     constructor(props) {
@@ -69,6 +70,12 @@ class DetailDoctor extends Component {
                                         {doctorInfor && doctorInfor.Markdown && doctorInfor.Markdown.description && (
                                             <p>{doctorInfor.Markdown.description}</p>
                                         )}
+
+                                        {doctorInfor && doctorInfor.Markdown && doctorInfor.Markdown.updatedAt && (
+                                            <span className="created-at">
+                                                cập nhật lần cuối: {doctorInfor.Markdown.updatedAt}
+                                            </span>
+                                        )}
                                     </div>
                                 </div>
                             </div>
@@ -86,6 +93,7 @@ class DetailDoctor extends Component {
                     </div>
                     <div className="detail-doctor-comment"></div>
                 </div>
+                <FooterTwo />
             </div>
         );
     }

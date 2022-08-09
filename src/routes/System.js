@@ -29,7 +29,7 @@ class System extends Component {
                                     <Route path="/system/user-manage" component={UserManage} />
                                     <Route path="/system/user-redux" component={UserRedux} />
                                     <Route path="/system/manage-doctor" component={ManageDoctor} />
-                                    <Route path="/system/" component={Patient} />
+                                    <Route path="/system/user-admin" component={NotFound} />
                                 </>
                             )}
                             {user && user.roleId === USER_ROLE.DOCTOR && (

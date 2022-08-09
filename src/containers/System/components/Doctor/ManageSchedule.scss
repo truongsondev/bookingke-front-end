@@ -16,5 +16,11 @@
                 opacity: 0.8;
             }
         }
+
+        button.active {
+            color           : #fff;
+            background-color: #007bff;
+            border-color    : #007bff;
+        }
     }
 }

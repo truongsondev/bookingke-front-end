@@ -6,8 +6,10 @@ import Select from 'react-select';
 import DatePicker from '../../../../components/Input/DatePicker';
 
 import * as actions from '../../../../store/actions';
-import { languages } from '../../../../utils';
+import { dateFormat, languages } from '../../../../utils';
 import moment from 'moment/moment';
+import { toast } from 'react-toastify';
+import _ from 'lodash';
 
 class ManageSchedule extends Component {
     constructor(props) {
@@ -16,7 +18,7 @@ class ManageSchedule extends Component {
             DoctorArr: [],
             listDoctors: [],
             selectedOptionDoctorReactSchedule: {},
-            currentDate: new Date(),
+            currentDate: '',
             rangeTime: [],
         };
     }
@@ -37,9 +39,20 @@ class ManageSchedule extends Component {
         }
 
         if (prevProps.AllScheduleTime !== this.props.AllScheduleTime) {
-            this.setState({
-                rangeTime: this.props.AllScheduleTime,
-            });
+            const data = this.props.AllScheduleTime;
+
+            if (data && data.length > 0) {
+                const DataMaps = data.map((data) => {
+                    return {
+                        ...data,
+                        isSelected: false,
+                    };
+                });
+
+                this.setState({
+                    rangeTime: DataMaps,
+                });
+            }
         }
     }
 
@@ -74,6 +87,81 @@ class ManageSchedule extends Component {
         this.setState({
             currentDate: date[0],
         });
+    };
+
+    handleClickBtnTime(data) {
+        let { rangeTime } = this.state;
+
+        if (rangeTime && rangeTime.length > 0) {
+            rangeTime = rangeTime.map((item, index) => {
+                if (item.id === data.id) {
+                    item.isSelected = !item.isSelected;
+                }
+                return item;
+            });
+
+            this.setState({
+                rangeTime: rangeTime,
+            });
+        }
+    }
+
+    handleSchedule = () => {
+        let { rangeTime, selectedOptionDoctorReactSchedule, currentDate } = this.state;
+        let result = [];
+
+        if (!currentDate) {
+            toast.warn('🦄 please select a date!', {
+                position: 'top-right',
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+            });
+            return;
+        }
+
+        if (selectedOptionDoctorReactSchedule && _.isEmpty(selectedOptionDoctorReactSchedule)) {
+            toast.warn('🦄 please select a doctor!', {
+                position: 'top-right',
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+            });
+            return;
+        }
+
+        const formatedDate = moment(currentDate).format(dateFormat.SEND_TO_SERVER);
+
+        if (rangeTime && rangeTime.length > 0) {
+            const selectedResult = rangeTime.filter((item) => item.isSelected === true);
+
+            if (selectedResult && selectedResult.length > 0) {
+                // eslint-disable-next-line array-callback-return
+                selectedResult.map((item) => {
+                    const Obj = {};
+                    Obj.doctorId = selectedOptionDoctorReactSchedule.value;
+                    Obj.date = formatedDate;
+                    Obj.time = item.keyMap;
+                    result.push(Obj);
+                });
+
+                console.log('check :', result);
+            } else {
+                toast.warn('🦄 please select a time!', {
+                    position: 'top-right',
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                });
+                return;
+            }
+        }
     };
 
     render() {
@@ -115,15 +203,25 @@ class ManageSchedule extends Component {
                             <div className="row justify-content-center">
                                 {rangeTime &&
                                     rangeTime.length > 0 &&
-                                    rangeTime.map((data, index) => (
-                                        <button key={index} className="col-10 col-sm-2 btn mx-3 my-3 btn-schedule">
-                                            {language === languages.VI ? data.valueVI : data.valueEN}
-                                        </button>
-                                    ))}
+                                    rangeTime.map((data, index) => {
+                                        return (
+                                            <button
+                                                key={index}
+                                                className={
+                                                    data && data.isSelected
+                                                        ? 'col-10 col-sm-2 btn mx-3 my-3 btn-schedule active'
+                                                        : 'col-10 col-sm-2 btn mx-3 my-3 btn-schedule'
+                                                }
+                                                onClick={() => this.handleClickBtnTime(data)}
+                                            >
+                                                {language === languages.VI ? data.valueVI : data.valueEN}
+                                            </button>
+                                        );
+                                    })}
                             </div>
                         </div>
                         <div className="col-12 col-sm-12">
-                            <button className="btn btn-primary m-0 my-4">
+                            <button className="btn btn-primary m-0 my-4" onClick={this.handleSchedule}>
                                 <FormattedMessage id="manage-schedule.save" />
                             </button>
                         </div>
