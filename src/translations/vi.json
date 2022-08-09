@@ -69,6 +69,11 @@
             "manage-specialty": "Quản lí chuyên khoa",
             "handbook": "Cẩm nang",
             "manage-handbook": "Quản lí cẩm nang"
+        },
+
+        "doctor": {
+            "manage-schedule": "Quản lí kế hoạch khám bệnh",
+            "doctor.schedule": ""
         }
     },
 
@@ -111,5 +116,12 @@
         "MediaRalkAboutBookingCare": "Truyền thông nói về BookingCare",
         "ForDoctorsAndMedicalFacilities": "Dành cho bác sĩ và cơ sở y tế",
         "more": "Xem thêm"
+    },
+
+    "manage-schedule": {
+        "title": "Quản lí kế hoạch khám bệnh của bác sĩ",
+        "ChoosseDoctor": "Chọn bác sĩ",
+        "ChooseDate": "Chọn ngày",
+        "save": "Lưu thông tin"
     }
 }

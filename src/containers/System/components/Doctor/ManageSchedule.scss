@@ -1,0 +1,20 @@
+.wrapper-manage-schedule {
+
+    .title {
+        text-transform: uppercase;
+    }
+
+    .pick-hour-container {
+
+
+        .btn-schedule {
+            background: #fff8ae;
+            color     : #333;
+            display   : block;
+
+            &:hover {
+                opacity: 0.8;
+            }
+        }
+    }
+}

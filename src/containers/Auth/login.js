@@ -72,6 +72,12 @@ class Login extends Component {
         });
     };
 
+    handleOnkeyDown(e) {
+        if (e.which === 13) {
+            this.handleLogin();
+        }
+    }
+
     render() {
         return (
             <div className="login-background">
@@ -99,6 +105,7 @@ class Login extends Component {
                                     onChange={(e) => this.handleOnchangeInputPassword(e)}
                                     className="form-control"
                                     placeholder="Enter your password"
+                                    onKeyDown={(e) => this.handleOnkeyDown(e)}
                                 />
                                 <span onClick={() => this.handleHideShowPassword()}>
                                     {this.state.isShowPassword ? (

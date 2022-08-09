@@ -69,6 +69,11 @@
             "manage-specialty": "Specialty manage",
             "handbook": "Handbook",
             "manage-handbook": "Handbook manage"
+        },
+
+        "doctor": {
+            "manage-schedule": "Explore the management plan",
+            "doctor.schedule": ""
         }
     },
 
@@ -111,5 +116,12 @@
         "MediaRalkAboutBookingCare": "Media talk about BookingCare",
         "ForDoctorsAndMedicalFacilities": "For doctors and medical facilities",
         "more": "see more"
+    },
+
+    "manage-schedule": {
+        "title": "Manage doctor's examination plan",
+        "ChoosseDoctor": "Chọn bác sĩ",
+        "ChooseDate": "Choose a date",
+        "save": "Save information"
     }
 }

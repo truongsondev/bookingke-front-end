@@ -393,3 +393,27 @@ export const GetDetailDoctorMArkDownSuccess = (data) => {
 export const GetDetailDoctorMArkDownFailure = () => {
     return { type: actionTypes.FETCH_DETAIL_MARK_DOWN_DOCTOR_FAILURE };
 };
+
+export const fetScheduleHours = (type) => {
+    return async (dispatch, getState) => {
+        try {
+            const res = await getAllCodeServices(type);
+
+            if (res && res.errCode === 0) {
+                dispatch(fetScheduleHoursSuccess(res.data));
+            } else {
+                dispatch(fetScheduleHoursFailure());
+            }
+        } catch (error) {
+            dispatch(fetScheduleHoursFailure());
+        }
+    };
+};
+
+export const fetScheduleHoursSuccess = (data) => {
+    return { type: actionTypes.FETCH_ALLCODE_SCHEDULE_HOUR_SUCCESS, data };
+};
+
+export const fetScheduleHoursFailure = () => {
+    return { type: actionTypes.FETCH_ALLCODE_SCHEDULE_HOUR_FAILURE };
+};

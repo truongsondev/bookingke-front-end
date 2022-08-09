@@ -28,6 +28,12 @@ export const adminMenu = [
                 name: 'menu.admin.manage-admin',
                 link: '/system/user-admin',
             },
+            {
+                // quản lí lịch trình bác sĩ
+
+                name: 'menu.doctor.manage-schedule',
+                link: '/doctor-schedule/manage-schedule',
+            },
         ],
     },
 
@@ -65,5 +71,23 @@ export const adminMenu = [
                 link: '/system/manage-handbook',
             },
         ],
+    },
+];
+
+export const doctorMenu = [
+    {
+        name: 'menu.admin.manage-user',
+        menus: [
+            {
+                name: 'menu.doctor.manage-schedule',
+                link: '/doctor-schedule/manage-schedule',
+            },
+        ],
+    },
+];
+
+export const patientMenu = [
+    {
+        name: 'menu.admin.manage-user',
     },
 ];

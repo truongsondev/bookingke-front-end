@@ -11,6 +11,7 @@ const initialState = {
     DetailDoctor: {},
     IdDoctorDetail: null,
     MarkDownDetailDoctor: {},
+    AllScheduleTime: [],
 };
 
 const adminReducer = (state = initialState, action) => {
@@ -194,6 +195,18 @@ const adminReducer = (state = initialState, action) => {
         }
 
         case actionTypes.FETCH_DETAIL_MARK_DOWN_DOCTOR_FAILURE: {
+            return state;
+        }
+
+        case actionTypes.FETCH_ALLCODE_SCHEDULE_HOUR_SUCCESS: {
+            const cloneStateSchedule = { ...state };
+
+            cloneStateSchedule.AllScheduleTime = action.data;
+
+            return { ...cloneStateSchedule };
+        }
+
+        case actionTypes.FETCH_ALLCODE_SCHEDULE_HOUR_FAILURE: {
             return state;
         }
 

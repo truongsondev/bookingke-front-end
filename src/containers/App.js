@@ -7,12 +7,14 @@ import { history } from '../redux';
 import { userIsAuthenticated, userIsNotAuthenticated } from '../hoc/authentication';
 import { ToastContainer } from 'react-toastify';
 import DetailDoctor from './Patient/Doctor/DetailDoctor/DetailDoctor';
+import NotFound from './System/components/404_not_found/404';
 
 import { path } from '../utils';
 
 import Home from '../routes/Home';
 import Login from './Auth/login';
 import System from '../routes/System';
+import Doctor from '../routes/Doctor';
 
 import HomePage from './HomePage';
 import CustomScrollbars from '../components/CustomScrollbars';
@@ -50,7 +52,9 @@ class App extends Component {
                                     <Route path={path.SYSTEM} component={userIsAuthenticated(System)} />
                                     <Route path={path.HOMEPAGE} component={HomePage} />
                                     <Route path={path.DETAIL_DOCTOR} component={DetailDoctor} />
+                                    <Route path={path.DOCTOR} component={userIsAuthenticated(Doctor)} />
                                     {/* userIsAuthenticated  check quyền xem có dc quyền truy cập hay không  */}
+                                    <Route component={NotFound} />
                                 </Switch>
                             </div>
                         </CustomScrollbars>

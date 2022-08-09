@@ -18,6 +18,7 @@ const userPersistConfig = {
     ...persistCommonConfig,
     key: 'admin',
     whitelist: ['isLoggedIn', 'userInfo', 'language'],
+    blacklist: ['roleId'],
 };
 
 const appPersistConfig = {
