@@ -123,5 +123,21 @@
         "ChoosseDoctor": "Chọn bác sĩ",
         "ChooseDate": "Chọn ngày",
         "save": "Lưu thông tin"
+    },
+
+    "patient": {
+        "detail-doctor": "Lịch khám",
+        "no-schedule": "Bác sĩ không có lịch khám"
+    },
+
+    "admin": {
+        "manage-doctor": {
+            "title": "Create information for doctors",
+            "ChoosseDoctor": "Chọn bác sĩ",
+            "introduce-doctor": "Giới thiệu về bác sĩ",
+            "body-doctor-info": "Thân bài và thông tin",
+            "add": "Tạo mới thông tin",
+            "save": "Lưu thông tin"
+        }
     }
 }

@@ -56,4 +56,10 @@ $date-picker-today-fg       : #000;
 $date-picker-day-selected-fg: $common-white;
 
 
-$home-header-height: 77px
+$home-header-height: 77px;
+$grid-breakpoints  : (xs: 0,
+    sm: 576px,
+    md: 768px,
+    lg: 992px,
+    xl: 1200px,
+    xxl: 1400px);

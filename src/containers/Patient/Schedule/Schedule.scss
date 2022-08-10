@@ -28,6 +28,8 @@
                 color         : #333;
                 font-weight   : 600;
                 font-size     : 14px;
+                display       : flex;
+                align-items   : center;
                 text-transform: uppercase;
 
                 svg {
@@ -40,6 +42,7 @@
             button {
                 width      : 100%;
                 background : #fff04b;
+                font       : 14px/1.5 'Montserrat', sans-serif;
                 min-height : 38px;
                 color      : #333;
                 font-weight: 600;
@@ -49,6 +52,25 @@
 
                 &:hover {
                     border: 1px solid #ccc;
+                }
+
+                &.button-en {
+                    // font-size: 9px;
+                }
+            }
+
+
+            .select-free {
+                margin-top: 4px;
+
+                span {
+
+                    font-size: 12px;
+                    color    : #333;
+
+                    svg {
+                        margin: 0 5px;
+                    }
                 }
             }
         }

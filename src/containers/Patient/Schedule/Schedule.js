@@ -5,8 +5,9 @@ import * as actions from '../../../store/actions';
 import moment from 'moment';
 import localization from 'moment/locale/vi'; // import để moment hiểu tiếng việt
 import { languages } from '../../../utils';
-import { faCalendarDays } from '@fortawesome/free-solid-svg-icons';
+import { faCalendarDays, faHandPointer } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { FormattedMessage } from 'react-intl';
 
 class DoctorSchedule extends Component {
     constructor(props) {
@@ -17,39 +18,56 @@ class DoctorSchedule extends Component {
         };
     }
 
-    setArrDate() {
+    async componentDidMount() {
+        let arrDay = this.getArrDay(); //Môi tạo thơi gian
+
+        this.setState({
+            allDay: arrDay,
+        });
+    }
+
+    getArrDay() {
         const allDay = [];
 
         for (let i = 0; i < 7; i++) {
             let Obj = {};
 
             if (this.props.language === languages.VI) {
-                const label = (Obj.label = moment(new Date()).add(i, 'day').format('dddd - DD/MM'));
-
-                Obj.label = this.capitalizeFirstLetter(label);
+                if (i === 0) {
+                    const DateTime = (Obj.label = moment(new Date()).add(i, 'day').format('DD/MM'));
+                    const today = `Hôm nay ${DateTime}`;
+                    Obj.label = today;
+                } else {
+                    const label = (Obj.label = moment(new Date()).add(i, 'day').format('dddd - DD/MM'));
+                    Obj.label = this.capitalizeFirstLetter(label);
+                }
             } else {
-                Obj.label = moment(new Date()).add(i, 'day').locale('en').format('ddd - DD/MM');
+                if (i === 0) {
+                    const DateTime = moment(new Date()).add(i, 'day').locale('en').format('DD/MM');
+                    const today = `Today ${DateTime}`;
+                    Obj.label = today;
+                } else {
+                    Obj.label = moment(new Date()).add(i, 'day').locale('en').format('ddd - DD/MM');
+                }
             }
             Obj.value = moment(new Date()).add(i, 'day').startOf('day').valueOf();
             allDay.push(Obj);
         }
 
-        this.setState({
-            allDay: allDay,
-        });
+        return allDay;
     }
 
     capitalizeFirstLetter(string) {
         return string.charAt(0).toUpperCase() + string.slice(1);
     }
 
-    async componentDidMount() {
-        this.setArrDate(); //Môi tạo thơi gian
-    }
-
     componentDidUpdate(prevProps, NextProps, Next) {
         if (prevProps.language !== this.props.language) {
-            this.setArrDate(); // Sử lí khi thay đổi
+            let arrDay = this.getArrDay(); // Sử lí khi thay đổi
+
+            this.setState({
+                allDay: arrDay,
+            });
         }
 
         if (prevProps.ScheduleDoctorByDate !== this.props.ScheduleDoctorByDate) {
@@ -57,13 +75,20 @@ class DoctorSchedule extends Component {
                 allAvalableTime: this.props.ScheduleDoctorByDate,
             });
         }
+
+        if (prevProps.detailDoctorId !== this.props.detailDoctorId) {
+            let doctorID = this.props.detailDoctorId;
+            const allDay = this.getArrDay(this.props.language);
+
+            return this.props.getScheduleDoctor(doctorID, allDay[0].value);
+        }
     }
 
     handleChangeSelect(e) {
         if (this.props.detailDoctorId && this.props.detailDoctorId !== -1) {
             let doctorID = this.props.detailDoctorId;
 
-            const Date = e.target.value || this.state.allDay[0].value;
+            const Date = e.target.value;
 
             this.props.getScheduleDoctor(doctorID, Date);
         }
@@ -94,15 +119,21 @@ class DoctorSchedule extends Component {
                     <div className="text-calendar">
                         <span className="mt-2 d-flex">
                             <FontAwesomeIcon icon={faCalendarDays} />
-                            lịch khám
+                            <FormattedMessage id="patient.detail-doctor" />
                         </span>
                     </div>
                     <div className="time-calendar-schedule">
                         <div className="row">
                             {allAvalableTime && allAvalableTime.length > 0 ? (
                                 allAvalableTime.map((data, index) => (
-                                    <div className="col-6 col-sm-3 my-2 " key={index}>
-                                        <button className="btn btn-primary">
+                                    <div className="col-6 col-md-6 col-lg-3 my-2 " key={index}>
+                                        <button
+                                            className={
+                                                language === languages.VI
+                                                    ? 'btn btn-primary'
+                                                    : 'btn btn-primary button-en'
+                                            }
+                                        >
                                             {language === languages.VI
                                                 ? data.timeTypeData.valueVI
                                                 : data.timeTypeData.valueEN}
@@ -110,7 +141,18 @@ class DoctorSchedule extends Component {
                                     </div>
                                 ))
                             ) : (
-                                <p style={{ padding: '10px 0 0 0' }}>Bác sĩ không có lịch khám</p>
+                                <p style={{ padding: '10px 0 0 10px' }}>
+                                    <FormattedMessage id="patient.no-schedule" />
+                                </p>
+                            )}
+                        </div>
+                        <div className="select-free">
+                            {allAvalableTime && allAvalableTime.length > 0 && (
+                                <span>
+                                    chọn
+                                    <FontAwesomeIcon icon={faHandPointer} />
+                                    và đặt (Phí đặt 0<sup>đ</sup>)
+                                </span>
                             )}
                         </div>
                     </div>

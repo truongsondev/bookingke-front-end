@@ -14,6 +14,8 @@ const initialState = {
     AllScheduleTime: [],
     BulkSchedule: [],
     ScheduleDoctorByDate: [],
+
+    allRequiredDoctorInfo: [],
 };
 
 const adminReducer = (state = initialState, action) => {
@@ -241,6 +243,18 @@ const adminReducer = (state = initialState, action) => {
         }
 
         case actionTypes.GET_SCHEDULE_DOCTOR_BY_DATE_FAILURE: {
+            return state;
+        }
+
+        case actionTypes.FETCH_REQUIRED_DOCTOR_INFO_SUCCESS: {
+            const clonStateRequiredDoctorInfo = { ...state };
+
+            clonStateRequiredDoctorInfo.allRequiredDoctorInfo = action.data;
+
+            return { ...clonStateRequiredDoctorInfo };
+        }
+
+        case actionTypes.FETCH_REQUIRED_DOCTOR_INFO_FAILURE: {
             return state;
         }
 

@@ -88,7 +88,7 @@ class DetailDoctor extends Component {
                                 </p>
                             </div>
                             <div className="row">
-                                <div className="col-3 col-md-2 left-image">
+                                <div className="col-4 col-md-3 col-lg-2 left-image">
                                     <div
                                         style={{
                                             backgroundImage: `url(${
@@ -97,7 +97,7 @@ class DetailDoctor extends Component {
                                         }}
                                     ></div>
                                 </div>
-                                <div className="col-9 col-md-10 container-introduce">
+                                <div className="col-8 col-md-9  col-lg-10 container-introduce">
                                     <div className="title-introduce">
                                         <h2>{this.props.language === languages.VI ? VI : EN}</h2>
                                     </div>

@@ -20,6 +20,7 @@ class ManageSchedule extends Component {
             selectedOptionDoctorReactSchedule: {},
             currentDate: '',
             rangeTime: [],
+            isSuccess: null,
         };
     }
 
@@ -57,6 +58,10 @@ class ManageSchedule extends Component {
 
         if (prevProps.BulkSchedule !== this.props.BulkSchedule) {
             if (this.props.BulkSchedule === 0) {
+                this.setState({
+                    isSuccess: this.props.BulkSchedule,
+                });
+
                 toast.warn('🦄 Successfully save bulk!', {
                     position: 'top-right',
                     autoClose: 5000,
@@ -65,7 +70,9 @@ class ManageSchedule extends Component {
                     pauseOnHover: true,
                     draggable: true,
                 });
-                return;
+                this.setState({
+                    isSuccess: null,
+                });
             } else {
                 toast.warn('🦄 Error save bulk!', {
                     position: 'top-right',

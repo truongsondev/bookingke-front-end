@@ -120,8 +120,24 @@
 
     "manage-schedule": {
         "title": "Manage doctor's examination plan",
-        "ChoosseDoctor": "Chọn bác sĩ",
+        "ChoosseDoctor": "Choose a doctor",
         "ChooseDate": "Choose a date",
         "save": "Save information"
+    },
+
+    "patient": {
+        "detail-doctor": "examination schedule",
+        "no-schedule": "The doctor does not have an appointment"
+    },
+
+    "admin": {
+        "manage-doctor": {
+            "title": "Tạo thông tin cho bác sĩ",
+            "ChoosseDoctor": "Choose a doctor",
+            "introduce-doctor": "About the doctor",
+            "body-doctor-info": "Body and information",
+            "add": "Create new information",
+            "save": "Save information"
+        }
     }
 }

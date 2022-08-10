@@ -52,11 +52,25 @@
                         background-repeat  : no-repeat;
                         border-radius      : 50%;
                     }
+
+                    @media (max-width: 576px) {
+                        div {
+                            width : 100px;
+                            height: 100px;
+
+                            background-position: center center;
+                            background-size    : cover;
+                            background-repeat  : no-repeat;
+                            border-radius      : 50%;
+                        }
+                    }
                 }
 
 
                 .container-introduce {
                     margin-left: -20px;
+
+
 
 
                     .title-introduce {
@@ -79,6 +93,28 @@
                             text-decoration: none;
                         }
 
+                    }
+
+                    @media (max-width: 576px) {
+
+                        & {
+                            margin-left: -10px;
+                        }
+
+
+                        .title-introduce {
+                            h2 {
+                                font-size: 16px;
+                                padding  : 0;
+                            }
+                        }
+
+                        .description-introduce {
+                            p {
+                                font-size: 9px;
+                            }
+
+                        }
                     }
                 }
             }
@@ -135,6 +171,40 @@
                 height         : 0px;
                 padding        : 4px 0;
                 padding-bottom : 7px;
+            }
+
+            @media (max-width: 576px) {
+
+                h1 {
+                    font-size: 16px;
+
+                }
+
+                h2 {
+                    font-size: 14px;
+                }
+
+                h3 {
+                    font-weight: 600;
+                    font-size  : 12px;
+                }
+
+                ul {
+                    margin      : 10px 0px 10px 0px;
+                    padding-left: 20px;
+
+                    li {
+                        padding  : 4px 4px 0 0;
+                        font-size: 12.5px;
+                    }
+                }
+
+                img {}
+
+
+                .created-at {
+                    font-size: 8px;
+                }
             }
         }
 
