@@ -215,8 +215,6 @@ const adminReducer = (state = initialState, action) => {
         case actionTypes.SAVE_BULK_SCHEDULE_SUCCESS: {
             const cloneStateBulkScheduleSuccess = { ...state };
 
-            console.log('check Action :', action);
-
             cloneStateBulkScheduleSuccess.BulkSchedule = action.data;
 
             return {
@@ -226,8 +224,6 @@ const adminReducer = (state = initialState, action) => {
 
         case actionTypes.SAVE_BULK_SCHEDULE_FAILURE: {
             const cloneStateBulkScheduleSuccess = { ...state };
-
-            console.log('check Action :', action);
 
             cloneStateBulkScheduleSuccess.BulkSchedule = action.data;
 

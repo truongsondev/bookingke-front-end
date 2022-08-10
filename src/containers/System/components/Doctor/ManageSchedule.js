@@ -6,8 +6,8 @@ import Select from 'react-select';
 import DatePicker from '../../../../components/Input/DatePicker';
 
 import * as actions from '../../../../store/actions';
-import { dateFormat, languages } from '../../../../utils';
-import moment from 'moment/moment';
+import { languages } from '../../../../utils';
+// import moment from 'moment/moment';
 import { toast } from 'react-toastify';
 import _ from 'lodash';
 
@@ -180,13 +180,18 @@ class ManageSchedule extends Component {
                 selectedResult.map((item) => {
                     const Obj = {};
                     Obj.doctorId = selectedOptionDoctorReactSchedule.value;
-                    Obj.date = formatedDate;
+                    Obj.date = String(formatedDate);
                     Obj.timeType = item.keyMap;
                     result.push(Obj);
                 });
             }
 
             this.props.saveBulkSchedule(result);
+
+            setTimeout(() => {
+                this.props.fetchAllDoctor();
+                this.props.fetScheduleHours('TIME');
+            }, 2000);
         }
     };
 
@@ -221,7 +226,7 @@ class ManageSchedule extends Component {
                                 value={this.state.currentDate}
                                 className="form-control"
                                 onChange={this.handleOnChangeDatePicker}
-                                minDate={new Date()}
+                                minDate={new Date(new Date().valueOf() - 1000 * 3600 * 24)}
                             />
                         </div>
 

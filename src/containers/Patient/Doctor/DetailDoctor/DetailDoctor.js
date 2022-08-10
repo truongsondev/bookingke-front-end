@@ -88,7 +88,7 @@ class DetailDoctor extends Component {
                                 </p>
                             </div>
                             <div className="row">
-                                <div className="col-2 left-image">
+                                <div className="col-3 col-md-2 left-image">
                                     <div
                                         style={{
                                             backgroundImage: `url(${
@@ -97,7 +97,7 @@ class DetailDoctor extends Component {
                                         }}
                                     ></div>
                                 </div>
-                                <div className="col-10 container-introduce">
+                                <div className="col-9 col-md-10 container-introduce">
                                     <div className="title-introduce">
                                         <h2>{this.props.language === languages.VI ? VI : EN}</h2>
                                     </div>
@@ -117,10 +117,10 @@ class DetailDoctor extends Component {
                                             detailDoctorId={doctorInfor && doctorInfor.id ? doctorInfor.id : -1}
                                         />
                                     </div>
-                                    <div className="col-12 col-sm-6 content-left">
-                                        <DoctorSchedule
+                                    <div className="col-12 col-sm-6  content-left">
+                                        {/* <DoctorSchedule
                                             detailDoctorId={doctorInfor && doctorInfor.id ? doctorInfor.id : -1}
-                                        />
+                                        /> */}
                                     </div>
                                 </div>
                             </div>
