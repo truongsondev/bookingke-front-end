@@ -238,7 +238,7 @@ class ManageSchedule extends Component {
                         </div>
 
                         <div className="col-12 col-sm-12 pick-hour-container">
-                            <div className="row justify-content-center">
+                            <div className="row">
                                 {rangeTime &&
                                     rangeTime.length > 0 &&
                                     rangeTime.map((data, index) => {

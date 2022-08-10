@@ -137,7 +137,20 @@
             "introduce-doctor": "About the doctor",
             "body-doctor-info": "Body and information",
             "add": "Create new information",
-            "save": "Save information"
+            "save": "Save information",
+            "ChoosePrice": "Choose price",
+            "SelectPayment": "Select a payment method",
+            "SelectProvince": "Select Province",
+            "ClinicName": "Clinic name",
+            "ClinicAddress": "Clinic address",
+            "Note": "Note"
+        },
+
+        "placehoder": {
+            "ChoosseDoctor": "Choose a doctor",
+            "ChoosePrice": "Choose price",
+            "SelectPayment": "Select a payment method",
+            "SelectProvince": "Select Province"
         }
     }
 }

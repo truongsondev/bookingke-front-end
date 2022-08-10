@@ -137,7 +137,20 @@
             "introduce-doctor": "Giới thiệu về bác sĩ",
             "body-doctor-info": "Thân bài và thông tin",
             "add": "Tạo mới thông tin",
-            "save": "Lưu thông tin"
+            "save": "Lưu thông tin",
+            "ChoosePrice": "Chọn giá",
+            "SelectPayment": "Chọn phương thức Thanh Toán",
+            "SelectProvince": "Chọn Tỉnh thành",
+            "ClinicName": "Tên phòng khám",
+            "ClinicAddress": "Địa chỉ phòng khám",
+            "Note": "Ghi chú"
+        },
+
+        "placehoder": {
+            "ChoosseDoctor": "Chọn bác sĩ",
+            "ChoosePrice": "Chọn giá",
+            "SelectPayment": "Chọn phương thức Thanh Toán",
+            "SelectProvince": "Chọn Tỉnh thành"
         }
     }
 }
