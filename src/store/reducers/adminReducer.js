@@ -12,6 +12,8 @@ const initialState = {
     IdDoctorDetail: null,
     MarkDownDetailDoctor: {},
     AllScheduleTime: [],
+    BulkSchedule: [],
+    ScheduleDoctorByDate: [],
 };
 
 const adminReducer = (state = initialState, action) => {
@@ -207,6 +209,42 @@ const adminReducer = (state = initialState, action) => {
         }
 
         case actionTypes.FETCH_ALLCODE_SCHEDULE_HOUR_FAILURE: {
+            return state;
+        }
+
+        case actionTypes.SAVE_BULK_SCHEDULE_SUCCESS: {
+            const cloneStateBulkScheduleSuccess = { ...state };
+
+            console.log('check Action :', action);
+
+            cloneStateBulkScheduleSuccess.BulkSchedule = action.data;
+
+            return {
+                ...cloneStateBulkScheduleSuccess,
+            };
+        }
+
+        case actionTypes.SAVE_BULK_SCHEDULE_FAILURE: {
+            const cloneStateBulkScheduleSuccess = { ...state };
+
+            console.log('check Action :', action);
+
+            cloneStateBulkScheduleSuccess.BulkSchedule = action.data;
+
+            return {
+                ...cloneStateBulkScheduleSuccess,
+            };
+        }
+
+        case actionTypes.GET_SCHEDULE_DOCTOR_BY_DATE_SUCCESS: {
+            const cloneStateScheduleDoctorByDate = { ...state };
+
+            cloneStateScheduleDoctorByDate.ScheduleDoctorByDate = action.data;
+
+            return { ...cloneStateScheduleDoctorByDate };
+        }
+
+        case actionTypes.GET_SCHEDULE_DOCTOR_BY_DATE_FAILURE: {
             return state;
         }
 

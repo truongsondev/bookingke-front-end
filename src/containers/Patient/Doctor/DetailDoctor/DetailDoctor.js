@@ -5,6 +5,11 @@ import './DetailDoctor.scss';
 import * as actions from '../../../../store/actions';
 import { languages } from '../../../../utils';
 import FooterTwo from '../../../HomePage/Components/Footer/FooterTwo';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faHouse } from '@fortawesome/free-solid-svg-icons';
+import { Link } from 'react-router-dom';
+
+import DoctorSchedule from '../../Schedule';
 
 class DetailDoctor extends Component {
     constructor(props) {
@@ -31,6 +36,8 @@ class DetailDoctor extends Component {
     render() {
         const { doctorInfor } = this.state;
 
+        const { language } = this.props;
+
         let VI = '';
         let EN = '';
 
@@ -51,7 +58,35 @@ class DetailDoctor extends Component {
                 <div className="detail-doctor-container">
                     <div className="detail-block">
                         <div className="detail-doctor-introduce container">
-                            <div style={{ height: '31px' }} className="detail-doctor-redirect"></div>
+                            <div className="detail-doctor-redirect">
+                                <p>
+                                    <Link to="/home">
+                                        <FontAwesomeIcon icon={faHouse} />
+                                    </Link>
+                                    {/* {doctorInfor && doctorInfor.roleId && (
+                                        <span>
+                                            {language === languages.VI
+                                                ? doctorInfor.roleId === 'R1'
+                                                    ? 'Quản trị viên'
+                                                    : doctorInfor.roleId === 'R2'
+                                                    ? 'Bác sĩ'
+                                                    : 'Bệnh nhân'
+                                                : doctorInfor.roleId === 'R1'
+                                                ? 'Admin'
+                                                : doctorInfor.roleId === 'R2'
+                                                ? 'Doctor'
+                                                : 'Patient'}
+                                        </span>
+                                    )} */}
+                                    {doctorInfor && doctorInfor.positionData && doctorInfor.positionData.valueVI && (
+                                        <span>
+                                            {language === languages.VI
+                                                ? doctorInfor.positionData.valueVI
+                                                : doctorInfor.positionData.valueEN}
+                                        </span>
+                                    )}
+                                </p>
+                            </div>
                             <div className="row">
                                 <div className="col-2 left-image">
                                     <div
@@ -70,24 +105,36 @@ class DetailDoctor extends Component {
                                         {doctorInfor && doctorInfor.Markdown && doctorInfor.Markdown.description && (
                                             <p>{doctorInfor.Markdown.description}</p>
                                         )}
-
-                                        {doctorInfor && doctorInfor.Markdown && doctorInfor.Markdown.updatedAt && (
-                                            <span className="created-at">
-                                                cập nhật lần cuối: {doctorInfor.Markdown.updatedAt}
-                                            </span>
-                                        )}
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div className="container">
-                            <div className="detail-doctor-schedule "></div>
+                            <div className="detail-doctor-schedule">
+                                <div className="row">
+                                    <div className="col-12 col-sm-6 content-left">
+                                        <DoctorSchedule
+                                            detailDoctorId={doctorInfor && doctorInfor.id ? doctorInfor.id : -1}
+                                        />
+                                    </div>
+                                    <div className="col-12 col-sm-6 content-left">
+                                        <DoctorSchedule
+                                            detailDoctorId={doctorInfor && doctorInfor.id ? doctorInfor.id : -1}
+                                        />
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div className="detail-doctor-info">
                         <div className="container">
                             {doctorInfor && doctorInfor.Markdown && doctorInfor.Markdown.contentHTML && (
-                                <div dangerouslySetInnerHTML={{ __html: doctorInfor.Markdown.contentHTML }}></div>
+                                <>
+                                    <div dangerouslySetInnerHTML={{ __html: doctorInfor.Markdown.contentHTML }}></div>
+                                    <span className="created-at">
+                                        cập nhật lần cuối: {doctorInfor.Markdown.updatedAt}
+                                    </span>
+                                </>
                             )}
                         </div>
                     </div>

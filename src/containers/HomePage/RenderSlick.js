@@ -13,7 +13,7 @@ class RenderSlick extends Component {
     render() {
         return (
             <div>
-                <div className="slick-slider-speciality banner">
+                {/* <div className="slick-slider-speciality banner">
                     <div className="slider-speciality">
                         <Banner
                             data={[
@@ -71,8 +71,8 @@ class RenderSlick extends Component {
                             timeOut={500}
                         />
                     </div>
-                </div>
-                <div className="slick-slider-speciality video">
+                </div> */}
+                {/* <div className="slick-slider-speciality video">
                     <div className="slider-speciality">
                         <div className="slider-speciality-header">
                             <h2>
@@ -113,7 +113,7 @@ class RenderSlick extends Component {
                             timeOut={1000}
                         />
                     </div>
-                </div>
+                </div> */}
                 <div className="slick-slider-speciality speciality">
                     <div className="slider-speciality">
                         <div className="slider-speciality-header">

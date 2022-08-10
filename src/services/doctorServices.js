@@ -15,3 +15,15 @@ export const GetDetailDoctor = (id) => {
 export const GetDetailDoctorMarkDown = (id) => {
     return axios.get(`/api/v1/get-info-doctor-markdowns?id=${id}`);
 };
+
+export const SaveBulkSchedule = (data) => {
+    // const Data = {
+    //     scheduleData: data,
+    // };
+
+    return axios.post(`/api/v1/bulk-create-schedule`, data);
+};
+
+export const getScheduleDoctorByDate = (doctorId, date) => {
+    return axios.get(`/api/v1/get-schedule-doctor-by-date?doctorId=${doctorId}&date=${date}`);
+};

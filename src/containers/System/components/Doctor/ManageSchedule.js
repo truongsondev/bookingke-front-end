@@ -54,6 +54,30 @@ class ManageSchedule extends Component {
                 });
             }
         }
+
+        if (prevProps.BulkSchedule !== this.props.BulkSchedule) {
+            if (this.props.BulkSchedule === 0) {
+                toast.warn('🦄 Successfully save bulk!', {
+                    position: 'top-right',
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                });
+                return;
+            } else {
+                toast.warn('🦄 Error save bulk!', {
+                    position: 'top-right',
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                });
+                return;
+            }
+        }
     }
 
     handleChangeSelectReact = (selectedOptionDoctorReactSchedule) => {
@@ -110,48 +134,9 @@ class ManageSchedule extends Component {
         let { rangeTime, selectedOptionDoctorReactSchedule, currentDate } = this.state;
         let result = [];
 
-        if (!currentDate) {
-            toast.warn('🦄 please select a date!', {
-                position: 'top-right',
-                autoClose: 5000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-            });
-            return;
-        }
-
-        if (selectedOptionDoctorReactSchedule && _.isEmpty(selectedOptionDoctorReactSchedule)) {
-            toast.warn('🦄 please select a doctor!', {
-                position: 'top-right',
-                autoClose: 5000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-            });
-            return;
-        }
-
-        const formatedDate = moment(currentDate).format(dateFormat.SEND_TO_SERVER);
-
         if (rangeTime && rangeTime.length > 0) {
-            const selectedResult = rangeTime.filter((item) => item.isSelected === true);
-
-            if (selectedResult && selectedResult.length > 0) {
-                // eslint-disable-next-line array-callback-return
-                selectedResult.map((item) => {
-                    const Obj = {};
-                    Obj.doctorId = selectedOptionDoctorReactSchedule.value;
-                    Obj.date = formatedDate;
-                    Obj.time = item.keyMap;
-                    result.push(Obj);
-                });
-
-                console.log('check :', result);
-            } else {
-                toast.warn('🦄 please select a time!', {
+            if (!currentDate) {
+                toast.warn('🦄 please select a date!', {
                     position: 'top-right',
                     autoClose: 5000,
                     hideProgressBar: false,
@@ -161,6 +146,47 @@ class ManageSchedule extends Component {
                 });
                 return;
             }
+
+            if (selectedOptionDoctorReactSchedule && _.isEmpty(selectedOptionDoctorReactSchedule)) {
+                toast.warn('🦄 please select a doctor!', {
+                    position: 'top-right',
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                });
+                return;
+            }
+
+            // const formatedDate = moment(currentDate).format(dateFormat.SEND_TO_SERVER);
+            // const formatedDate = moment(currentDate).unix();
+            const formatedDate = new Date(currentDate).getTime();
+
+            const selectedResult = rangeTime.filter((item) => item.isSelected === true);
+
+            if (selectedResult && selectedResult.length === 0) {
+                toast.warn('🦄 please select a time!', {
+                    position: 'top-right',
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                });
+                return;
+            } else {
+                // eslint-disable-next-line array-callback-return
+                selectedResult.map((item) => {
+                    const Obj = {};
+                    Obj.doctorId = selectedOptionDoctorReactSchedule.value;
+                    Obj.date = formatedDate;
+                    Obj.timeType = item.keyMap;
+                    result.push(Obj);
+                });
+            }
+
+            this.props.saveBulkSchedule(result);
         }
     };
 
@@ -239,6 +265,7 @@ const mapStateToProps = (state) => {
         language: state.app.language,
         AllDoctor: state.admin.AllDoctor,
         AllScheduleTime: state.admin.AllScheduleTime,
+        BulkSchedule: state.admin.BulkSchedule,
     };
 };
 
@@ -247,6 +274,7 @@ const mapDispatchToProps = (dispatch) => {
         fetchAllDoctor: () => dispatch(actions.fetchAllDoctor()),
         SaveDetailDoctor: (data) => dispatch(actions.SaveDetailDoctor(data)),
         fetScheduleHours: (type) => dispatch(actions.fetScheduleHours(type)),
+        saveBulkSchedule: (data) => dispatch(actions.saveBulkSchedule(data)),
     };
 };
 

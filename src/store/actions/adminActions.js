@@ -7,7 +7,9 @@ import {
     getAllDoctor,
     GetDetailDoctor,
     GetDetailDoctorMarkDown,
+    SaveBulkSchedule,
     SaveDetailDoctors,
+    getScheduleDoctorByDate,
 } from '../../services/doctorServices';
 import { CRUD_ACTIONS } from '../../utils';
 
@@ -416,4 +418,62 @@ export const fetScheduleHoursSuccess = (data) => {
 
 export const fetScheduleHoursFailure = () => {
     return { type: actionTypes.FETCH_ALLCODE_SCHEDULE_HOUR_FAILURE };
+};
+
+export const saveBulkSchedule = (data) => {
+    return async (dispatch, getState) => {
+        try {
+            const res = await SaveBulkSchedule(data);
+
+            if (res && res.errCode === 0) {
+                dispatch(saveBulkScheduleSuccess(res.errCode));
+            } else {
+                dispatch(saveBulkScheduleFailure(res.errCode));
+            }
+        } catch (error) {
+            dispatch(
+                saveBulkScheduleFailure({
+                    errCode: -2,
+                    errorMessage: 'error from client',
+                }),
+            );
+        }
+    };
+};
+
+export const saveBulkScheduleSuccess = (data) => {
+    return { type: actionTypes.SAVE_BULK_SCHEDULE_SUCCESS, data };
+};
+
+export const saveBulkScheduleFailure = (data) => {
+    return { type: actionTypes.SAVE_BULK_SCHEDULE_FAILURE, data };
+};
+
+export const getScheduleDoctor = (doctorId, date) => {
+    return async (dispatch, getState) => {
+        try {
+            const res = await getScheduleDoctorByDate(doctorId, date);
+
+            if (res && res.errCode === 0) {
+                dispatch(getScheduleDoctorSuccess(res.data));
+            } else {
+                dispatch(getScheduleDoctorFailure());
+            }
+        } catch (error) {
+            dispatch(
+                getScheduleDoctorFailure({
+                    errCode: -2,
+                    errorMessage: 'error from client',
+                }),
+            );
+        }
+    };
+};
+
+export const getScheduleDoctorSuccess = (data) => {
+    return { type: actionTypes.GET_SCHEDULE_DOCTOR_BY_DATE_SUCCESS, data };
+};
+
+export const getScheduleDoctorFailure = () => {
+    return { type: actionTypes.GET_SCHEDULE_DOCTOR_BY_DATE_FAILURE };
 };

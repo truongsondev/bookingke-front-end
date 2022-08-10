@@ -10,8 +10,32 @@
             .detail-doctor-introduce {
 
                 .detail-doctor-redirect {
-                    background-color: #ccc;
-                    margin-bottom   : 8px;
+                    height       : 20px;
+                    margin-bottom: 4px;
+
+                    p {
+                        padding    : 0 8px;
+                        padding-top: 2px;
+
+
+                        svg {
+                            color: rgb(69, 195, 210)
+                        }
+
+
+                        span {
+                            font-size: 14px;
+                            color    : #45c3d2;
+
+                            &::before {
+                                content: " / ";
+                                color  : #ccc;
+                                padding: 0 7px;
+                            }
+                        }
+                    }
+
+
                 }
 
                 .left-image {
@@ -32,7 +56,6 @@
 
 
                 .container-introduce {
-                    padding: 10px;
 
 
 
@@ -54,19 +77,14 @@
                             white-space: pre-wrap;
                         }
 
-                        .created-at {
-                            display        : flex;
-                            justify-content: flex-end;
-                            color          : #ccc;
-                            font-size      : 12px;
-                            height         : 0px;
-                        }
                     }
                 }
             }
 
             .detail-doctor-schedule {
-                padding: 10px 0;
+                padding    : 10px 0;
+                padding-top: 0;
+                border     : 1px solid #ccc;
             }
 
         }
@@ -104,6 +122,17 @@
                 object-fit   : cover;
                 border-radius: 4px;
                 padding      : 20px;
+            }
+
+
+            .created-at {
+                display        : flex;
+                justify-content: flex-end;
+                color          : #ccc;
+                font-size      : 12px;
+                height         : 0px;
+                padding        : 4px 0;
+                padding-bottom : 7px;
             }
         }
 

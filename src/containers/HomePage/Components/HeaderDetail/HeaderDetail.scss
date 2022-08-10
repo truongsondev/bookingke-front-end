@@ -33,6 +33,26 @@
             display    : inline-block;
             margin-left: auto;
 
+            .language-header-detail {
+                gap: 10px;
+
+                img {
+                    width        : 30px;
+                    height       : 30px;
+                    object-fit   : cover;
+                    border-radius: 50%;
+                    opacity      : 0.4;
+                    cursor       : pointer;
+                }
+
+                &.active {
+                    img {
+                        opacity: 1;
+                        cursor : default;
+                    }
+                }
+            }
+
             .item-support {
                 font-size : 16px;
                 color     : #fff;

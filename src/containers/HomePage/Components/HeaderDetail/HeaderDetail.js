@@ -4,11 +4,19 @@ import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { BackIcon } from '../../../../components/Icons';
 import { faCircleQuestion, faBars } from '@fortawesome/free-solid-svg-icons';
+import { ChangeLanguageApp } from '../../../../store/actions';
 
 import './HeaderDetail.scss';
 import { languages } from '../../../../utils';
 
+import VN from '../../../../assets/images/VN.png';
+import ENImage from '../../../../assets/images/EN.png';
+
 class HeaderDetail extends Component {
+    handleChangeLanguage(lang) {
+        this.props.ChangeLanguageAppRedux(lang);
+    }
+
     render() {
         const { language, data } = this.props;
 
@@ -34,6 +42,28 @@ class HeaderDetail extends Component {
                             <div className="col-sm-6">
                                 <div className="d-flex align-items-center right-header-detail">
                                     <div className="d-flex align-items-center content-header-detail">
+                                        <div className="d-flex align-items-center language-header-detail">
+                                            <span
+                                                className={
+                                                    language === languages.VI
+                                                        ? 'language-header-detail active'
+                                                        : 'language-header-detail'
+                                                }
+                                                onClick={() => this.handleChangeLanguage(languages.VI)}
+                                            >
+                                                <img src={VN} alt="VN" />
+                                            </span>
+                                            <span
+                                                className={
+                                                    language === languages.EN
+                                                        ? 'language-header-detail active'
+                                                        : 'language-header-detail'
+                                                }
+                                                onClick={() => this.handleChangeLanguage(languages.EN)}
+                                            >
+                                                <img src={ENImage} alt="VN" />
+                                            </span>
+                                        </div>
                                         <div className="item-support">
                                             <FontAwesomeIcon icon={faCircleQuestion} />
                                             <p>Hỗ trợ</p>
@@ -60,7 +90,9 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = (dispatch) => {
-    return {};
+    return {
+        ChangeLanguageAppRedux: (language) => dispatch(ChangeLanguageApp(language)),
+    };
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(HeaderDetail);
