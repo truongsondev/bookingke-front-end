@@ -10,6 +10,7 @@ import { faHouse } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
 
 import DoctorSchedule from '../../Schedule';
+import DoctorExtra from '../DoctorExtra/DoctorExtra';
 
 class DetailDoctor extends Component {
     constructor(props) {
@@ -117,10 +118,10 @@ class DetailDoctor extends Component {
                                             detailDoctorId={doctorInfor && doctorInfor.id ? doctorInfor.id : -1}
                                         />
                                     </div>
-                                    <div className="col-12 col-sm-6  content-left">
-                                        {/* <DoctorSchedule
+                                    <div className="col-12 col-sm-6  content-right">
+                                        <DoctorExtra
                                             detailDoctorId={doctorInfor && doctorInfor.id ? doctorInfor.id : -1}
-                                        /> */}
+                                        />
                                     </div>
                                 </div>
                             </div>

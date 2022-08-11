@@ -33,3 +33,11 @@ html {
     -webkit-box-shadow: 2px 2px 4px 0 $box-shadow-color;
   }
 }
+
+.modal-header {
+  button {
+    border          : none;
+    background-color: transparent;
+    font-size       : 16px;
+  }
+}

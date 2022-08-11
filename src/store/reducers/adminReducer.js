@@ -16,6 +16,8 @@ const initialState = {
     ScheduleDoctorByDate: [],
 
     allRequiredDoctorInfo: [],
+    extraDoctorInfo: {},
+    profileDoctorInfo: {},
 };
 
 const adminReducer = (state = initialState, action) => {
@@ -255,6 +257,30 @@ const adminReducer = (state = initialState, action) => {
         }
 
         case actionTypes.FETCH_REQUIRED_DOCTOR_INFO_FAILURE: {
+            return state;
+        }
+
+        case actionTypes.GET_EXTRA_DOCTOR_INFO_SUCCESS: {
+            const extraDoctorInfoDoctorInfo = { ...state };
+
+            extraDoctorInfoDoctorInfo.extraDoctorInfo = action.data;
+
+            return { ...extraDoctorInfoDoctorInfo };
+        }
+
+        case actionTypes.GET_EXTRA_DOCTOR_INFO_FAILURE: {
+            return state;
+        }
+
+        case actionTypes.GET_PROFILE_DOCTOR_INFO_SUCCESS: {
+            const profileDoctorInfoDoctorInfo = { ...state };
+
+            profileDoctorInfoDoctorInfo.profileDoctorInfo = action.data;
+
+            return { ...profileDoctorInfoDoctorInfo };
+        }
+
+        case actionTypes.GET_PROFILE_DOCTOR_INFO_FAILURE: {
             return state;
         }
 

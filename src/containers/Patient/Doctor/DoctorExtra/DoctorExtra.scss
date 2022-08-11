@@ -1,0 +1,165 @@
+.doctor-extra-wrapper {
+    border-left : 1px solid #eee;
+    padding-left: 14px;
+
+    .content-up {
+
+
+        .title-fixed {
+            p {
+                text-transform: uppercase;
+                color         : #666;
+                font-weight   : 700;
+                margin-bottom : 5px;
+                font-size     : 14px;
+            }
+        }
+
+        .title-dynamic-name-csyt {
+            p {
+                font-size    : 13px;
+                font-weight  : 600;
+                color        : #333;
+                margin-bottom: 5px;
+            }
+        }
+
+        .address-dynamic-clinic {
+            p {
+                text-overflow: ellipsis;
+                font-size    : 12px;
+                color        : #333;
+                margin-bottom: 5px;
+            }
+
+        }
+    }
+
+
+    .content-down {
+        border-top : 1px solid #eee;
+        padding-top: 10px;
+
+
+        .content-title {
+
+
+            p {
+                display    : flex;
+                align-items: center;
+
+                button {
+                    border: none;
+                }
+
+
+                .text-gia-kham {
+                    text-transform: uppercase;
+                    font-size     : 13px;
+                    font-weight   : 600;
+                    color         : #666;
+                }
+
+                .text-gia-kham-event {
+                    margin-left: 4px;
+                    font-weight: 300;
+                    color      : #333;
+                    display    : flex;
+                    align-items: center;
+
+                    span {
+                        color    : #333;
+                        font-size: 12px;
+                    }
+
+
+                    button {
+                        color           : #45c3d2;
+                        background-color: transparent;
+                        margin-left     : 4px;
+                    }
+                }
+            }
+        }
+
+
+        .hide-show {
+
+
+            .content-hide-show-body {
+                background-color: #f8f8f8;
+                padding         : 4px;
+                border          : 1px solid #ddd;
+                border-radius   : 3px;
+                margin-top      : 10px;
+
+
+                .content-hide-show-body-price {
+                    display        : flex;
+                    justify-content: space-between;
+
+                    span {
+                        display    : flex;
+                        align-items: center;
+                    }
+                }
+
+
+                .content-hide-show-body-description {
+                    margin    : 0 0 3px 0;
+                    margin-top: 4px;
+                    max-width : 70%;
+                    font-size : 12px;
+                }
+            }
+
+            .bank-cart {
+                font-size    : 12px;
+                margin-bottom: 4px;
+                margin-top   : 4px;
+                padding-left : 3px;
+                color        : #333;
+            }
+
+            .toggle-hide-show {
+                button {
+                    border          : none;
+                    background-color: transparent;
+                    font-size       : 14px;
+                    color           : #45c3d2;
+                    padding         : 0;
+                    margin-top      : 4px;
+                }
+            }
+
+            .dich-vu-lien-quan {
+
+                .text-gia-kham {
+                    padding       : 0;
+                    margin        : 16px 0 0 0;
+                    margin-bottom : 10px;
+                    display       : block;
+                    font-size     : 13px;
+                    color         : #666;
+                    font-weight   : 600;
+                    text-transform: uppercase;
+                }
+
+                .content-hide-show-body {
+                    margin-top: 4px;
+
+                    .content-hide-show-body-description.baohiem {
+                        width    : 100% !important;
+                        max-width: 100%;
+                    }
+                }
+            }
+        }
+    }
+
+    @media (max-width: 576px) {
+        border-left  : none;
+        padding-left : 0;
+        padding-right: 10px;
+    }
+}

@@ -10,6 +10,8 @@ import {
     SaveBulkSchedule,
     SaveDetailDoctors,
     getScheduleDoctorByDate,
+    getExtraDoctorInfoByIDService,
+    getProfileDoctorInfoByIDService,
 } from '../../services/doctorServices';
 import { CRUD_ACTIONS } from '../../utils';
 
@@ -519,4 +521,62 @@ export const getRequiredDoctorInfoSuccess = (data) => {
 
 export const getRequiredDoctorInfoFailure = () => {
     return { type: actionTypes.FETCH_REQUIRED_DOCTOR_INFO_FAILURE };
+};
+
+export const getExtraDoctorInfoByID = (doctorId) => {
+    return async (dispatch, getState) => {
+        try {
+            const res = await getExtraDoctorInfoByIDService(doctorId);
+
+            if (res && res.errCode === 0) {
+                dispatch(getExtraDoctorInfoByIDSuccess(res.data));
+            } else {
+                dispatch(getExtraDoctorInfoByIDFailure());
+            }
+        } catch (error) {
+            dispatch(
+                getExtraDoctorInfoByIDFailure({
+                    errCode: -2,
+                    errorMessage: 'error from client',
+                }),
+            );
+        }
+    };
+};
+
+export const getExtraDoctorInfoByIDSuccess = (data) => {
+    return { type: actionTypes.GET_EXTRA_DOCTOR_INFO_SUCCESS, data };
+};
+
+export const getExtraDoctorInfoByIDFailure = () => {
+    return { type: actionTypes.GET_EXTRA_DOCTOR_INFO_FAILURE };
+};
+
+export const getProfileDoctorInfoByID = (doctorId) => {
+    return async (dispatch, getState) => {
+        try {
+            const res = await getProfileDoctorInfoByIDService(doctorId);
+
+            if (res && res.errCode === 0) {
+                dispatch(getProfileDoctorInfoByIDSuccess(res.data));
+            } else {
+                dispatch(getProfileDoctorInfoByIDFailure());
+            }
+        } catch (error) {
+            dispatch(
+                getProfileDoctorInfoByIDFailure({
+                    errCode: -2,
+                    errorMessage: 'error from client',
+                }),
+            );
+        }
+    };
+};
+
+export const getProfileDoctorInfoByIDSuccess = (data) => {
+    return { type: actionTypes.GET_PROFILE_DOCTOR_INFO_SUCCESS, data };
+};
+
+export const getProfileDoctorInfoByIDFailure = () => {
+    return { type: actionTypes.GET_PROFILE_DOCTOR_INFO_FAILURE };
 };

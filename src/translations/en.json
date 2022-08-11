@@ -151,6 +151,19 @@
             "ChoosePrice": "Choose price",
             "SelectPayment": "Select a payment method",
             "SelectProvince": "Select Province"
+        },
+
+        "extra": {
+            "AddressOfExamination": "Address Of Examination",
+            "ExamplePice": "Examination price",
+            "TYPEOFINSURANCE": "TYPE OF INSURANCE APPLICATION ( IF CUSTOMERS WANT TO USE )",
+            "StateHealthInsurance": "State health insurance",
+            "healthInsurance": "State health insurance is not yet available for specialist examination services.",
+            "PrivateHealthInsurance": "Private health insurance",
+            "descriptionPrivateHealthInsurance": "For insurance units that do not guarantee directly, the clinic issues a financial invoice (red invoice) and assists the patient in completing the application.",
+            "PatientsCanPayVia": "Patients can pay via",
+            "SeeDetails": "See details",
+            "HideByPrice": "Hide by price"
         }
     }
 }

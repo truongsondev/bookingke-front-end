@@ -151,6 +151,19 @@
             "ChoosePrice": "Chọn giá",
             "SelectPayment": "Chọn phương thức Thanh Toán",
             "SelectProvince": "Chọn Tỉnh thành"
+        },
+
+        "extra": {
+            "AddressOfExamination": "Địa chỉ khám",
+            "ExamplePice": "Giá khám",
+            "TYPEOFINSURANCE": "LOẠI BẢO HIỂM ÁP DỤNG ( NẾU KHÁCH HÀNG MUỐN SỬ DỤNG )",
+            "StateHealthInsurance": "Bảo hiểm y tế nhà nước",
+            "healthInsurance": "Hiện chưa áp dụng bảo hiểm y tế nhà nước cho dịch vụ khám chuyên gia.",
+            "PrivateHealthInsurance": "Bảo hiểm y tế tư nhân",
+            "descriptionPrivateHealthInsurance": "Đối với các đơn vị bảo hiểm không bảo lãnh trực tiếp, phòng khám xuất hoá đơn tài chính (hoá đơn đỏ) và hỗ trợ bệnh nhân hoàn thiện hồ sơ",
+            "PatientsCanPayVia": "Người bệnh có thể thanh toán qua hình thức",
+            "SeeDetails": "Xem chi tiết",
+            "HideByPrice": "Ẩn bằng giá"
         }
     }
 }
