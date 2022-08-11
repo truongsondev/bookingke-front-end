@@ -164,6 +164,21 @@
             "PatientsCanPayVia": "Người bệnh có thể thanh toán qua hình thức",
             "SeeDetails": "Xem chi tiết",
             "HideByPrice": "Ẩn bằng giá"
+        },
+
+        "bookingModal": {
+            "title": "Thông tin đặt lịch khám bệnh",
+            "description": "Quý khách vui lòng điền đầy đủ thông tin để tiết kiệm thời gian làm thủ tục khám",
+            "ExamplePice": "Giá khám",
+            "fullName": "Họ và tên",
+            "phoneNumber": "Số điện thoại",
+            "emailAddress": "Địa chỉ email",
+            "contactAddress": "Địa chỉ liên hệ",
+            "ReasonForExamination": "Lí do khám",
+            "birthday": "Ngày sinh",
+            "gender": "Giới tính",
+            "btnConfirm": "Xác Nhận",
+            "btnClose": "Hủy bỏ"
         }
     }
 }

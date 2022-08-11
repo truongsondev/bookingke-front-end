@@ -4,6 +4,9 @@ import * as actions from '../../../../store/actions';
 import { languages } from '../../../../utils';
 import './ProfileDoctor.scss';
 import NumberFormat from 'react-number-format';
+import _ from 'lodash';
+import moment from 'moment';
+import { FormattedMessage } from 'react-intl';
 
 class ProfileDoctor extends Component {
     constructor(props) {
@@ -41,12 +44,39 @@ class ProfileDoctor extends Component {
         return result;
     };
 
+    renderTimeBooking = (dataTime) => {
+        const { language } = this.props;
+
+        console.log('check date 1:', dataTime);
+
+        if (dataTime && !_.isEmpty(dataTime)) {
+            let date =
+                language === languages.VI
+                    ? moment(new Date(Number(dataTime.date))).format('dddd - DD/MM/YYYY')
+                    : moment(new Date(Number(dataTime.date))).format('ddd - MM/DD/YYYY');
+
+            return (
+                <div>
+                    <div>
+                        {language === languages.VI ? dataTime.timeTypeData.valueVI : dataTime.timeTypeData.valueEN} -{' '}
+                        {date}
+                    </div>
+                    <div>
+                        <FormattedMessage id="admin.bookingModal.description" />
+                    </div>
+                </div>
+            );
+        }
+
+        return '';
+    };
+
     render() {
         console.log('check state profile :', this.state);
 
         const { dataProfile } = this.state;
 
-        const { language } = this.props;
+        const { language, isShowHideDescriptionDoctor, dataTime } = this.props;
 
         let VI = '';
         let EN = '';
@@ -71,14 +101,22 @@ class ProfileDoctor extends Component {
                             <h2>{this.props.language === languages.VI ? VI : EN}</h2>
                         </div>
                         <div className="description-introduce">
-                            {dataProfile && dataProfile.Markdown && dataProfile.Markdown.description && (
-                                <p>{dataProfile.Markdown.description}</p>
+                            {isShowHideDescriptionDoctor ? (
+                                <>
+                                    {dataProfile && dataProfile.Markdown && dataProfile.Markdown.description && (
+                                        <p>{dataProfile.Markdown.description}</p>
+                                    )}
+                                </>
+                            ) : (
+                                <>{this.renderTimeBooking(dataTime)}</>
                             )}
                         </div>
                     </div>
                 </div>
                 <div className="content-price">
-                    <span>giá khám :</span>
+                    <span>
+                        <FormattedMessage id="admin.bookingModal.ExamplePice" /> :
+                    </span>
                     <span>
                         {language === languages.VI ? (
                             dataProfile.Doctor_Infor && dataProfile.Doctor_Infor.priceTypeData ? (

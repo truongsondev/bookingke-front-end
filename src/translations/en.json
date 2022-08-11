@@ -164,6 +164,21 @@
             "PatientsCanPayVia": "Patients can pay via",
             "SeeDetails": "See details",
             "HideByPrice": "Hide by price"
+        },
+
+        "bookingModal": {
+            "title": "Information to book a medical appointment",
+            "description": "Please fill out the information completely to save time for examination procedures",
+            "ExamplePice": "Examination price",
+            "fullName": "First and last name",
+            "phoneNumber": "Phone number",
+            "emailAddress": "Email address",
+            "contactAddress": "address",
+            "ReasonForExamination": "Reason for examination",
+            "birthday": "Date of birth",
+            "gender": "Gender",
+            "btnConfirm": "Confirm",
+            "btnClose": "Cancel"
         }
     }
 }

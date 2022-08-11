@@ -2,7 +2,7 @@ import actionTypes from './actionTypes';
 import { deleteUser, getAllCodeServices, getAllUsers, upDateUser } from '../../services/userService';
 import { createNewUserRedux } from '../../services/adminService';
 import { toast } from 'react-toastify';
-import { getTopDoctorHomeServices } from '../../services/index';
+import { getTopDoctorHomeServices, postPatientBookingAppointmentService } from '../../services/index';
 import {
     getAllDoctor,
     GetDetailDoctor,
@@ -579,4 +579,41 @@ export const getProfileDoctorInfoByIDSuccess = (data) => {
 
 export const getProfileDoctorInfoByIDFailure = () => {
     return { type: actionTypes.GET_PROFILE_DOCTOR_INFO_FAILURE };
+};
+
+export const postPatientBookingAppointment = (data) => {
+    return async (dispatch, getState) => {
+        try {
+            const res = await postPatientBookingAppointmentService(data);
+
+            if (res && res.errCode === 0) {
+                toast.success('🦄 You have successfully booked your appointment!', {
+                    position: 'top-right',
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                });
+            } else {
+                toast.success('🦄 There is an error in the system, please try again later!', {
+                    position: 'top-right',
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                });
+            }
+        } catch (error) {
+            toast.success('🦄 There is an error in the system, please try again later!', {
+                position: 'top-right',
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+            });
+        }
+    };
 };
