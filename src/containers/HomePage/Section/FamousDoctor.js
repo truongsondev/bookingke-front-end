@@ -63,7 +63,7 @@ class FamousDoctor extends Component {
         const settings = {
             dots: false,
             speed: timeOut,
-            // infinite: false,
+            infinite: true,
             slidesToShow: sideScollShowe || 1,
             autoplay: true,
             slidesToScroll: 3,

@@ -18,6 +18,7 @@ import Doctor from '../routes/Doctor';
 
 import HomePage from './HomePage';
 import CustomScrollbars from '../components/CustomScrollbars';
+import verifyEmail from './Patient/verifyEmail/verifyEmail';
 
 class App extends Component {
     handlePersistorState = () => {
@@ -54,6 +55,7 @@ class App extends Component {
                                     <Route path={path.DETAIL_DOCTOR} component={DetailDoctor} />
                                     <Route path={path.DOCTOR} component={userIsAuthenticated(Doctor)} />
                                     {/* userIsAuthenticated  check quyền xem có dc quyền truy cập hay không  */}
+                                    <Route path={path.VERIFY_EMAIL_BOOKING} component={verifyEmail} />
                                     <Route component={NotFound} />
                                 </Switch>
                             </div>

@@ -242,7 +242,7 @@ class RenderSlick extends Component {
                     <div className="slider-speciality">
                         <div className="slider-speciality-header">
                             <h2>
-                                <FormattedMessage id="homePage.MediaRalkAboutBookingCare" />
+                                <FormattedMessage id="homePage.MediaRalkAboutBookingTS" />
                             </h2>
                         </div>
                         <About />

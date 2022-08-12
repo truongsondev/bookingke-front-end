@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import Logo from '../../../../assets/images/logo.svg';
+import Logo from '../../../../assets/images/LOGO4.png';
 
 import EN from '../../../../assets/images/EN.png';
 import VN from '../../../../assets/images/VN.png';
