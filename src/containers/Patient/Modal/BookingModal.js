@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../../../store/actions';
 import './BookingModal.scss';
-import { Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+import { Modal } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
 import ProfileDoctor from '../Doctor/ProfileDoctor/ProfileDoctor';
@@ -11,6 +11,10 @@ import DatePicker from '../../../components/Input/DatePicker';
 import { languages } from '../../../utils';
 import Select from 'react-select';
 import { FormattedMessage } from 'react-intl';
+import PhoneInput from 'react-phone-number-input';
+import 'react-phone-number-input/style.css';
+import * as EmailValidator from 'email-validator';
+import moment from 'moment';
 
 class BookingModal extends Component {
     constructor(props) {
@@ -70,6 +74,42 @@ class BookingModal extends Component {
         });
     }
 
+    buildTimeBooking = (dataTime) => {
+        const { language } = this.props;
+
+        console.log('check date 1:', dataTime);
+
+        if (dataTime && !_.isEmpty(dataTime)) {
+            let Time = language === languages.VI ? dataTime.timeTypeData.valueVI : dataTime.timeTypeData.valueEN;
+
+            let date =
+                language === languages.VI
+                    ? moment(new Date(Number(dataTime.date))).format('dddd - DD/MM/YYYY')
+                    : moment(new Date(Number(dataTime.date))).format('ddd - MM/DD/YYYY');
+
+            return `${Time} ${date}`;
+        }
+
+        return '';
+    };
+
+    buildDoctorBooking = (dataTime) => {
+        const { language } = this.props;
+
+        console.log('check date 1:', dataTime);
+
+        if (dataTime && !_.isEmpty(dataTime)) {
+            let DoctorName =
+                language === languages.VI
+                    ? `${dataTime.doctorData.firstName} ${dataTime.doctorData.lastName}`
+                    : `${dataTime.doctorData.lastName} ${dataTime.doctorData.firstName}`;
+
+            return DoctorName;
+        }
+
+        return '';
+    };
+
     buildDataGender = (data) => {
         let language = this.props.language;
         let result = [];
@@ -101,32 +141,65 @@ class BookingModal extends Component {
         });
     };
 
-    // handleValidateState = (data) => {
-    //     let validate = true;
+    handleValidateState = (data) => {
+        let validate = true;
 
-    // }
+        const ArrValidate = ['fullName', 'phoneNumber', 'address', 'reason', 'birthday'];
+
+        const check = EmailValidator.validate(this.state.email);
+
+        if (check) {
+            for (let i = 0; i < ArrValidate.length; i++) {
+                if (!this.state[ArrValidate[i]]) {
+                    validate = false;
+                    alert('Missing required parameter ' + ArrValidate[i]);
+                    break;
+                }
+            }
+        } else {
+            validate = false;
+            alert('Missing required @gmail.com ');
+        }
+
+        return validate;
+    };
 
     // !data.email || !data.timeType || !data.date || !data.doctorId
 
     handleConfirmBooking = async () => {
         let date = new Date(this.state.birthday).getTime();
 
-        this.props.postPatientBookingAppointment({
-            fullName: this.state.fullName,
-            phoneNumber: this.state.phoneNumber,
-            email: this.state.email,
-            address: this.state.address,
-            reason: this.state.reason,
-            date: date,
-            doctorId: this.state.doctorId,
-            timeType: this.state.timeType,
-            timeTypeData: this.state.timeTypeData,
-            selectedGender: this.state.selectedGender.value,
-        });
+        const check = this.handleValidateState(this.state);
+        const TimeString = this.buildTimeBooking(this.props.dataTime);
+        const DoctorName = this.buildDoctorBooking(this.props.dataTime);
 
-        setTimeout(() => {
-            this.props.handleCloseModalBooking();
-        }, 1000);
+        if (check) {
+            this.props.postPatientBookingAppointment({
+                fullName: this.state.fullName,
+                phoneNumber: this.state.phoneNumber,
+                email: this.state.email,
+                address: this.state.address,
+                reason: this.state.reason,
+                date: date,
+                doctorId: this.state.doctorId,
+                timeType: this.state.timeType,
+                timeTypeData: this.state.timeTypeData,
+                selectedGender: this.state.selectedGender.value,
+                language: this.props.language,
+                TimeString: TimeString,
+                doctorName: DoctorName,
+            });
+
+            setTimeout(() => {
+                this.props.handleCloseModalBooking();
+            }, 1000);
+        }
+    };
+
+    handleValidateOnchangePhone = (e) => {
+        this.setState({
+            phoneNumber: e,
+        });
     };
 
     render() {
@@ -147,7 +220,6 @@ class BookingModal extends Component {
                         <div className="content-booking">
                             <div className="booking-modal-header">
                                 <span className="header-left">
-                                    {' '}
                                     <FormattedMessage id="admin.bookingModal.title" />
                                 </span>
                                 <span className="header-right" onClick={() => this.props.handleCloseModalBooking()}>
@@ -181,12 +253,13 @@ class BookingModal extends Component {
                                             <label htmlFor="dienthoai" className="form-label">
                                                 <FormattedMessage id="admin.bookingModal.phoneNumber" />
                                             </label>
-                                            <input
+                                            <PhoneInput
+                                                placeholder="Enter phone number"
                                                 value={phoneNumber}
-                                                onChange={(e) => this.handleOnchangeInput(e, 'phoneNumber')}
+                                                onChange={this.handleValidateOnchangePhone}
+                                                defaultCountry="VN"
+                                                limitMaxLength="10"
                                                 className="form-control"
-                                                type="text"
-                                                id="dienthoai"
                                             />
                                         </div>
                                         <div className="mb-3 col-12 col-md-6">
