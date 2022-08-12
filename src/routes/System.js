@@ -11,6 +11,7 @@ import './system.scss';
 import { USER_ROLE } from '../utils';
 import NotFound from '../containers/System/components/404_not_found/404';
 import Patient from '../containers/System/components/DoctorManage/patient';
+import ManageSpeciatly from '../containers/System/components/Speciatly/Manage-speciatly';
 // import { lang } from 'moment';
 // import { languages } from '../utils';
 
@@ -29,6 +30,7 @@ class System extends Component {
                                     <Route path="/system/user-manage" component={UserManage} />
                                     <Route path="/system/user-redux" component={UserRedux} />
                                     <Route path="/system/manage-doctor" component={ManageDoctor} />
+                                    <Route path="/system/manage-specialty" component={ManageSpeciatly} />
                                     <Route path="/system/user-admin" component={NotFound} />
                                 </>
                             )}

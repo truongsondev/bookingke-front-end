@@ -14,6 +14,7 @@ import {
     getProfileDoctorInfoByIDService,
 } from '../../services/doctorServices';
 import { CRUD_ACTIONS } from '../../utils';
+import { CreateNewSpeciatly } from '../../services/SpeciatlyService';
 
 export const fetChGenderStart = () => {
     return async (dispatch, getState) => {
@@ -588,6 +589,45 @@ export const postPatientBookingAppointment = (data) => {
 
             if (res && res.errCode === 0) {
                 toast.success('🦄 You have successfully booked your appointment!', {
+                    position: 'top-right',
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                });
+            } else {
+                toast.success('🦄 There is an error in the system, please try again later!', {
+                    position: 'top-right',
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                });
+            }
+        } catch (error) {
+            toast.success('🦄 There is an error in the system, please try again later!', {
+                position: 'top-right',
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+            });
+        }
+    };
+};
+
+// speciatly
+
+export const createNewDataSpeciatly = (data) => {
+    return async (dispatch, getState) => {
+        try {
+            const res = await CreateNewSpeciatly(data);
+
+            if (res && res.errCode === 0) {
+                toast.success('🦄 You have successfully create new Data your speciatly!', {
                     position: 'top-right',
                     autoClose: 5000,
                     hideProgressBar: false,
