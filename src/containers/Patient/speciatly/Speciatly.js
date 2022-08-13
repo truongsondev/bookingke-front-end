@@ -41,19 +41,30 @@ class SpecialtyDetail extends Component {
                         Arr = Arr.map((data) => data.doctorId);
                     }
 
-                    console.log('check Arr :', Arr);
+                    let dataProvince = ResProVince.data;
+
+                    console.log('check result: ', dataProvince);
 
                     this.setState({
                         dataDetailSpecialty: Res.data,
                         arrDoctorId: Arr,
                     });
-                }
-            }
 
-            if (ResProVince && ResProVince.errCode === 0) {
-                this.setState({
-                    listProvince: ResProVince.data,
-                });
+                    if (ResProVince && ResProVince.errCode === 0) {
+                        if (dataProvince && dataProvince.length > 0) {
+                            dataProvince.unshift({
+                                keyMap: 'All',
+                                type: 'PROVINCE',
+                                valueEN: 'All',
+                                valueVI: 'Toàn Quốc',
+                            });
+                        }
+
+                        this.setState({
+                            listProvince: dataProvince,
+                        });
+                    }
+                }
             }
         }
     }
@@ -74,8 +85,6 @@ class SpecialtyDetail extends Component {
                     if (Arr && Arr.length > 0) {
                         Arr = Arr.map((data) => data.doctorId);
                     }
-
-                    console.log('check Arr :', Arr);
 
                     this.setState({
                         dataDetailSpecialty: Res.data,
@@ -113,45 +122,50 @@ class SpecialtyDetail extends Component {
                                     ></div>
                                 )}
                             </div>
-                            <button
-                                className={this.state.isHideShow ? 'hide' : 'more'}
-                                onClick={() => this.setState({ isHideShow: !this.state.isHideShow })}
-                            >
-                                {this.state.isHideShow ? 'Xem thêm' : 'Ẩn đi'}
-                            </button>
+                            <div className="specialty-detail-button">
+                                <button
+                                    className={this.state.isHideShow ? 'hide' : 'more'}
+                                    onClick={() => this.setState({ isHideShow: !this.state.isHideShow })}
+                                >
+                                    {this.state.isHideShow ? 'Xem thêm' : 'Ẩn đi'}
+                                </button>
+                            </div>
                         </div>
                     </div>
 
-                    <div className="container container-layoyt-2">
-                        <div className="searh-doctor-sp">
-                            <select onChange={(e) => this.handleOnchangeSelect(e)}>
-                                {listProvince &&
-                                    listProvince.length > 0 &&
-                                    listProvince.map((data, index) => (
-                                        <option value={data.keyMap} key={index}>
-                                            {language === languages.VI ? data.valueVI : data.valueEN}
-                                        </option>
-                                    ))}
-                            </select>
+                    <div className="container-layoyt-2">
+                        <div className="container">
+                            <div className="searh-doctor-sp">
+                                <select onChange={(e) => this.handleOnchangeSelect(e)}>
+                                    {listProvince &&
+                                        listProvince.length > 0 &&
+                                        listProvince.map((data, index) => (
+                                            <option value={data.keyMap} key={index}>
+                                                {language === languages.VI ? data.valueVI : data.valueEN}
+                                            </option>
+                                        ))}
+                                </select>
+                            </div>
+                            {arrDoctorId &&
+                                arrDoctorId.length > 0 &&
+                                arrDoctorId.map((data, index) => (
+                                    <div key={index} className="specialty-detail-each-doctor row my-3 py-3">
+                                        <div className="content-left col-6">
+                                            <ProfileDoctor
+                                                doctorId={data}
+                                                callAsync={true}
+                                                isShowHideDescriptionDoctor={true}
+                                                // dataTime={dataTime}
+                                                isPrice={true}
+                                            />
+                                        </div>
+                                        <div className="content-right col-6">
+                                            <DoctorSchedule callAsync={true} detailDoctorId={data} />
+                                            <DoctorExtra callAsync={true} detailDoctorId={data} />
+                                        </div>
+                                    </div>
+                                ))}
                         </div>
-                        {arrDoctorId &&
-                            arrDoctorId.length > 0 &&
-                            arrDoctorId.map((data, index) => (
-                                <div key={index} className="specialty-detail-each-doctor row my-4 py-3">
-                                    <div className="content-left col-6">
-                                        <ProfileDoctor
-                                            doctorId={data}
-                                            callAsync={true}
-                                            isShowHideDescriptionDoctor={true}
-                                            // dataTime={dataTime}
-                                        />
-                                    </div>
-                                    <div className="content-right col-6">
-                                        <DoctorSchedule callAsync={true} detailDoctorId={data} />
-                                        <DoctorExtra callAsync={true} detailDoctorId={data} />
-                                    </div>
-                                </div>
-                            ))}
                     </div>
                 </div>
             </div>

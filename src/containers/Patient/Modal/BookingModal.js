@@ -259,7 +259,6 @@ class BookingModal extends Component {
                                                 value={phoneNumber}
                                                 onChange={this.handleValidateOnchangePhone}
                                                 defaultCountry="VN"
-                                                limitMaxLength="10"
                                                 className="form-control"
                                             />
                                         </div>

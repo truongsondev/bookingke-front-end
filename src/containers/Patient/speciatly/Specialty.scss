@@ -4,21 +4,52 @@
         margin-top: 58px;
 
         .specialty-detail-description {
-            padding-top: 10px;
+            padding-top     : 10px;
+            background-image: linear-gradient(rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 1));
+            padding         : 10px 0;
 
-            border-bottom: 2px solid #ccc;
 
             .render-markdow {
-                min-height: 176px;
-
-                max-height: 176px;
-                overflow-y: hidden;
+                padding-top: 10px;
+                min-height : 176px;
+                color      : #333;
+                max-height : 176px;
+                overflow-y : hidden;
 
                 &.bomaxhiegt {
                     min-height: 300px;
                     max-height: 1000px;
                 }
 
+                h1 {
+                    font-size  : 20px;
+                    font-weight: 700;
+                }
+
+                h2 {
+                    font-size  : 14px;
+                    font-weight: 600;
+                }
+
+                h5 {
+                    font-size  : 15px;
+                    font-weight: 300;
+                }
+
+                li {
+                    text-align : justify;
+                    line-height: 1.2;
+                    padding    : 4px 0;
+                    color      : #333;
+                    font-weight: 500;
+                    font-size  : 13px;
+                }
+
+            }
+
+            .specialty-detail-button {
+                height          : 26px;
+                background-color: #fff;
             }
 
             button {
@@ -27,12 +58,15 @@
                 background-color: transparent;
                 font-size       : 14px;
                 color           : #288ad6;
-
+                margin-top      : 7px;
+                padding-bottom  : 6px;
             }
         }
 
         .container-layoyt-2 {
 
+            background: #eee;
+            padding   : 10px 0;
 
             .specialty-detail-each-doctor {
                 background-color   : #ddd;
@@ -55,7 +89,21 @@
 
             }
 
-            .searh-doctor-sp {}
+            .searh-doctor-sp {
+                height : 40px;
+                display: flex;
+                padding: 5px 0;
+
+
+                select {
+                    height       : 90%;
+                    border       : none;
+                    outline      : none;
+                    border-radius: 2px;
+                    padding      : 0 2px;
+                    cursor       : pointer;
+                }
+            }
         }
 
 

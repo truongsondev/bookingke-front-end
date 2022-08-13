@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../../../../store/actions';
 import { languages } from '../../../../utils';
+import { Link } from 'react-router-dom/cjs/react-router-dom.min';
 import './ProfileDoctor.scss';
 import NumberFormat from 'react-number-format';
 import _ from 'lodash';
@@ -138,34 +139,44 @@ class ProfileDoctor extends Component {
                         </div>
                     </div>
                 </div>
-                <div className="content-price">
-                    <span>
-                        <FormattedMessage id="admin.bookingModal.ExamplePice" /> :
-                    </span>
-                    <span>
-                        {language === languages.VI ? (
-                            dataProfile.Doctor_Infor && dataProfile.Doctor_Infor.priceTypeData ? (
+
+                {!this.props.isPrice ? (
+                    <div className="content-price">
+                        <span>
+                            <FormattedMessage id="admin.bookingModal.ExamplePice" /> :
+                        </span>
+                        <span>
+                            {language === languages.VI ? (
+                                dataProfile.Doctor_Infor && dataProfile.Doctor_Infor.priceTypeData ? (
+                                    <NumberFormat
+                                        value={dataProfile.Doctor_Infor.priceTypeData.valueVI}
+                                        displayType={'text'}
+                                        thousandSeparator={true}
+                                        suffix={'VND'}
+                                    />
+                                ) : (
+                                    ''
+                                )
+                            ) : dataProfile.Doctor_Infor && dataProfile.Doctor_Infor.priceTypeData ? (
                                 <NumberFormat
-                                    value={dataProfile.Doctor_Infor.priceTypeData.valueVI}
+                                    value={dataProfile.Doctor_Infor.priceTypeData.valueEN}
                                     displayType={'text'}
                                     thousandSeparator={true}
-                                    suffix={'VND'}
+                                    suffix={'$'}
                                 />
                             ) : (
                                 ''
-                            )
-                        ) : dataProfile.Doctor_Infor && dataProfile.Doctor_Infor.priceTypeData ? (
-                            <NumberFormat
-                                value={dataProfile.Doctor_Infor.priceTypeData.valueEN}
-                                displayType={'text'}
-                                thousandSeparator={true}
-                                suffix={'$'}
-                            />
-                        ) : (
-                            ''
-                        )}
-                    </span>
-                </div>
+                            )}
+                        </span>
+                    </div>
+                ) : (
+                    <Link
+                        className="redirect-Link"
+                        to={`/doctor-thong-tin-bac-si-chuyen-khoa/${this.props.doctorId ? this.props.doctorId : ''}`}
+                    >
+                        Xem thêm
+                    </Link>
+                )}
             </div>
         );
     }
