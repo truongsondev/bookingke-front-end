@@ -6,8 +6,8 @@ import './HomePage.scss';
 import FamousDoctor from './Section/FamousDoctor';
 import Handbook from './Section/Handbook';
 import About from './Section/About';
-
-import Banner from './Section/Banner';
+import * as actions from '../../store/actions';
+import SpeciatlySlick from './Section/SpeciatlySlick';
 
 class RenderSlick extends Component {
     render() {
@@ -124,35 +124,7 @@ class RenderSlick extends Component {
                                 <FormattedMessage id="homePage.more" />
                             </button>
                         </div>
-                        <SlickSlider
-                            data={[
-                                {
-                                    img: 'https://cdn.bookingcare.vn/fr/w300/2020/07/17/085420-dia-chi-kham-san-phu-khoa-ha-noi.jpg',
-                                    title: 'Phòng khám Vietlife MRI Trần Bình Trọng',
-                                },
-                                {
-                                    img: 'https://cdn.bookingcare.vn/fr/w300/2018/10/16/151254nam-hoc.jpg',
-                                    title: 'Bác sĩ Nam học từ xa',
-                                },
-                                {
-                                    img: 'https://cdn.bookingcare.vn/fr/w300/2020/07/17/085420-dia-chi-kham-san-phu-khoa-ha-noi.jpg',
-                                    title: 'Bác sĩ Nội khoa từ xa',
-                                },
-                                {
-                                    img: 'https://cdn.bookingcare.vn/fr/w300/2020/07/17/085420-dia-chi-kham-san-phu-khoa-ha-noi.jpg',
-                                    title: 'Phòng khám Vietlife MRI Trần Bình Trọng',
-                                },
-                                {
-                                    img: 'https://cdn.bookingcare.vn/fr/w300/2018/10/16/151254nam-hoc.jpg',
-                                    title: 'Bác sĩ Nam học từ xa',
-                                },
-                                {
-                                    img: 'https://cdn.bookingcare.vn/fr/w300/2020/07/17/085420-dia-chi-kham-san-phu-khoa-ha-noi.jpg',
-                                    title: 'Bác sĩ Nội khoa từ xa',
-                                },
-                            ]}
-                            timeOut={2000}
-                        />
+                        <SpeciatlySlick />
                     </div>
                 </div>
                 <div className="slick-slider-speciality csyte">
@@ -288,11 +260,14 @@ class RenderSlick extends Component {
 const mapStateToProps = (state) => {
     return {
         isLoggedIn: state.user.isLoggedIn,
+        AllDataSpeciatly: state.admin.AllDataSpeciatly,
     };
 };
 
 const mapDispatchToProps = (dispatch) => {
-    return {};
+    return {
+        getLimitSpeciatly: (data) => dispatch(actions.getLimitSpeciatly(data)),
+    };
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(RenderSlick);

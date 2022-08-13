@@ -8,6 +8,7 @@ import { userIsAuthenticated, userIsNotAuthenticated } from '../hoc/authenticati
 import { ToastContainer } from 'react-toastify';
 import DetailDoctor from './Patient/Doctor/DetailDoctor/DetailDoctor';
 import NotFound from './System/components/404_not_found/404';
+import SpecialtyDetail from './Patient/speciatly';
 
 import { path } from '../utils';
 
@@ -53,6 +54,7 @@ class App extends Component {
                                     <Route path={path.SYSTEM} component={userIsAuthenticated(System)} />
                                     <Route path={path.HOMEPAGE} component={HomePage} />
                                     <Route path={path.DETAIL_DOCTOR} component={DetailDoctor} />
+                                    <Route path={path.DETAIL_SPECIALTY} component={SpecialtyDetail} />
                                     <Route path={path.DOCTOR} component={userIsAuthenticated(Doctor)} />
                                     {/* userIsAuthenticated  check quyền xem có dc quyền truy cập hay không  */}
                                     <Route path={path.VERIFY_EMAIL_BOOKING} component={verifyEmail} />

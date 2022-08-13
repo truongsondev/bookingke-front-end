@@ -64,15 +64,44 @@ class ManageSpeciatly extends Component {
         });
     };
 
-    handleValidate(data) {}
+    handleValidate(data) {
+        let Validate = true;
+
+        let ArrValidate = ['name', 'imageBase64', 'descriptionMarkDown'];
+
+        for (let i = 0; i < ArrValidate.length; i++) {
+            if (!this.state[ArrValidate[i]]) {
+                alert('Missing required :' + ArrValidate[i]);
+                Validate = false;
+                break;
+            }
+        }
+
+        return Validate;
+    }
 
     handleSaveSpeciatly = () => {
-        this.props.CreateNewSpeciatly({
-            name: this.state.name,
-            imageBase64: this.state.imageBase64,
-            descriptionHTML: this.state.descriptionHTML,
-            descriptionMarkDown: this.state.descriptionMarkDown,
-        });
+        const Check = this.handleValidate(this.state);
+
+        if (Check) {
+            this.props.CreateNewSpeciatly({
+                name: this.state.name,
+                imageBase64: this.state.imageBase64,
+                descriptionHTML: this.state.descriptionHTML,
+                descriptionMarkDown: this.state.descriptionMarkDown,
+            });
+
+            setTimeout(() => {
+                this.setState = {
+                    linkPrevImage: '',
+                    isOpen: false,
+                    imageBase64: '',
+                    name: '',
+                    descriptionHTML: '',
+                    descriptionMarkDown: '',
+                };
+            }, 1000);
+        }
     };
 
     render() {
@@ -146,12 +175,14 @@ const mapStateToProps = (state) => {
     return {
         isLoggedIn: state.user.isLoggedIn,
         language: state.app.language,
+        AllDataSpeciatly: state.admin.AllDataSpeciatly,
     };
 };
 
 const mapDispatchToProps = (dispatch) => {
     return {
         CreateNewSpeciatly: (data) => dispatch(actions.createNewDataSpeciatly(data)),
+        getLimitSpeciatly: (data) => dispatch(actions.getLimitSpeciatly(data)),
     };
 };
 

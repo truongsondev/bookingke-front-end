@@ -232,6 +232,7 @@ class BookingModal extends Component {
                                         doctorId={!_.isEmpty(dataTime) && dataTime.doctorId ? dataTime.doctorId : ''}
                                         isShowHideDescriptionDoctor={false}
                                         dataTime={dataTime}
+                                        callAsync={true}
                                     />
                                 </div>
 

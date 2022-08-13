@@ -5,6 +5,7 @@ import * as actions from '../../../../store/actions';
 import { languages } from '../../../../utils';
 import NumberFormat from 'react-number-format';
 import { FormattedMessage } from 'react-intl';
+import { getExtraDoctorInfoByIDService } from '../../../../services/doctorServices';
 
 class DoctorExtra extends Component {
     constructor(props) {
@@ -15,14 +16,38 @@ class DoctorExtra extends Component {
         };
     }
 
-    async componentDidMount() {}
+    async componentDidMount() {
+        if (!this.props.callAsync) {
+            this.props.getExtraDoctorInfoByID(this.props.detailDoctorId);
+        } else {
+            const Res = await getExtraDoctorInfoByIDService(this.props.detailDoctorId);
 
-    componentDidUpdate(prevProps, NextProps, Next) {
+            if (Res && Res.errCode === 0) {
+                this.setState({
+                    extraDoctorInfoState: Res.data,
+                });
+            }
+        }
+    }
+
+    async componentDidUpdate(prevProps, NextProps, Next) {
         if (prevProps.language !== this.props.language) {
         }
 
-        if (prevProps.detailDoctorId !== this.props.detailDoctorId) {
-            this.props.getExtraDoctorInfoByID(this.props.detailDoctorId);
+        if (!this.props.callAsync) {
+            if (prevProps.detailDoctorId !== this.props.detailDoctorId) {
+                if (!this.props.callAsync) {
+                    this.props.getExtraDoctorInfoByID(this.props.detailDoctorId);
+                } else {
+                    const Res = await getExtraDoctorInfoByIDService(this.props.detailDoctorId);
+
+                    if (Res && Res.errCode === 0) {
+                        this.setState({
+                            extraDoctorInfoState: Res.data,
+                        });
+                    }
+                }
+            }
         }
 
         if (prevProps.extraDoctorInfo !== this.props.extraDoctorInfo) {
@@ -141,18 +166,27 @@ class DoctorExtra extends Component {
                                             <span>{<FormattedMessage id="admin.extra.StateHealthInsurance" />}</span>
                                             <span>230.000Vnđ - 560.000Vnđ</span>
                                         </div>
-                                        <p className="content-hide-show-body-description">
+                                        <p
+                                            className={
+                                                this.props.callAsync
+                                                    ? 'content-hide-show-body-description layout-2'
+                                                    : 'content-hide-show-body-description'
+                                            }
+                                        >
                                             {<FormattedMessage id="admin.extra.healthInsurance" />}
                                         </p>
                                     </div>
                                     <div className="content-hide-show-body">
                                         <div className="content-hide-show-body-price">
                                             <span>{<FormattedMessage id="admin.extra.PrivateHealthInsurance" />}</span>
-                                            {/* <span>
-                                                230.000<sup>đ</sup> - 560.000<sup>đ</sup>
-                                            </span> */}
                                         </div>
-                                        <p className="content-hide-show-body-description baohiem">
+                                        <p
+                                            className={
+                                                this.props.callAsync
+                                                    ? 'content-hide-show-body-description baohiem layout-2'
+                                                    : 'content-hide-show-body-description baohiem'
+                                            }
+                                        >
                                             {<FormattedMessage id="admin.extra.descriptionPrivateHealthInsurance" />}
                                         </p>
                                     </div>

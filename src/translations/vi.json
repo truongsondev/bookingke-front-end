@@ -122,6 +122,7 @@
         "title": "Quản lí kế hoạch khám bệnh của bác sĩ",
         "ChoosseDoctor": "Chọn bác sĩ",
         "ChooseDate": "Chọn ngày",
+
         "save": "Lưu thông tin"
     },
 
@@ -138,6 +139,8 @@
             "body-doctor-info": "Thân bài và thông tin",
             "add": "Tạo mới thông tin",
             "save": "Lưu thông tin",
+            "chooseSpecialty": "Chọn chuyên khoa",
+            "chooseClinic": "Chọn phòng khám",
             "ChoosePrice": "Chọn giá",
             "SelectPayment": "Chọn phương thức Thanh Toán",
             "SelectProvince": "Chọn Tỉnh thành",

@@ -7,6 +7,7 @@ import NumberFormat from 'react-number-format';
 import _ from 'lodash';
 import moment from 'moment';
 import { FormattedMessage } from 'react-intl';
+import { getProfileDoctorInfoByIDService } from '../../../../services/doctorServices';
 
 class ProfileDoctor extends Component {
     constructor(props) {
@@ -19,12 +20,34 @@ class ProfileDoctor extends Component {
     async componentDidMount() {
         let id = this.props.doctorId;
 
-        this.getProfileDoctor(id);
+        if (!this.props.callAsync) {
+            this.getProfileDoctor(id);
+        } else {
+            const Res = await getProfileDoctorInfoByIDService(id);
+
+            if (Res && Res.errCode === 0) {
+                this.setState({
+                    dataProfile: Res.data,
+                });
+            }
+        }
     }
 
-    componentDidUpdate(prevProps, NextProps, Next) {
+    async componentDidUpdate(prevProps, NextProps, Next) {
         if (prevProps.doctorId !== this.props.doctorId) {
-            this.getProfileDoctor(this.props.doctorId);
+            let id = this.props.doctorId;
+
+            if (!this.props.callAsync) {
+                this.getProfileDoctor(id);
+            } else {
+                const Res = await getProfileDoctorInfoByIDService(id);
+
+                if (Res && Res.errCode === 0) {
+                    this.setState({
+                        dataProfile: Res.data,
+                    });
+                }
+            }
         }
 
         if (prevProps.profileDoctorInfo !== this.props.profileDoctorInfo) {
@@ -72,8 +95,6 @@ class ProfileDoctor extends Component {
     };
 
     render() {
-        console.log('check state profile :', this.state);
-
         const { dataProfile } = this.state;
 
         const { language, isShowHideDescriptionDoctor, dataTime } = this.props;
@@ -98,13 +119,17 @@ class ProfileDoctor extends Component {
                     </div>
                     <div className="col-8 col-md-9  col-lg-10 container-introduce">
                         <div className="title-introduce">
-                            <h2>{this.props.language === languages.VI ? VI : EN}</h2>
+                            <h2 className={this.props.callAsync ? 'text-padding' : ''}>
+                                {this.props.language === languages.VI ? VI : EN}
+                            </h2>
                         </div>
                         <div className="description-introduce">
                             {isShowHideDescriptionDoctor ? (
                                 <>
                                     {dataProfile && dataProfile.Markdown && dataProfile.Markdown.description && (
-                                        <p>{dataProfile.Markdown.description}</p>
+                                        <p className={this.props.callAsync ? 'text-padding' : ''}>
+                                            {dataProfile.Markdown.description}
+                                        </p>
                                     )}
                                 </>
                             ) : (

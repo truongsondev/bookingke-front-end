@@ -18,14 +18,16 @@ class HeaderDetail extends Component {
     }
 
     render() {
-        const { language, data } = this.props;
+        const { language, data, isOpen = false } = this.props;
 
         let VI;
         let EN;
 
-        if (data.firstName && data.lastName) {
-            VI = `${data.position.valueVI} ${data.firstName} ${data.lastName}`;
-            EN = `${data.position.valueEN} ${data.lastName} ${data.firstName}`;
+        if (!isOpen) {
+            if (data.firstName && data.lastName) {
+                VI = `${data.position.valueVI} ${data.firstName} ${data.lastName}`;
+                EN = `${data.position.valueEN} ${data.lastName} ${data.firstName}`;
+            }
         }
 
         return (

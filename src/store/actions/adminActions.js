@@ -14,7 +14,7 @@ import {
     getProfileDoctorInfoByIDService,
 } from '../../services/doctorServices';
 import { CRUD_ACTIONS } from '../../utils';
-import { CreateNewSpeciatly } from '../../services/SpeciatlyService';
+import { CreateNewSpeciatly, getAllSpeciatlySevices } from '../../services/SpeciatlyService';
 
 export const fetChGenderStart = () => {
     return async (dispatch, getState) => {
@@ -491,19 +491,23 @@ export const getRequiredDoctorInfo = () => {
             const ResPrice = await getAllCodeServices('PRICE');
             const ResPayment = await getAllCodeServices('PAYMENT');
             const ResProvince = await getAllCodeServices('PROVINCE');
+            const GetAllSpecialty = await getAllSpeciatlySevices(30);
 
             if (
                 ResPrice &&
                 ResPayment &&
                 ResProvince &&
+                GetAllSpecialty &&
                 ResPrice.errCode === 0 &&
                 ResPayment.errCode === 0 &&
-                ResProvince.errCode === 0
+                ResProvince.errCode === 0 &&
+                GetAllSpecialty.errCode === 0
             ) {
                 const dataRequired = {
                     ResPrice: ResPrice.data,
                     ResPayment: ResPayment.data,
                     ResProvince: ResProvince.data,
+                    ResSpecialty: GetAllSpecialty.data,
                 };
 
                 dispatch(getRequiredDoctorInfoSuccess(dataRequired));
@@ -656,4 +660,33 @@ export const createNewDataSpeciatly = (data) => {
             });
         }
     };
+};
+
+export const getLimitSpeciatly = (limit) => {
+    return async (dispatch, getState) => {
+        try {
+            const res = await getAllSpeciatlySevices(limit);
+
+            if (res && res.errCode === 0) {
+                dispatch(getLimitSpeciatlySuccess(res.data));
+            } else {
+                dispatch(getLimitSpeciatlyFailure());
+            }
+        } catch (error) {
+            dispatch(
+                getLimitSpeciatlyFailure({
+                    errCode: -2,
+                    errorMessage: 'error from client',
+                }),
+            );
+        }
+    };
+};
+
+export const getLimitSpeciatlySuccess = (data) => {
+    return { type: actionTypes.GET_LIMIT_SPECIATLY_SUCCESS, data };
+};
+
+export const getLimitSpeciatlyFailure = () => {
+    return { type: actionTypes.GET_LIMIT_SPECIATLY_FAILURE };
 };

@@ -1,0 +1,64 @@
+.specialty-detail-container {
+
+    .specialty-detail-body {
+        margin-top: 58px;
+
+        .specialty-detail-description {
+            padding-top: 10px;
+
+            border-bottom: 2px solid #ccc;
+
+            .render-markdow {
+                min-height: 176px;
+
+                max-height: 176px;
+                overflow-y: hidden;
+
+                &.bomaxhiegt {
+                    min-height: 300px;
+                    max-height: 1000px;
+                }
+
+            }
+
+            button {
+                border          : none;
+                outline         : none;
+                background-color: transparent;
+                font-size       : 14px;
+                color           : #288ad6;
+
+            }
+        }
+
+        .container-layoyt-2 {
+
+
+            .specialty-detail-each-doctor {
+                background-color   : #ddd;
+                min-height         : 140px;
+                background-color   : #fff;
+                box-shadow         : 0, 1px, 6px, #000;
+                border-radius      : 8px;
+                // border          : 2px solid #ccc;
+                background-color   : #fff;
+                box-shadow         : 0 1px 6px rgba(0, 0, 0, 0.3) !important;
+                border-radius      : 8px;
+                border-bottom      : none;
+                margin-bottom      : 10px;
+
+
+                .content-left {}
+
+                .content-right {}
+
+
+            }
+
+            .searh-doctor-sp {}
+        }
+
+
+
+    }
+}

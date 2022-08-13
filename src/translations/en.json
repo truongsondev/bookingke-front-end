@@ -122,6 +122,7 @@
         "title": "Manage doctor's examination plan",
         "ChoosseDoctor": "Choose a doctor",
         "ChooseDate": "Choose a date",
+
         "save": "Save information"
     },
 
@@ -141,6 +142,8 @@
             "ChoosePrice": "Choose price",
             "SelectPayment": "Select a payment method",
             "SelectProvince": "Select Province",
+            "chooseSpecialty": "Choose specialty",
+            "chooseClinic": "Choose clinic",
             "ClinicName": "Clinic name",
             "ClinicAddress": "Clinic address",
             "Note": "Note"

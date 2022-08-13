@@ -47,7 +47,7 @@ class FamousDoctor extends Component {
     };
 
     HandleRedirect = (data) => {
-        this.props.history.push(`/doctor/${data.id}`);
+        this.props.history.push(`/doctor-thong-tin-bac-si-chuyen-khoa/${data.id}`);
         // Có thể dùng thẻ link để redirect nhé
     };
 
@@ -84,7 +84,7 @@ class FamousDoctor extends Component {
 
                             return (
                                 <div key={index} onClick={() => this.HandleRedirect(data)}>
-                                    {/* <Link to={`/doctor/:${data.id}`}> Có thể dùng ông thần này nhưng  mình lại muốn sử lí bằng JavaScript */}
+                                    {/* <Link to={`/:${data.id}`}> Có thể dùng ông thần này nhưng  mình lại muốn sử lí bằng JavaScript */}
                                     <div className="Slick-slider-container-slick-doctor">
                                         <div className="span-rank">{index + 1}</div>
                                         <div

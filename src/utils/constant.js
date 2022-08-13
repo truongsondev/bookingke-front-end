@@ -5,7 +5,8 @@ export const path = {
     LOG_OUT: '/logout',
     SYSTEM: '/system',
     DOCTOR: '/doctor-schedule',
-    DETAIL_DOCTOR: '/doctor/:id',
+    DETAIL_DOCTOR: '/doctor-thong-tin-bac-si-chuyen-khoa/:id',
+    DETAIL_SPECIALTY: '/specialty-thong-tin-chuyen-khoa/:id',
     VERIFY_EMAIL_BOOKING: '/verify-booking',
 };
 

@@ -9,6 +9,7 @@ import { faCalendarDays, faHandPointer } from '@fortawesome/free-solid-svg-icons
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { FormattedMessage } from 'react-intl';
 import BookingModal from '../Modal/BookingModal';
+import { getScheduleDoctorByDate } from '../../../services/doctorServices';
 
 class DoctorSchedule extends Component {
     constructor(props) {
@@ -73,10 +74,15 @@ class DoctorSchedule extends Component {
             });
         }
 
-        if (prevProps.ScheduleDoctorByDate !== this.props.ScheduleDoctorByDate) {
-            this.setState({
-                allAvalableTime: this.props.ScheduleDoctorByDate,
-            });
+        // lí do vì gọi API trên redux do đó khi render
+        // component trên specialty thì call 1 api nhưng lại setState nhiều lần
+
+        if (!this.props.callAsync) {
+            if (prevProps.ScheduleDoctorByDate !== this.props.ScheduleDoctorByDate) {
+                this.setState({
+                    allAvalableTime: this.props.ScheduleDoctorByDate,
+                });
+            }
         }
 
         if (prevProps.detailDoctorId !== this.props.detailDoctorId) {
@@ -87,13 +93,23 @@ class DoctorSchedule extends Component {
         }
     }
 
-    handleChangeSelect(e) {
+    async handleChangeSelect(e) {
         if (this.props.detailDoctorId && this.props.detailDoctorId !== -1) {
             let doctorID = this.props.detailDoctorId;
 
             const Date = e.target.value;
 
-            this.props.getScheduleDoctor(doctorID, Date);
+            if (!this.props.callAsync) {
+                this.props.getScheduleDoctor(doctorID, Date);
+            } else {
+                let Res = await getScheduleDoctorByDate(doctorID, Date);
+
+                if (Res && Res.errCode === 0) {
+                    this.setState({
+                        allAvalableTime: Res.data ? Res.data : [],
+                    });
+                }
+            }
         }
     }
 
@@ -111,7 +127,7 @@ class DoctorSchedule extends Component {
     };
 
     render() {
-        const { allDay, allAvalableTime, isOpenModalBooking, dataModalBookingTime } = this.state;
+        let { allDay, allAvalableTime, isOpenModalBooking, dataModalBookingTime } = this.state;
         const { language } = this.props;
 
         const checklog = localization;

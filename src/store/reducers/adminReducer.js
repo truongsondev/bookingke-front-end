@@ -18,6 +18,10 @@ const initialState = {
     allRequiredDoctorInfo: [],
     extraDoctorInfo: {},
     profileDoctorInfo: {},
+
+    // data Speciatly
+
+    AllDataSpeciatly: [],
 };
 
 const adminReducer = (state = initialState, action) => {
@@ -281,6 +285,18 @@ const adminReducer = (state = initialState, action) => {
         }
 
         case actionTypes.GET_PROFILE_DOCTOR_INFO_FAILURE: {
+            return state;
+        }
+
+        case actionTypes.GET_LIMIT_SPECIATLY_SUCCESS: {
+            const limitCloneStateSpeciatly = { ...state };
+
+            limitCloneStateSpeciatly.AllDataSpeciatly = action.data;
+
+            return { ...limitCloneStateSpeciatly };
+        }
+
+        case actionTypes.GET_LIMIT_SPECIATLY_FAILURE: {
             return state;
         }
 
