@@ -1,15 +1,17 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../../../../store/actions';
-import './ManageSpeciatly.scss';
+import './Manage-clinic.scss';
 import MarkdownIt from 'markdown-it';
 import MdEditor from 'react-markdown-editor-lite';
 import Lightbox from 'react-image-lightbox';
 import { CommonUtils } from '../../../../utils';
+import { CreateDataClinic } from '../../../../services/clinicService';
+import { toast } from 'react-toastify';
 
 const mdParser = new MarkdownIt(/* Markdown-it options */);
 
-class ManageSpeciatly extends Component {
+class ManageClinic extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -19,6 +21,7 @@ class ManageSpeciatly extends Component {
             name: '',
             descriptionHTML: '',
             descriptionMarkDown: '',
+            address: '',
         };
     }
 
@@ -67,7 +70,7 @@ class ManageSpeciatly extends Component {
     handleValidate(data) {
         let Validate = true;
 
-        let ArrValidate = ['name', 'imageBase64', 'descriptionMarkDown'];
+        let ArrValidate = ['name', 'address', 'imageBase64', 'descriptionMarkDown'];
 
         for (let i = 0; i < ArrValidate.length; i++) {
             if (!this.state[ArrValidate[i]]) {
@@ -80,46 +83,70 @@ class ManageSpeciatly extends Component {
         return Validate;
     }
 
-    handleSaveClinic = () => {
-        // const Check = this.handleValidate(this.state);
-        // if (Check) {
-        //     this.props.CreateNewSpeciatly({
-        //         name: this.state.name,
-        //         imageBase64: this.state.imageBase64,
-        //         descriptionHTML: this.state.descriptionHTML,
-        //         descriptionMarkDown: this.state.descriptionMarkDown,
-        //     });
-        //     setTimeout(() => {
-        //         this.setState = {
-        //             linkPrevImage: '',
-        //             isOpen: false,
-        //             imageBase64: '',
-        //             name: '',
-        //             descriptionHTML: '',
-        //             descriptionMarkDown: '',
-        //         };
-        //     }, 1000);
-        // }
+    handleSaveSpeciatly = async () => {
+        const Check = this.handleValidate(this.state);
+
+        if (Check) {
+            const Res = await CreateDataClinic({
+                name: this.state.name,
+                imageBase64: this.state.imageBase64,
+                descriptionHTML: this.state.descriptionHTML,
+                descriptionMarkDown: this.state.descriptionMarkDown,
+                address: this.state.address,
+            });
+
+            if (Res && Res.errCode === 0) {
+                toast.success('🦄Bạn đã tạo thông tin phòng khám thành công!', {
+                    position: 'top-right',
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                });
+            } else {
+                toast.success('🦄Bạn đã tạo thông tin phòng khám thất bại!', {
+                    position: 'top-right',
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                });
+            }
+
+            setTimeout(() => {
+                this.setState = {
+                    linkPrevImage: '',
+                    isOpen: false,
+                    imageBase64: '',
+                    name: '',
+                    descriptionHTML: '',
+                    descriptionMarkDown: '',
+                    address: '',
+                };
+            }, 1000);
+        }
     };
 
     render() {
-        const { linkPrevImage, isOpen, name, descriptionMarkDown } = this.state;
+        const { linkPrevImage, isOpen, name, address, descriptionMarkDown } = this.state;
 
         const images = [linkPrevImage ? linkPrevImage : ''];
 
         return (
             <div className="manage-speciatly-container container">
                 <div>
-                    <p className="title">Tạo mới chuyên khoa</p>
+                    <p className="title">Tạo mới phòng khám</p>
                 </div>
                 <div className="btn-create-new-speciatly mt-3">
-                    <button className="btn btn-primary">Tạo mới chuyên khoa</button>
+                    <button className="btn btn-primary">Tạo mới phòng khám</button>
                 </div>
                 <div className="body-all-speciatly mt-3">
                     <div className="row mb-4">
                         <div className="col-12 col-sm-6">
                             <label className="mb-2" htmlFor="namechuyenkhoa">
-                                Tên chuyên khoa
+                                Tên phòng khám
                             </label>
                             <input
                                 onChange={(e) => this.handleChangeInput(e, 'name')}
@@ -128,14 +155,24 @@ class ManageSpeciatly extends Component {
                                 id="namechuyenkhoa"
                             />
                         </div>
-
                         <div className="col-12 col-sm-6">
+                            <label className="mb-2" htmlFor="namechuyenkhoadiachi">
+                                Địa chỉ phòng khám
+                            </label>
+                            <input
+                                onChange={(e) => this.handleChangeInput(e, 'address')}
+                                value={address}
+                                className="form-control"
+                                id="namechuyenkhoadiachi"
+                            />
+                        </div>
+                        <div className="col-12 col-sm-6 mt-2">
                             <div>
                                 <label className="mb-2" htmlFor="anhchuyenkhoa">
-                                    Ảnh chuyên khoa
+                                    Ảnh phòng khám
                                 </label>
                                 <input
-                                    placeholder="Bạn hãy chọn ảnh chuyên khoa"
+                                    placeholder="Bạn hãy chọn ảnh phòng khám"
                                     type="file"
                                     className="form-control"
                                     id="anhchuyenkhoa"
@@ -160,7 +197,7 @@ class ManageSpeciatly extends Component {
                         onChange={this.handleEditorChange}
                     />
                     <div className="mt-2">
-                        <button className="btn btn-primary" onClick={this.handleSaveClinic}>
+                        <button className="btn btn-primary" onClick={this.handleSaveSpeciatly}>
                             Lưu thay đổi
                         </button>
                     </div>
@@ -185,4 +222,4 @@ const mapDispatchToProps = (dispatch) => {
     };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(ManageSpeciatly);
+export default connect(mapStateToProps, mapDispatchToProps)(ManageClinic);
