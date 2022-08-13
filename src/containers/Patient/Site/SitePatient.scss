@@ -4,21 +4,43 @@
         margin-top: 58px;
 
         .specialty-detail-description {
-            padding-top     : 10px;
             background-image: linear-gradient(rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 1));
             padding         : 10px 0;
 
 
+            .specialty-detail-image {
+                min-height                : 230px;
+                background-repeat         : no-repeat;
+                background-position       : center center;
+                background-size           : cover;
+                margin-top                : -10px;
+                max-height                : 231px;
+                border-bottom-left-radius : 4px;
+                border-bottom-right-radius: 4px;
+                cursor                    : pointer;
+            }
+
+
             .render-markdow {
-                padding-top: 10px;
+                padding-top: 15px;
                 min-height : 176px;
                 color      : #333;
                 max-height : 176px;
                 overflow-y : hidden;
 
+                .ds-er-sd {
+                    padding: 10px 0;
+                }
+
+                .tile-camnang {
+                    font-size     : 26px;
+                    padding       : 10px 0;
+                    padding-bottom: 20px;
+                }
+
                 &.bomaxhiegt {
                     min-height: 300px;
-                    max-height: 1000000px;
+                    max-height: 100000px;
                 }
 
                 h1 {
@@ -31,6 +53,11 @@
                     font-weight: 600;
                 }
 
+                h3 {
+                    padding  : 10px 0;
+                    font-size: 16 px;
+                }
+
                 h5 {
                     font-size  : 15px;
                     font-weight: 300;
@@ -39,10 +66,14 @@
                 li {
                     text-align : justify;
                     line-height: 1.2;
-                    padding    : 4px 0;
+                    padding    : 0px 0;
                     color      : #333;
                     font-weight: 500;
                     font-size  : 13px;
+                }
+
+                p {
+                    padding: 4px 6px;
                 }
 
             }

@@ -9,23 +9,25 @@ import { GettAllSite } from '../../../services/SiteService';
 import ConvertBase64Image from '../../System/components/converBase64/convertBase64';
 import { withRouter } from 'react-router-dom';
 
-class Banner extends Component {
+class HandbookSlick extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            ArrBanner: [],
+            ArrHandBook: [],
         };
     }
 
     async componentDidMount() {
-        const Res = await GettAllSite('CM1');
+        const Res = await GettAllSite('CM3');
 
         if (Res && Res.errCode === 0) {
             this.setState({
-                ArrBanner: Res.data,
+                ArrHandBook: Res.data,
             });
         }
     }
+
+    componentDidUpdate(prevProps, props, next) {}
 
     handleRedireact = (data) => {
         this.props.history.push(
@@ -38,15 +40,15 @@ class Banner extends Component {
 
         const timeOut = PropsData.timeOut || 500;
 
-        const { ArrBanner } = this.state;
+        const { ArrHandBook } = this.state;
 
         const settings = {
             dots: false,
             infinite: true,
             speed: timeOut,
-            slidesToShow: 4,
+            slidesToShow: 2,
             autoplay: true,
-            slidesToScroll: 4,
+            slidesToScroll: 1,
             nextArrow: <NextArrow />,
             prevArrow: <PrevArrow />,
         };
@@ -54,19 +56,21 @@ class Banner extends Component {
         return (
             <div className="Slick-slider-container">
                 <Slider {...settings}>
-                    {ArrBanner &&
-                        ArrBanner.length > 0 &&
-                        ArrBanner.map((data, index) => (
+                    {ArrHandBook &&
+                        ArrHandBook.length > 0 &&
+                        ArrHandBook.map((data, index) => (
                             <div key={index} onClick={() => this.handleRedireact(data)}>
-                                <div className="slider-container-data-banner">
-                                    <div
-                                        className="img-customize"
-                                        style={{
-                                            backgroundImage: `url(${ConvertBase64Image(data.image)})`,
-                                        }}
-                                    ></div>
-                                    <div className="body">
-                                        <span className="span-text-banner">{data.name}</span>
+                                <div className="camnnang-parents">
+                                    <div className="slider-container-cnang d-flex">
+                                        <div
+                                            className="img-customize-cnang"
+                                            style={{
+                                                backgroundImage: `url(${ConvertBase64Image(data.image)})`,
+                                            }}
+                                        ></div>
+                                        <div className="slider-container-cnang-text ">
+                                            <h3>{data.name}</h3>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -87,4 +91,4 @@ const mapDispatchToProps = (dispatch) => {
     return {};
 };
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Banner));
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(HandbookSlick));

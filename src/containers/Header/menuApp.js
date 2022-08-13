@@ -46,6 +46,10 @@ export const adminMenu = [
                 name: 'menu.admin.manage-clinic',
                 link: '/system/manage-clinic',
             },
+            {
+                name: 'menu.admin.clinicAdmin',
+                link: '/system/manage-redux-clinic',
+            },
         ],
     },
 

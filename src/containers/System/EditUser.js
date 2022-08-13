@@ -49,9 +49,7 @@ class EditModalUser extends Component {
         }
     }
 
-    componentDidUpdate() {
-        console.log(this.props.currentUser);
-    }
+    componentDidUpdate() {}
 
     handleOnchangeInput(e, id) {
         // cách viết kiểu bad code ( không nên dùng )

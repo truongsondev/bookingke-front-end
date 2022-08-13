@@ -1,35 +1,32 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-// import * as actions from '../../../store/actions';
-import './Specialty.scss';
+import * as actions from '../../../store/actions';
+import './Clinic.scss';
 import HeaderDetail from '../../HomePage/Components/HeaderDetail/HeaderDetail';
 import DoctorSchedule from '../Schedule';
 import DoctorExtra from '../Doctor/DoctorExtra/DoctorExtra';
 import ProfileDoctor from '../Doctor/ProfileDoctor/ProfileDoctor';
-import { getDetailSpeciatlySevices } from '../../../services/SpeciatlyService';
 import _ from 'lodash';
-import { getAllCodeServices } from '../../../services/userService';
-import { languages } from '../../../utils';
+import { getDetailClinicSevices } from '../../../services/clinicService';
+import ConvertBase64Image from '../../System/components/converBase64/convertBase64';
+import Lightbox from 'react-image-lightbox';
 
-class SpecialtyDetail extends Component {
+class Clinic extends Component {
     constructor(props) {
         super(props);
         this.state = {
             arrDoctorId: [],
-            dataDetailSpecialty: {},
+            dataDetailClinic: {},
             isHideShow: true,
-            listProvince: [],
+            isOpen: false,
         };
     }
 
     async componentDidMount() {
         if (this.props.match && this.props.match.params && this.props.match.params.id) {
-            const Res = await getDetailSpeciatlySevices({
+            const Res = await getDetailClinicSevices({
                 id: Number(this.props.match.params.id),
-                location: 'All',
             });
-
-            const ResProVince = await getAllCodeServices('PROVINCE');
 
             if (Res && Res.errCode === 0) {
                 let Data = Res.data;
@@ -41,70 +38,60 @@ class SpecialtyDetail extends Component {
                         Arr = Arr.map((data) => data.doctorId);
                     }
 
-                    let dataProvince = ResProVince.data;
-
                     this.setState({
-                        dataDetailSpecialty: Res.data,
+                        dataDetailClinic: Res.data,
                         arrDoctorId: Arr,
                     });
-
-                    if (ResProVince && ResProVince.errCode === 0) {
-                        if (dataProvince && dataProvince.length > 0) {
-                            dataProvince.unshift({
-                                keyMap: 'All',
-                                type: 'PROVINCE',
-                                valueEN: 'All',
-                                valueVI: 'Toàn Quốc',
-                            });
-                        }
-
-                        this.setState({
-                            listProvince: dataProvince,
-                        });
-                    }
                 }
             }
         }
     }
 
-    handleOnchangeSelect = async (e) => {
-        if (this.props.match && this.props.match.params && this.props.match.params.id) {
-            const Res = await getDetailSpeciatlySevices({
-                id: Number(this.props.match.params.id),
-                location: e.target.value,
-            });
-
-            if (Res && Res.errCode === 0) {
-                let Data = Res.data;
-
-                if (Data && !_.isEmpty(Data)) {
-                    let Arr = Data.doctorSpecialty;
-
-                    if (Arr && Arr.length > 0) {
-                        Arr = Arr.map((data) => data.doctorId);
-                    }
-
-                    this.setState({
-                        dataDetailSpecialty: Res.data,
-                        arrDoctorId: Arr,
-                    });
-                }
-            }
-        }
-    };
-
     componentDidUpdate(prevProps, NextProps, Next) {}
 
+    handlePrevImage = () => {
+        this.state({
+            isOpen: !this.state.isOpen,
+        });
+    };
+
     render() {
-        const { arrDoctorId, dataDetailSpecialty, listProvince } = this.state;
-        const { language } = this.props;
+        const { arrDoctorId, dataDetailClinic } = this.state;
+
+        const images = [
+            !_.isEmpty(dataDetailClinic) && dataDetailClinic.image ? ConvertBase64Image(dataDetailClinic.image) : '',
+        ];
 
         return (
             <div className="specialty-detail-container">
-                <HeaderDetail Name="Các khoa nổi bật" isOpen={true} />
+                <HeaderDetail
+                    Name={!_.isEmpty(dataDetailClinic) && dataDetailClinic.name ? dataDetailClinic.name : ''}
+                    isOpen={true}
+                />
                 <div className="specialty-detail-body">
                     <div className="specialty-detail-description col-12">
                         <div className="container">
+                            <div
+                                className="specialty-detail-image"
+                                style={{
+                                    backgroundImage: `url(${
+                                        !_.isEmpty(dataDetailClinic) && dataDetailClinic.image ? images[0] : ''
+                                    })`,
+                                }}
+                                onClick={() =>
+                                    this.setState({
+                                        isOpen: !this.state.isOpen,
+                                    })
+                                }
+                            ></div>
+                            {this.state.isOpen && (
+                                <Lightbox
+                                    onClick={() => this.handlePrevImage()}
+                                    mainSrc={images[0]}
+                                    onCloseRequest={() => this.setState({ isOpen: false })}
+                                />
+                            )}
+
                             <div
                                 className={
                                     this.state.isHideShow
@@ -112,10 +99,8 @@ class SpecialtyDetail extends Component {
                                         : 'render-markdow container bomaxhiegt'
                                 }
                             >
-                                {!_.isEmpty(dataDetailSpecialty) && dataDetailSpecialty.descriptionHTML && (
-                                    <div
-                                        dangerouslySetInnerHTML={{ __html: dataDetailSpecialty.descriptionHTML }}
-                                    ></div>
+                                {!_.isEmpty(dataDetailClinic) && dataDetailClinic.descriptionHTML && (
+                                    <div dangerouslySetInnerHTML={{ __html: dataDetailClinic.descriptionHTML }}></div>
                                 )}
                             </div>
                             <div className="specialty-detail-button">
@@ -131,17 +116,6 @@ class SpecialtyDetail extends Component {
 
                     <div className="container-layoyt-2">
                         <div className="container">
-                            <div className="searh-doctor-sp">
-                                <select onChange={(e) => this.handleOnchangeSelect(e)}>
-                                    {listProvince &&
-                                        listProvince.length > 0 &&
-                                        listProvince.map((data, index) => (
-                                            <option value={data.keyMap} key={index}>
-                                                {language === languages.VI ? data.valueVI : data.valueEN}
-                                            </option>
-                                        ))}
-                                </select>
-                            </div>
                             {arrDoctorId &&
                                 arrDoctorId.length > 0 &&
                                 arrDoctorId.map((data, index) => (
@@ -177,7 +151,9 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = (dispatch) => {
-    return {};
+    return {
+        getRequiredDoctorInfo: () => dispatch(actions.getRequiredDoctorInfo()),
+    };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(SpecialtyDetail);
+export default connect(mapStateToProps, mapDispatchToProps)(Clinic);

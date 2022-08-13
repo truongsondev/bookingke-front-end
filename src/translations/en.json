@@ -68,7 +68,8 @@
             "specialty": "Specialty",
             "manage-specialty": "Specialty manage",
             "handbook": "Handbook",
-            "manage-handbook": "Handbook manage"
+            "manage-handbook": "Handbook manage",
+            "clinicAdmin": "Intensive management of the clinic"
         },
 
         "doctor": {

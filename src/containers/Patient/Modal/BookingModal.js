@@ -77,8 +77,6 @@ class BookingModal extends Component {
     buildTimeBooking = (dataTime) => {
         const { language } = this.props;
 
-        console.log('check date 1:', dataTime);
-
         if (dataTime && !_.isEmpty(dataTime)) {
             let Time = language === languages.VI ? dataTime.timeTypeData.valueVI : dataTime.timeTypeData.valueEN;
 
@@ -95,8 +93,6 @@ class BookingModal extends Component {
 
     buildDoctorBooking = (dataTime) => {
         const { language } = this.props;
-
-        console.log('check date 1:', dataTime);
 
         if (dataTime && !_.isEmpty(dataTime)) {
             let DoctorName =

@@ -15,6 +15,7 @@ import {
 } from '../../services/doctorServices';
 import { CRUD_ACTIONS } from '../../utils';
 import { CreateNewSpeciatly, getAllSpeciatlySevices } from '../../services/SpeciatlyService';
+import { getLimitAllClinic } from '../../services/clinicService';
 
 export const fetChGenderStart = () => {
     return async (dispatch, getState) => {
@@ -492,22 +493,26 @@ export const getRequiredDoctorInfo = () => {
             const ResPayment = await getAllCodeServices('PAYMENT');
             const ResProvince = await getAllCodeServices('PROVINCE');
             const GetAllSpecialty = await getAllSpeciatlySevices(30);
+            const GetAllClinic = await getLimitAllClinic(30);
 
             if (
                 ResPrice &&
                 ResPayment &&
                 ResProvince &&
                 GetAllSpecialty &&
+                GetAllClinic &&
                 ResPrice.errCode === 0 &&
                 ResPayment.errCode === 0 &&
                 ResProvince.errCode === 0 &&
-                GetAllSpecialty.errCode === 0
+                GetAllSpecialty.errCode === 0 &&
+                GetAllClinic.errCode === 0
             ) {
                 const dataRequired = {
                     ResPrice: ResPrice.data,
                     ResPayment: ResPayment.data,
                     ResProvince: ResProvince.data,
                     ResSpecialty: GetAllSpecialty.data,
+                    ResClinic: GetAllClinic.data,
                 };
 
                 dispatch(getRequiredDoctorInfoSuccess(dataRequired));
@@ -592,14 +597,6 @@ export const postPatientBookingAppointment = (data) => {
             const res = await postPatientBookingAppointmentService(data);
 
             if (res && res.errCode === 0) {
-                toast.success('🦄 You have successfully booked your appointment!', {
-                    position: 'top-right',
-                    autoClose: 5000,
-                    hideProgressBar: false,
-                    closeOnClick: true,
-                    pauseOnHover: true,
-                    draggable: true,
-                });
             } else {
                 toast.success('🦄 There is an error in the system, please try again later!', {
                     position: 'top-right',

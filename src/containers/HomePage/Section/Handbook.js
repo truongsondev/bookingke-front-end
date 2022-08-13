@@ -5,12 +5,42 @@ import './SlickSlider.scss';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import { NextArrow, PrevArrow } from '../Components/ArrowSlickSlider/arrow';
+import { GettAllSite } from '../../../services/SiteService';
+import ConvertBase64Image from '../../System/components/converBase64/convertBase64';
+import { withRouter } from 'react-router-dom';
 
 class Handbook extends Component {
-    render() {
-        const timeOut = this.props.timeOut || 500;
+    constructor(props) {
+        super(props);
+        this.state = {
+            ArrHandBook: [],
+        };
+    }
 
+    async componentDidMount() {
+        const Res = await GettAllSite('CM2');
+
+        if (Res && Res.errCode === 0) {
+            this.setState({
+                ArrHandBook: Res.data,
+            });
+        }
+    }
+
+    componentDidUpdate(prevProps, props, next) {}
+
+    handleRedireact = (data) => {
+        this.props.history.push(
+            `/site-thong-tin-new-bang-tin-cam-nang-chuyen-khoa-van-van?id=${data.id}&type=${data.case}`,
+        );
+    };
+
+    render() {
         const PropsData = { ...this.props };
+
+        const timeOut = PropsData.timeOut || 500;
+
+        const { ArrHandBook } = this.state;
 
         const settings = {
             dots: false,
@@ -26,19 +56,20 @@ class Handbook extends Component {
         return (
             <div className="Slick-slider-container">
                 <Slider {...settings}>
-                    {PropsData.RenderItem &&
-                        PropsData.RenderItem.map((data, index) => (
-                            <div key={index}>
+                    {ArrHandBook &&
+                        ArrHandBook.length > 0 &&
+                        ArrHandBook.map((data, index) => (
+                            <div key={index} onClick={() => this.handleRedireact(data)}>
                                 <div className="camnnang-parents">
                                     <div className="slider-container-cnang d-flex">
                                         <div
                                             className="img-customize-cnang"
                                             style={{
-                                                backgroundImage: `url(${data.image})`,
+                                                backgroundImage: `url(${ConvertBase64Image(data.image)})`,
                                             }}
                                         ></div>
                                         <div className="slider-container-cnang-text ">
-                                            <h3>{data.title}</h3>
+                                            <h3>{data.name}</h3>
                                         </div>
                                     </div>
                                 </div>
@@ -60,4 +91,4 @@ const mapDispatchToProps = (dispatch) => {
     return {};
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Handbook);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Handbook));

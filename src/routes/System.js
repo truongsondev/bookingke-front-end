@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Redirect, Route, Switch } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import UserManage from '../containers/System/UserManage';
 import UserRedux from '../containers/System/components/Admin/UserRedux';
 import ManageDoctor from '../containers/System/components/DoctorManage';
@@ -13,12 +13,14 @@ import NotFound from '../containers/System/components/404_not_found/404';
 import Patient from '../containers/System/components/DoctorManage/patient';
 import ManageSpeciatly from '../containers/System/components/Speciatly/Manage-speciatly';
 import ManageClinic from '../containers/System/components/ClinicManage';
+import AdminClinic from '../containers/System/components/ClinicManage/Admin/Admin-clinic';
+import Site from '../containers/System/components/Site';
 // import { lang } from 'moment';
 // import { languages } from '../utils';
 
 class System extends Component {
     render() {
-        const { systemMenuPath, user } = this.props;
+        const { user } = this.props;
 
         return (
             <div style={{ height: '100vh' }}>
@@ -33,6 +35,8 @@ class System extends Component {
                                     <Route path="/system/manage-doctor" component={ManageDoctor} />
                                     <Route path="/system/manage-specialty" component={ManageSpeciatly} />
                                     <Route path="/system/manage-clinic" component={ManageClinic} />
+                                    <Route path="/system/manage-redux-clinic" component={AdminClinic} />
+                                    <Route path="/system/manage-handbook" component={Site} />
                                     <Route path="/system/user-admin" component={NotFound} />
                                 </>
                             )}

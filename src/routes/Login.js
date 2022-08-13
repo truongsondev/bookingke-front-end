@@ -69,9 +69,7 @@ class Login extends Component {
         this.redirectToSystemPage();
         try {
             adminService.login(loginBody);
-        } catch (e) {
-            console.log('error login : ', e);
-        }
+        } catch (e) {}
     };
 
     handlerKeyDown = (event) => {

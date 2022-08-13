@@ -1,15 +1,17 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../../../../store/actions';
-import './ManageSpeciatly.scss';
+import './Site.scss';
 import MarkdownIt from 'markdown-it';
 import MdEditor from 'react-markdown-editor-lite';
 import Lightbox from 'react-image-lightbox';
 import { CommonUtils } from '../../../../utils';
+import { CreateNewSite } from '../../../../services/SiteService';
+import { toast } from 'react-toastify';
 
 const mdParser = new MarkdownIt(/* Markdown-it options */);
 
-class ManageSpeciatly extends Component {
+class setTimeout extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -19,6 +21,7 @@ class ManageSpeciatly extends Component {
             name: '',
             descriptionHTML: '',
             descriptionMarkDown: '',
+            type: '',
         };
     }
 
@@ -80,37 +83,48 @@ class ManageSpeciatly extends Component {
         return Validate;
     }
 
-    handleSaveClinic = () => {
+    handleSaveClinic = async () => {
         const Check = this.handleValidate(this.state);
         if (Check) {
-            this.props.CreateNewSpeciatly({
+            const Res = await CreateNewSite({
                 name: this.state.name,
-                imageBase64: this.state.imageBase64,
-                descriptionHTML: this.state.descriptionHTML,
-                descriptionMarkDown: this.state.descriptionMarkDown,
+                image: this.state.imageBase64,
+                contentHTML: this.state.descriptionHTML,
+                contentMarkdown: this.state.descriptionMarkDown,
+                case: this.state.type,
             });
-            setTimeout(() => {
-                this.setState = {
-                    linkPrevImage: '',
-                    isOpen: false,
-                    imageBase64: '',
-                    name: '',
-                    descriptionHTML: '',
-                    descriptionMarkDown: '',
-                };
-            }, 1000);
+
+            if (Res && Res.errCode === 0) {
+                toast.success('🦄 Bạn đã đang tải thông tin thành công!', {
+                    position: 'top-right',
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                });
+            } else {
+                toast.success('🦄 Bạn đã đang tải thông tin thất bại!', {
+                    position: 'top-right',
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                });
+            }
         }
     };
 
     render() {
-        const { linkPrevImage, isOpen, name, descriptionMarkDown } = this.state;
+        const { linkPrevImage, isOpen, name, descriptionMarkDown, type } = this.state;
 
         const images = [linkPrevImage ? linkPrevImage : ''];
 
         return (
             <div className="manage-speciatly-container container">
                 <div>
-                    <p className="title">Tạo mới chuyên khoa</p>
+                    <p className="title">Tạo mới Site</p>
                 </div>
                 <div className="btn-create-new-speciatly mt-3">
                     <button className="btn btn-primary">Tạo mới chuyên khoa</button>
@@ -126,6 +140,18 @@ class ManageSpeciatly extends Component {
                                 value={name}
                                 className="form-control"
                                 id="namechuyenkhoa"
+                            />
+                        </div>
+
+                        <div className="col-12 col-sm-6">
+                            <label className="mb-2" htmlFor="namechuyenkhoatype">
+                                Case chuyên khoa
+                            </label>
+                            <input
+                                onChange={(e) => this.handleChangeInput(e, 'type')}
+                                value={type}
+                                className="form-control"
+                                id="namechuyenkhoatype"
                             />
                         </div>
 
@@ -185,4 +211,4 @@ const mapDispatchToProps = (dispatch) => {
     };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(ManageSpeciatly);
+export default connect(mapStateToProps, mapDispatchToProps)(setTimeout);

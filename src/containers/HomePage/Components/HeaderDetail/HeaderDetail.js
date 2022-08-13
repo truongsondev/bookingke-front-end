@@ -40,6 +40,7 @@ class HeaderDetail extends Component {
                                     <BackIcon />
                                 </Link>
                                 <h2>{language === languages.VI ? VI : EN}</h2>
+                                {this.props.Name && <h2>{this.props.Name}</h2>}
                             </div>
                             <div className="col-sm-6">
                                 <div className="d-flex align-items-center right-header-detail">

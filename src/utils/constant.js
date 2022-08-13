@@ -7,6 +7,8 @@ export const path = {
     DOCTOR: '/doctor-schedule',
     DETAIL_DOCTOR: '/doctor-thong-tin-bac-si-chuyen-khoa/:id',
     DETAIL_SPECIALTY: '/specialty-thong-tin-chuyen-khoa/:id',
+    DETAIL_CLINIC: '/clinic-thong-tin-co-so-y-te/:id',
+    DETAIL_SITE: '/site-thong-tin-new-bang-tin-cam-nang-chuyen-khoa-van-van',
     VERIFY_EMAIL_BOOKING: '/verify-booking',
 };
 

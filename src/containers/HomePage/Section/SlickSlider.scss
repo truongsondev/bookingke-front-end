@@ -9,13 +9,16 @@
 
     .slider-container-data-banner {
 
+        height: 230px;
+
         // display        : flex;
         // flex-direction : column;
         // justify-content: center;
         padding      : 14px;
         margin       : 0 6px;
-        border       : 1px solid rgba(0, 0, 0, 0.1);
+        border       : 0.1px solid rgba(0, 0, 0, 0.085);
         border-radius: 4px;
+        cursor       : pointer;
 
 
 
@@ -40,6 +43,14 @@
                 display     : block;
                 font-size   : 14px !important;
                 font-weight : 700;
+                height      : 50px;
+                max-width   : 100%;
+
+                display           : -webkit-box;
+                -webkit-box-orient: vertical;
+                -webkit-line-clamp: 2;
+                overflow          : hidden;
+
             }
 
             ul {
@@ -171,7 +182,7 @@
         text-align  : start;
         padding-left: 10px;
         padding-top : 4px;
-        padding     : 5px 0;
+        padding     : 5px 10px;
         color       : #555;
         font-size   : 12px;
     }
