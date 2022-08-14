@@ -35,3 +35,7 @@ export const getExtraDoctorInfoByIDService = (doctorId) => {
 export const getProfileDoctorInfoByIDService = (doctorId) => {
     return axios.get(`/api/v1/get-profile-doctor-by-id?doctorId=${doctorId}`);
 };
+
+export const getAllPatientForDoctorService = (doctorId, date) => {
+    return axios.get(`/api/v1/get-list-patient-for-doctor?doctorId=${doctorId}&date=${date}`);
+};
