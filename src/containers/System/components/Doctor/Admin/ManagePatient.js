@@ -6,6 +6,10 @@ import { getAllPatientForDoctorService } from '../../../../../services/doctorSer
 import moment from 'moment';
 import _ from 'lodash';
 import { languages } from '../../../../../utils';
+import RemedyModal from './ModalRemedy/RemedyModal';
+import { postSenRemedy } from '../../../../../services/doctorServices';
+import { toast } from 'react-toastify';
+import LoadingOverlay from 'react-loading-overlay';
 
 class ManagePatient extends Component {
     constructor(props) {
@@ -13,6 +17,9 @@ class ManagePatient extends Component {
         this.state = {
             currentDate: moment(new Date()).startOf('day').valueOf(),
             dataPatient: [],
+            isOpenRemedyModal: false,
+            dataModal: {},
+            isHideShowLoading: false,
         };
     }
 
@@ -41,12 +48,80 @@ class ManagePatient extends Component {
             {
                 currentDate: moment(date[0]).startOf('day').valueOf(),
             },
-            () => {
+            async () => {
                 const { currentDate } = this.state;
 
-                this.getDataParence(currentDate);
+                await this.getDataParence(currentDate);
             },
         );
+    };
+
+    handleConfirm = (item) => {
+        let data = {
+            doctorId: item.doctorId,
+            patientId: item.patientId,
+            email: item.patientData.email,
+            timeType: item.timeType,
+            patientName: item.patientData.firstName,
+        };
+
+        this.setState({
+            isOpenRemedyModal: true,
+            dataModal: data,
+        });
+    };
+
+    handleCloseModalBooking = () => {
+        this.setState({
+            isOpenRemedyModal: false,
+        });
+    };
+
+    SendSemedy = async (data) => {
+        const { dataModal } = this.state;
+
+        this.setState({
+            isHideShowLoading: true,
+        });
+
+        const Res = await postSenRemedy({
+            email: data.email,
+            doctorId: dataModal.doctorId,
+            imageBase64: data.imageBase64,
+            patientId: dataModal.patientId,
+            timeType: dataModal.timeType,
+            language: this.props.language,
+            patientName: dataModal.patientName,
+        });
+
+        if (Res && Res.errCode === 0) {
+            toast.success('🦄Bạn đã xác nhận thông tin thành công!', {
+                position: 'top-right',
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+            });
+
+            this.setState({
+                isHideShowLoading: false,
+            });
+
+            this.handleCloseModalBooking();
+            const { currentDate } = this.state;
+
+            await this.getDataParence(currentDate);
+        } else {
+            toast.success('🦄đã xảy ra lỗi khi xác nhận thông tin!', {
+                position: 'top-right',
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+            });
+        }
     };
 
     render() {
@@ -88,8 +163,7 @@ class ManagePatient extends Component {
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            {dataPatient &&
-                                                dataPatient.length > 0 &&
+                                            {dataPatient && dataPatient.length > 0 ? (
                                                 dataPatient.map((data, index) => {
                                                     return (
                                                         <tr key={index}>
@@ -125,17 +199,24 @@ class ManagePatient extends Component {
                                                             </td>
                                                             <td>
                                                                 <div className="d-flex">
-                                                                    <button className="btn btn-primary mx-2">
+                                                                    <button
+                                                                        className="btn btn-primary mx-2"
+                                                                        onClick={() => this.handleConfirm(data)}
+                                                                    >
                                                                         Xác nhận
-                                                                    </button>
-                                                                    <button className="btn btn-warning mx-2">
-                                                                        Hủy
                                                                     </button>
                                                                 </div>
                                                             </td>
                                                         </tr>
                                                     );
-                                                })}
+                                                })
+                                            ) : (
+                                                <tr>
+                                                    <td colSpan="6" style={{ textAlign: 'center' }}>
+                                                        Không có dữ liệu
+                                                    </td>
+                                                </tr>
+                                            )}
                                         </tbody>
                                     </table>
                                 </div>
@@ -143,6 +224,17 @@ class ManagePatient extends Component {
                         </div>
                     </div>
                 </div>
+                <RemedyModal
+                    handleCloseModalBooking={this.handleCloseModalBooking}
+                    isOpenRemedyModal={this.state.isOpenRemedyModal}
+                    dataModal={this.state.dataModal}
+                    SendSemedy={(data) => this.SendSemedy(data)}
+                />
+                <LoadingOverlay
+                    active={this.state.isHideShowLoading}
+                    spinner
+                    text="Đang thực hiện hành động của bạn"
+                ></LoadingOverlay>
             </div>
         );
     }

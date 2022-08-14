@@ -95,3 +95,13 @@
 .slick-disabled {
     display: none !important;
 }
+
+div._loading_overlay_wrapper {
+    position: unset;
+    z-index : 9999999999999;
+
+
+    .css-df17o1 {
+        z-index: 99999999999;
+    }
+}

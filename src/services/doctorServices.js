@@ -39,3 +39,7 @@ export const getProfileDoctorInfoByIDService = (doctorId) => {
 export const getAllPatientForDoctorService = (doctorId, date) => {
     return axios.get(`/api/v1/get-list-patient-for-doctor?doctorId=${doctorId}&date=${date}`);
 };
+
+export const postSenRemedy = (data) => {
+    return axios.post('/api/v1/api-send-remedy', data);
+};
