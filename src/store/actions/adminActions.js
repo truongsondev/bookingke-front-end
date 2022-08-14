@@ -597,6 +597,14 @@ export const postPatientBookingAppointment = (data) => {
             const res = await postPatientBookingAppointmentService(data);
 
             if (res && res.errCode === 0) {
+                toast.success('🦄 Bạn đã Booking lịch khám thành công!', {
+                    position: 'top-right',
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                });
             } else {
                 toast.success('🦄 There is an error in the system, please try again later!', {
                     position: 'top-right',

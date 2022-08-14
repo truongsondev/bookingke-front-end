@@ -74,7 +74,8 @@
 
         "doctor": {
             "manage-schedule": "Quản lí kế hoạch khám bệnh",
-            "doctor.schedule": ""
+            "doctor.schedule": "",
+            "manage-patient": "Quản lí bệnh nhân khám bệnh"
         }
     },
 

@@ -74,7 +74,8 @@
 
         "doctor": {
             "manage-schedule": "Explore the management plan",
-            "doctor.schedule": ""
+            "doctor.schedule": "",
+            "manage-patient": "Manage the patient"
         }
     },
 
