@@ -32,20 +32,6 @@ class FamousDoctor extends Component {
         }
     }
 
-    beforeChange = (prev, next) => {
-        if (prev === 0) {
-            this.setState({ prevArrow: false });
-        } else if (prev <= next) {
-            if (prev === 0) {
-                this.setState({ prevArrow: true });
-            }
-        }
-
-        if (prev === next) {
-            this.setState({ nextArrow: false, prevArrow: true });
-        }
-    };
-
     HandleRedirect = (data) => {
         this.props.history.push(`/doctor-thong-tin-bac-si-chuyen-khoa/${data.id}`);
         // Có thể dùng thẻ link để redirect nhé
@@ -69,7 +55,32 @@ class FamousDoctor extends Component {
             slidesToScroll: 3,
             nextArrow: <NextArrow />,
             prevArrow: <PrevArrow />,
-            beforeChange: this.beforeChange,
+            responsive: [
+                {
+                    breakpoint: 1024,
+                    settings: {
+                        slidesToShow: 2,
+                        slidesToScroll: 2,
+                        infinite: true,
+                        dots: true,
+                    },
+                },
+                {
+                    breakpoint: 600,
+                    settings: {
+                        slidesToShow: 2,
+                        slidesToScroll: 2,
+                        initialSlide: 2,
+                    },
+                },
+                {
+                    breakpoint: 480,
+                    settings: {
+                        slidesToShow: 1,
+                        slidesToScroll: 1,
+                    },
+                },
+            ],
         };
 
         return (

@@ -35,14 +35,14 @@ class HeaderDetail extends Component {
                 <div className="container" style={{ height: '100%' }}>
                     <span className="d-flex align-items-center" style={{ height: '100%' }}>
                         <div className="row" style={{ width: '100%' }}>
-                            <div className="col-sm-6 d-flex host-name-header">
+                            <div className="col-6 col-sm-6 d-flex host-name-header">
                                 <Link to="/home">
                                     <BackIcon />
                                 </Link>
                                 <h2>{language === languages.VI ? VI : EN}</h2>
                                 {this.props.Name && <h2>{this.props.Name}</h2>}
                             </div>
-                            <div className="col-sm-6">
+                            <div className="col-6 col-sm-6">
                                 <div className="d-flex align-items-center right-header-detail">
                                     <div className="d-flex align-items-center content-header-detail">
                                         <div className="d-flex align-items-center language-header-detail">

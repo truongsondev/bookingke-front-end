@@ -80,6 +80,16 @@
                     padding: 4px 6px;
                 }
 
+                @media (max-width: 576px) {
+                    ul {
+                        padding-left: 10px;
+
+                        li {
+                            // list-style: none;
+                        }
+                    }
+                }
+
             }
 
             .specialty-detail-button {

@@ -146,7 +146,7 @@ class SpecialtyDetail extends Component {
                                 arrDoctorId.length > 0 &&
                                 arrDoctorId.map((data, index) => (
                                     <div key={index} className="specialty-detail-each-doctor row my-3 py-3">
-                                        <div className="content-left col-6">
+                                        <div className="content-left col-12 col-md-6">
                                             <ProfileDoctor
                                                 doctorId={data}
                                                 callAsync={true}
@@ -155,7 +155,7 @@ class SpecialtyDetail extends Component {
                                                 isPrice={true}
                                             />
                                         </div>
-                                        <div className="content-right col-6">
+                                        <div className="content-right col-12 col-md-6">
                                             <DoctorSchedule callAsync={true} detailDoctorId={data} />
                                             <DoctorExtra callAsync={true} detailDoctorId={data} />
                                         </div>

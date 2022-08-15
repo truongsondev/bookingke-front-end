@@ -108,7 +108,7 @@
                     .banner-options {
                         background-image: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.8), white);
                         padding-top     : 145px;
-                        padding-bottom  : 55px;
+                        padding-bottom  : 25px;
                         display         : flex;
 
                         .parents-content {
@@ -117,7 +117,7 @@
 
 
                             .item-content {
-                                width     : 12.5%;
+                                // width     : 12.5%;
                                 margin-top: 10px;
 
                                 .item-content-wrapper {
@@ -156,6 +156,33 @@
                             }
                         }
                     }
+                }
+
+
+                @media (max-width: 576px) {
+
+                    .content-up {
+
+                        .title-banner-one {
+                            font-size: 20px;
+                        }
+
+                        .title-banner-two {
+                            margin-top: 4px;
+                            font-size : 18px;
+                        }
+
+                        .banner-search {
+
+
+                            .search-input {
+                                width: 88%;
+                            }
+                        }
+                    }
+
+
+
                 }
             }
         }

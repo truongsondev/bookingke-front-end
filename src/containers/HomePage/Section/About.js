@@ -11,7 +11,7 @@ class About extends Component {
     render() {
         return (
             <div className="Slick-slider-container">
-                <div className="d-flex">
+                <div className="d-flex flex-wrap">
                     <div className="d-con-video">
                         <iframe
                             width="100%"
@@ -25,22 +25,22 @@ class About extends Component {
                     </div>
                     <div className="d-con-item">
                         <div className="d-con-item-truyenthong row">
-                            <div className="col-md-4">
+                            <div className="col-2 col-md-4">
                                 <img style={{ width: '162px' }} src={SKDS} alt="" />
                             </div>
-                            <div className="col-md-4">
+                            <div className="col-2 col-md-4">
                                 <img style={{ width: '106px' }} src={VTV1} alt="" />
                             </div>
-                            <div className="col-md-4">
+                            <div className="col-2 col-md-4">
                                 <img style={{ width: '127px' }} src={ICT} alt="" />
                             </div>
-                            <div className="col-md-4">
+                            <div className="col-2 col-md-4">
                                 <img style={{ width: '183px' }} src={VNEXPRESS} alt="" />
                             </div>
-                            <div className="col-md-4">
+                            <div className="col-2 col-md-4">
                                 <img style={{ width: '151px', backgroundColor: '#16325c' }} src={VTCNEW} alt="" />
                             </div>
-                            <div className="col-md-4">
+                            <div className="col-2 col-md-4">
                                 <img style={{ width: '127px' }} src={CNTTBYT} alt="" />
                             </div>
                         </div>

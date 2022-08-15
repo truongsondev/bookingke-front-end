@@ -14,8 +14,6 @@ import KhamTongQuat from '../../../../assets/images/khamtongquat.png';
 import XetNghiem from '../../../../assets/images/dichvuxetnghiem.png';
 import SucKhoTT from '../../../../assets/images/suckhoetinhthan.png';
 import KhamNhaKhoa from '../../../../assets/images/khamnhakhoa.png';
-import GoiPhauThuat from '../../../../assets/images/phau-thuat.jpg';
-import SPYTE from '../../../../assets/images/khamtainha.png';
 
 import './Banner.scss';
 
@@ -62,133 +60,106 @@ class HomeBanner extends Component {
                             </div>
                             <div className="content-down">
                                 <div className="banner-options">
-                                    <div className="d-flex justify-content-center container parents-content">
-                                        <div className="item-content">
-                                            <div className="item-content-wrapper">
-                                                <div
-                                                    className="image-container"
-                                                    style={{ backgroundImage: `url(${ChuyenKhoaIMG})` }}
-                                                ></div>
-                                            </div>
-                                            <div className="text-center item-name">
-                                                <p>
-                                                    <FormattedMessage id="banner.p1-1" />
-                                                </p>
-                                                <p className="text-nowrap ">
-                                                    <FormattedMessage id="banner.p1-2" />
-                                                </p>
-                                            </div>
-                                        </div>
-                                        <div className="item-content">
-                                            <div className="item-content-wrapper">
-                                                <div
-                                                    className="image-container"
-                                                    style={{ backgroundImage: `url(${KhamTuXa})` }}
-                                                ></div>
-                                            </div>
-                                            <div className="text-center item-name">
-                                                <p>
-                                                    <FormattedMessage id="banner.p2-1" />
-                                                </p>
-                                                <p className="text-nowrap ">
-                                                    <FormattedMessage id="banner.p2-2" />
-                                                </p>
-                                            </div>
-                                        </div>
-                                        <div className="item-content">
-                                            <div className="item-content-wrapper">
-                                                <div
-                                                    className="image-container"
-                                                    style={{ backgroundImage: `url(${KhamTongQuat})` }}
-                                                ></div>
-                                            </div>
-                                            <div className="text-center item-name">
-                                                <p>
-                                                    <FormattedMessage id="banner.p3-1" />
-                                                </p>
-                                                <p className="text-nowrap ">
-                                                    <FormattedMessage id="banner.p3-2" />
-                                                </p>
-                                            </div>
-                                        </div>
-                                        <div className="item-content">
-                                            <div className="item-content-wrapper">
-                                                <div
-                                                    className="image-container"
-                                                    style={{ backgroundImage: `url(${XetNghiem})` }}
-                                                ></div>
-                                            </div>
-                                            <div className="text-center item-name">
-                                                <p>
-                                                    <FormattedMessage id="banner.p4-1" />
-                                                </p>
-                                                <p className="text-nowrap ">
-                                                    <FormattedMessage id="banner.p4-2" />
-                                                </p>
-                                            </div>
-                                        </div>
-                                        <div className="item-content">
-                                            <div className="item-content-wrapper">
-                                                <div
-                                                    className="image-container"
-                                                    style={{ backgroundImage: `url(${SucKhoTT})` }}
-                                                ></div>
-                                            </div>
-                                            <div className="text-center item-name">
-                                                <p>
-                                                    <FormattedMessage id="banner.p5-1" />
-                                                </p>
-                                                <p className="text-nowrap ">
-                                                    <FormattedMessage id="banner.p5-2" />
-                                                </p>
-                                            </div>
-                                        </div>
-                                        <div className="item-content">
-                                            <div className="item-content-wrapper">
-                                                <div
-                                                    className="image-container"
-                                                    style={{ backgroundImage: `url(${KhamNhaKhoa})` }}
-                                                ></div>
-                                            </div>
-                                            <div className="text-center item-name">
-                                                <p>
-                                                    <FormattedMessage id="banner.p6-1" />
-                                                </p>
-                                                <p className="text-nowrap ">
-                                                    <FormattedMessage id="banner.p6-2" />
-                                                </p>
-                                            </div>
-                                        </div>
-                                        <div className="item-content">
-                                            <div className="item-content-wrapper">
-                                                <div
-                                                    className="image-container"
-                                                    style={{ backgroundImage: `url(${GoiPhauThuat})` }}
-                                                ></div>
-                                            </div>
-                                            <div className="text-center item-name">
-                                                <p>
-                                                    <FormattedMessage id="banner.p7-1" />
-                                                </p>
-                                                <p className="text-nowrap ">
-                                                    <FormattedMessage id="banner.p7-2" />
-                                                </p>
-                                            </div>
-                                        </div>
-                                        <div className="item-content">
-                                            <div className="item-content-wrapper">
-                                                <div
-                                                    className="image-container"
-                                                    style={{ backgroundImage: `url(${SPYTE})` }}
-                                                ></div>
-                                            </div>
-                                            <div className="text-center item-name">
-                                                <p>
-                                                    <FormattedMessage id="banner.p8-1" />
-                                                </p>
-                                                <p className="text-nowrap ">
-                                                    <FormattedMessage id="banner.p8-2" />
-                                                </p>
+                                    {/* d-flex justify-content-center container parents-content */}
+                                    <div className="parents-content">
+                                        <div className="container">
+                                            <div className="row">
+                                                <div className="item-content col-4 col-sm-3 col-md-2">
+                                                    <div className="item-content-wrapper">
+                                                        <div
+                                                            className="image-container"
+                                                            style={{ backgroundImage: `url(${ChuyenKhoaIMG})` }}
+                                                        ></div>
+                                                    </div>
+                                                    <div className="text-center item-name">
+                                                        <p>
+                                                            <FormattedMessage id="banner.p1-1" />
+                                                        </p>
+                                                        <p className="text-nowrap ">
+                                                            <FormattedMessage id="banner.p1-2" />
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                                <div className="item-content col-4 col-sm-3 col-md-2">
+                                                    <div className="item-content-wrapper">
+                                                        <div
+                                                            className="image-container"
+                                                            style={{ backgroundImage: `url(${KhamTuXa})` }}
+                                                        ></div>
+                                                    </div>
+                                                    <div className="text-center item-name">
+                                                        <p>
+                                                            <FormattedMessage id="banner.p2-1" />
+                                                        </p>
+                                                        <p className="text-nowrap ">
+                                                            <FormattedMessage id="banner.p2-2" />
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                                <div className="item-content col-4 col-sm-3 col-md-2">
+                                                    <div className="item-content-wrapper">
+                                                        <div
+                                                            className="image-container"
+                                                            style={{ backgroundImage: `url(${KhamTongQuat})` }}
+                                                        ></div>
+                                                    </div>
+                                                    <div className="text-center item-name">
+                                                        <p>
+                                                            <FormattedMessage id="banner.p3-1" />
+                                                        </p>
+                                                        <p className="text-nowrap ">
+                                                            <FormattedMessage id="banner.p3-2" />
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                                <div className="item-content col-4 col-sm-3 col-md-2">
+                                                    <div className="item-content-wrapper">
+                                                        <div
+                                                            className="image-container"
+                                                            style={{ backgroundImage: `url(${XetNghiem})` }}
+                                                        ></div>
+                                                    </div>
+                                                    <div className="text-center item-name">
+                                                        <p>
+                                                            <FormattedMessage id="banner.p4-1" />
+                                                        </p>
+                                                        <p className="text-nowrap ">
+                                                            <FormattedMessage id="banner.p4-2" />
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                                <div className="item-content col-4 col-sm-3 col-md-2">
+                                                    <div className="item-content-wrapper">
+                                                        <div
+                                                            className="image-container"
+                                                            style={{ backgroundImage: `url(${SucKhoTT})` }}
+                                                        ></div>
+                                                    </div>
+                                                    <div className="text-center item-name">
+                                                        <p>
+                                                            <FormattedMessage id="banner.p5-1" />
+                                                        </p>
+                                                        <p className="text-nowrap ">
+                                                            <FormattedMessage id="banner.p5-2" />
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                                <div className="item-content col-4 col-sm-3 col-md-2">
+                                                    <div className="item-content-wrapper">
+                                                        <div
+                                                            className="image-container"
+                                                            style={{ backgroundImage: `url(${KhamNhaKhoa})` }}
+                                                        ></div>
+                                                    </div>
+                                                    <div className="text-center item-name">
+                                                        <p>
+                                                            <FormattedMessage id="banner.p6-1" />
+                                                        </p>
+                                                        <p className="text-nowrap ">
+                                                            <FormattedMessage id="banner.p6-2" />
+                                                        </p>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>

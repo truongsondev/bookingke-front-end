@@ -60,7 +60,34 @@
                     cursor   : pointer;
                     font-size: 12px;
                 }
+
+                @media (min-width: 768px) {
+                    & {
+                        justify-content: center;
+                        padding        : 0 6px;
+                    }
+
+
+                    .item-container {
+                        width       : 40%;
+                        cursor      : pointer;
+                        font-size   : 12px;
+                        padding-left: 6px;
+
+
+                        b {
+                            white-space: nowrap;
+                            font-size  : 10px;
+                        }
+
+                        .sub-title {
+                            font-size: 7px;
+                        }
+                    }
+                }
             }
+
+
 
             .right-content {
                 flex           : 1;
@@ -96,6 +123,44 @@
                     margin-right: 10px;
                 }
 
+            }
+
+
+            @media (max-width: 576px) {
+                & {
+                    padding: 0 15px;
+                }
+
+
+                .center-content {
+                    display: none;
+                }
+
+
+                .right-content {
+                    width          : 75%;
+                    justify-content: flex-end;
+
+                    .language {
+
+
+                        img {
+                            width : 20px;
+                            height: 20px;
+                        }
+
+                        &.active {
+                            img {
+                                opacity: 1;
+                                cursor : default;
+                            }
+                        }
+
+                        .language-vi {
+                            margin-right: 5px;
+                        }
+                    }
+                }
             }
         }
     }

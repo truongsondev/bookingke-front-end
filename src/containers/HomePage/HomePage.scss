@@ -45,6 +45,23 @@
                         background: #f7d800;
                     }
                 }
+
+                @media (max-width: 576px) {
+                    & {
+                        margin-bottom: 10px;
+                    }
+
+                    h2 {
+                        font-size: 14px;
+                        padding  : 6px 0;
+                        margin   : 0;
+                    }
+
+                    button {
+                        font-size: 14px;
+                    }
+
+                }
             }
 
 
@@ -64,6 +81,9 @@
                     padding: 0px 0px 20px 0px;
                 }
             }
+
+
+
         }
 
         &.speciality {
@@ -95,6 +115,23 @@
         &.danhchobacsi {
             height          : 290px;
             background-color: #f5f5f5;
+        }
+
+        @media (max-width: 576px) {
+
+            &.csyte {
+                .slider-speciality {
+                    h2 {
+                        padding: 0;
+                    }
+
+                }
+            }
+
+            &.truyenthong {
+                height: 500px;
+            }
+
         }
     }
 

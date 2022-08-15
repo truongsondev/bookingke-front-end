@@ -8,6 +8,7 @@ import _ from 'lodash';
 import ConvertBase64Image from '../../System/components/converBase64/convertBase64';
 import Lightbox from 'react-image-lightbox';
 import { getDetaiSiteByID } from '../../../services/SiteService';
+import FooterTwo from '../../HomePage/Components/Footer/FooterTwo';
 
 class SitePatient extends Component {
     constructor(props) {
@@ -95,6 +96,7 @@ class SitePatient extends Component {
                         </div>
                     </div>
                 </div>
+                <FooterTwo />
             </div>
         );
     }
