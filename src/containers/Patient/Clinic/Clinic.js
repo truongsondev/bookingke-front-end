@@ -58,6 +58,8 @@ class Clinic extends Component {
     render() {
         const { arrDoctorId, dataDetailClinic } = this.state;
 
+        document.title = !_.isEmpty(dataDetailClinic) && dataDetailClinic.name ? dataDetailClinic.name : '';
+
         const images = [
             !_.isEmpty(dataDetailClinic) && dataDetailClinic.image ? ConvertBase64Image(dataDetailClinic.image) : '',
         ];

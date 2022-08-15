@@ -9,6 +9,8 @@ import HomeBanner from './Components/Banner';
 
 class HomePage extends Component {
     render() {
+        document.title = `Trường Sơn Booking - Nền tảng y tế sức khỏe toàn diện`;
+
         return (
             <div className="home-page">
                 <HomeHeader />

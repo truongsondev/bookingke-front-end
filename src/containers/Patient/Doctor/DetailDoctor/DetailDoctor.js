@@ -34,6 +34,8 @@ class DetailDoctor extends Component {
 
     componentDidUpdate(prevProps, NextProps, Next) {
         if (prevProps.DetailDoctor !== this.props.DetailDoctor) {
+            document.title = `${this.props.DetailDoctor.positionData.valueVI} ${this.props.DetailDoctor.firstName} ${this.props.DetailDoctor.lastName}`;
+
             this.setState({
                 doctorInfor: this.props.DetailDoctor,
             });

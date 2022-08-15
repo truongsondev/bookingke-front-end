@@ -96,6 +96,8 @@ class SpecialtyDetail extends Component {
     componentDidUpdate(prevProps, NextProps, Next) {}
 
     render() {
+        document.title = 'Chuyên khoa phổ biến tại Trường Sơn Booking';
+
         const { arrDoctorId, dataDetailSpecialty, listProvince } = this.state;
         const { language } = this.props;
 

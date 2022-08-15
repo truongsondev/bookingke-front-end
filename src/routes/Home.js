@@ -4,6 +4,8 @@ import { connect } from 'react-redux';
 import { USER_ROLE } from '../utils';
 
 class Home extends Component {
+    componentDidMount() {}
+
     render() {
         const { isLoggedIn, user } = this.props;
 

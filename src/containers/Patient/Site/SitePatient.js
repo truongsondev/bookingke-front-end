@@ -48,6 +48,8 @@ class SitePatient extends Component {
     render() {
         const { dataDetailSite } = this.state;
 
+        document.title = dataDetailSite && dataDetailSite.name ? dataDetailSite.name : '';
+
         const images = [
             !_.isEmpty(dataDetailSite) && dataDetailSite.image ? ConvertBase64Image(dataDetailSite.image) : '',
         ];
