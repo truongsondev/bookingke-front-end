@@ -8,15 +8,21 @@ import FooterTwo from '../../../HomePage/Components/Footer/FooterTwo';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHouse } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
+import Lightbox from 'react-image-lightbox';
+import 'react-image-lightbox/style.css';
 
 import DoctorSchedule from '../../Schedule';
 import DoctorExtra from '../DoctorExtra/DoctorExtra';
+
+import LinkAndShare from '../../../Plugin/LinkAndShare';
+import Comment from '../../../Plugin/Comment';
 
 class DetailDoctor extends Component {
     constructor(props) {
         super(props);
         this.state = {
             doctorInfor: {},
+            isOpen: false,
         };
     }
 
@@ -35,7 +41,11 @@ class DetailDoctor extends Component {
     }
 
     render() {
+        let currentURL = +process.env.REACT_APP_IS_LOCALHOST === 1 ? '' : window.location.href;
+
         const { doctorInfor } = this.state;
+
+        const images = [doctorInfor && doctorInfor.image ? doctorInfor.image : ''];
 
         const { language } = this.props;
 
@@ -96,16 +106,34 @@ class DetailDoctor extends Component {
                                                 doctorInfor && doctorInfor.image ? doctorInfor.image : ''
                                             })`,
                                         }}
+                                        onClick={() =>
+                                            this.setState({
+                                                isOpen: true,
+                                            })
+                                        }
                                     ></div>
                                 </div>
+                                {this.state.isOpen && (
+                                    <Lightbox
+                                        mainSrc={images[0]}
+                                        onCloseRequest={() => this.setState({ isOpen: false })}
+                                    />
+                                )}
                                 <div className="col-8 col-md-9  col-lg-10 container-introduce">
-                                    <div className="title-introduce">
-                                        <h2>{this.props.language === languages.VI ? VI : EN}</h2>
+                                    <div>
+                                        <div className="title-introduce">
+                                            <h2>{this.props.language === languages.VI ? VI : EN}</h2>
+                                        </div>
+                                        <div className="description-introduce">
+                                            {doctorInfor &&
+                                                doctorInfor.Markdown &&
+                                                doctorInfor.Markdown.description && (
+                                                    <p>{doctorInfor.Markdown.description}</p>
+                                                )}
+                                        </div>
                                     </div>
-                                    <div className="description-introduce">
-                                        {doctorInfor && doctorInfor.Markdown && doctorInfor.Markdown.description && (
-                                            <p>{doctorInfor.Markdown.description}</p>
-                                        )}
+                                    <div>
+                                        <LinkAndShare dataHref={currentURL} />
                                     </div>
                                 </div>
                             </div>
@@ -137,6 +165,13 @@ class DetailDoctor extends Component {
                                     </span>
                                 </>
                             )}
+                            <div>
+                                <Comment
+                                    dataHref="https://www.facebook.com/Theanh28/posts/pfbid07ZNnNsnCbnopYutLpvGfP631ozYSERu3SmSaSyVSuLMkccnuunXE1fS6nbXjVEkEl"
+                                    width="100%"
+                                    numPost={20}
+                                />
+                            </div>
                         </div>
                     </div>
                     <div className="detail-doctor-comment"></div>
