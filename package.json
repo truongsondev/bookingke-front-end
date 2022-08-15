@@ -55,7 +55,7 @@
     },
     "scripts": {
         "start": "react-scripts start",
-        "build": "npm install --prefix client && npm run build --prefix client",
+        "build": "next build", 
         "test": "react-scripts test",
         "eject": "react-scripts eject"
     },
