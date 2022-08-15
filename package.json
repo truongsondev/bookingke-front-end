@@ -60,7 +60,7 @@
         "eject": "react-scripts eject"
     },
      "engines": {
-        "node": "14.2.8",
+        "node": "14.19.3",
         "npm": "8.5.5"
     },
     "eslintConfig": {
