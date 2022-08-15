@@ -61,7 +61,7 @@
     },
      "engines": {
         "node": "14.2.8",
-        "npm": "6.7.0"
+        "npm": "8.5.5"
     },
     "eslintConfig": {
         "extends": "react-app"
